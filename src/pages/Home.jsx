@@ -41,6 +41,27 @@ const Home = () => {
         </div>
       </section>
 
+
+      {/* Featured Products */}
+      <section className="featured-products">
+        <div className="container">
+          <h2 className="section-title">Featured Collection</h2>
+          <p className="section-subtitle">
+            Discover our most popular custom-tailored pieces, crafted with precision and attention to detail
+          </p>
+          <div className="products-grid">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+          <div className="featured-cta">
+            <Link to="/products" className="btn btn-primary">
+              View All Products
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="stats">
         <div className="container">
@@ -65,26 +86,6 @@ const Home = () => {
               <h3>4.9</h3>
               <p>Rating</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="featured-products">
-        <div className="container">
-          <h2 className="section-title">Featured Collection</h2>
-          <p className="section-subtitle">
-            Discover our most popular custom-tailored pieces, crafted with precision and attention to detail
-          </p>
-          <div className="products-grid">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-          <div className="featured-cta">
-            <Link to="/products" className="btn btn-primary">
-              View All Products
-            </Link>
           </div>
         </div>
       </section>

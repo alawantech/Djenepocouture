@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className="container">
         <div className="nav-content">
           <Link to="/" className="nav-logo">
-            <h2>Golden Threads</h2>
+              <img src="/images/log1.png" alt="Logo" className="nav-logo-img" />
           </Link>
           
           <div className={`nav-links ${isMenuOpen ? 'nav-links-mobile' : ''}`}>

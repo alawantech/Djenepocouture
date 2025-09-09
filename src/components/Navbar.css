@@ -13,11 +13,12 @@
   padding: 1rem 0;
 }
 
-.nav-logo h2 {
-  color: var(--primary-gold);
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-decoration: none;
+
+.nav-logo-img {
+  height: 70px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
 
 .nav-links {
