@@ -3,7 +3,7 @@ export const products = [
     id: 1,
     name: "Classic Business Suit",
     price: 899,
-    image: "https://images.pexels.com/photos/1024311/pexels-photo-1024311.jpeg?auto=compress&cs=tinysrgb&w=500",
+    image: "https://res.cloudinary.com/dfooclcxe/image/upload/v1757410809/img14_f0fcke.jpg",
     description: "Elegant business suit crafted from premium wool. Perfect for professional meetings and formal occasions."
   },
   {

@@ -8,6 +8,8 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import './App.css';
 
+import Admin from './pages/Admin';
+
 function App() {
   return (
     <Router>
@@ -19,6 +21,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
         <Footer />
