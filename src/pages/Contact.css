@@ -1,0 +1,261 @@
+.contact-page {
+  padding: 2rem 0 4rem;
+  min-height: 70vh;
+}
+
+.contact-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.contact-card {
+  background: var(--white);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.primary-card {
+  border-color: var(--primary-gold);
+  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--white) 100%);
+}
+
+.contact-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.contact-icon svg {
+  color: var(--primary-gold);
+}
+
+.contact-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.contact-card p {
+  color: var(--text-gray);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.location-hours {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.location-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.location-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.location-item svg {
+  color: var(--primary-gold);
+  margin-top: 0.25rem;
+}
+
+.location-item h4 {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.location-item p {
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+.hours-list p {
+  margin-bottom: 0.5rem;
+}
+
+.map-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-placeholder {
+  background: var(--light-gray);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-placeholder svg {
+  color: var(--primary-gold);
+  margin-bottom: 1rem;
+}
+
+.map-placeholder h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.map-placeholder p {
+  color: var(--text-gray);
+  margin-bottom: 1.5rem;
+}
+
+.services-info {
+  margin-bottom: 4rem;
+}
+
+.services-info h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-info-card {
+  background: var(--light-gray);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.service-info-card h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.service-info-card p {
+  color: var(--text-gray);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.contact-cta {
+  background: linear-gradient(135deg, var(--primary-gold) 0%, var(--dark-brown) 100%);
+  color: var(--white);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.contact-cta h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.contact-cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.contact-cta .btn {
+  background: var(--white);
+  color: var(--text-dark);
+}
+
+.contact-cta .btn:hover {
+  background: var(--light-gray);
+  transform: translateY(-2px);
+}
+
+.contact-cta .btn-secondary {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.contact-cta .btn-secondary:hover {
+  background: var(--white);
+  color: var(--text-dark);
+}
+
+@media (max-width: 1024px) {
+  .location-hours {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .map-placeholder {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .map-placeholder {
+    height: 200px;
+    padding: 2rem 1rem;
+  }
+}
