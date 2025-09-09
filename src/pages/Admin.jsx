@@ -1,6 +1,24 @@
 import React, { useState } from 'react';
-import { products } from '../data/products';
+import { db } from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 import './Admin.css';
+
+const uploadImageToCloudinary = async (imageFile) => {
+  const formData = new FormData();
+  formData.append('file', imageFile);
+  formData.append('upload_preset', 'my_unsigned'); // your unsigned preset name
+
+  const res = await fetch(
+    'https://api.cloudinary.com/v1_1/dfooclcxe/image/upload', // your cloud name
+    {
+      method: 'POST',
+      body: formData,
+    }
+  );
+
+  const data = await res.json();
+  return data.secure_url; // returns the uploaded image URL
+};
 
 const Admin = () => {
   const [product, setProduct] = useState({
@@ -10,6 +28,8 @@ const Admin = () => {
     description: ''
   });
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -23,34 +43,33 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccess(false);
     let imageUrl = '';
+
     if (product.image) {
-      const formData = new FormData();
-      formData.append('file', product.image);
-      formData.append('upload_preset', 'YOUR_UNSIGNED_PRESET'); // Replace with your Cloudinary unsigned preset
-      const res = await fetch('https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload', {
-        method: 'POST',
-        body: formData
-      });
-      const data = await res.json();
-      imageUrl = data.secure_url;
+      imageUrl = await uploadImageToCloudinary(product.image);
+      if (!imageUrl) {
+        setLoading(false);
+        alert('Image upload failed. Please try again.');
+        return;
+      }
+      console.log("Uploaded Image URL:", imageUrl);
     }
 
-    // Auto id
-    const newId = products.length ? products[products.length - 1].id + 1 : 1;
-    const newProduct = {
-      id: newId,
+    await addDoc(collection(db, 'products'), {
       name: product.name,
       price: Number(product.price),
       image: imageUrl,
-      description: product.description
-    };
-
-    // For demo: add to products array (in real app, use backend API)
-    products.push(newProduct);
-    alert('Product added!');
+      description: product.description,
+      isfeatured: false,
+      createdAt: new Date()
+    });
+    setLoading(false);
+    setSuccess(true);
     setProduct({ name: '', price: '', image: null, description: '' });
     setPreview(null);
+    setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
@@ -70,8 +89,10 @@ const Admin = () => {
         <label>Description:</label>
         <textarea name="description" value={product.description} onChange={handleChange} required />
 
-  <button type="submit">Add Product</button>
-  <p style={{marginTop: '10px', fontSize: '12px', color: '#888'}}>Image will be uploaded to Cloudinary. Make sure to set your cloud name and unsigned preset in the code.</p>
+        <button type="submit" disabled={loading}>Add Product</button>
+        <p style={{marginTop: '10px', fontSize: '12px', color: '#888'}}>Image will be uploaded to Cloudinary and product saved in Firestore.</p>
+        {loading && <div className="spinner" style={{marginTop: '10px'}}>Adding product...</div>}
+        {success && <div className="success-message" style={{marginTop: '10px', color: 'green'}}>Product added successfully!</div>}
       </form>
     </div>
   );

@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
-import { featuredProducts } from '../data/products';
+import { getProducts } from '../data/products';
 import './Home.css';
 
 const Home = () => {
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const products = await getProducts();
+      setFeaturedProducts(products.slice(0, 6));
+      setLoading(false);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div className="home">
       {/* Hero Section */}
@@ -49,11 +61,15 @@ const Home = () => {
           <p className="section-subtitle">
             Discover our most popular custom-tailored pieces, crafted with precision and attention to detail
           </p>
-          <div className="products-grid">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="no-products"><h3>Loading products...</h3></div>
+          ) : (
+            <div className="products-grid">
+              {featuredProducts.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
           <div className="featured-cta">
             <Link to="/products" className="btn btn-primary">
               View All Products

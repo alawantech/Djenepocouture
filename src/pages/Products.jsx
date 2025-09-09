@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import { products } from '../data/products';
+import { getProducts } from '../data/products';
 import './Products.css';
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [priceRange, setPriceRange] = useState('all');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getProducts();
+      setProducts(data);
+      setLoading(false);
+    };
+    fetchProducts();
+  }, []);
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -57,7 +68,11 @@ const Products = () => {
           </div>
         </div>
 
-        {filteredProducts.length > 0 ? (
+        {loading ? (
+          <div className="no-products">
+            <h3>Loading products...</h3>
+          </div>
+        ) : filteredProducts.length > 0 ? (
           <div className="products-grid">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} showDescription={true} />
