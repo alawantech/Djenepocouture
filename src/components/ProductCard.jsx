@@ -7,10 +7,26 @@ const ProductCard = ({ product, showDescription = false }) => {
   const { t, language } = useTranslation();
 
   const handleWhatsAppClick = () => {
-    const message = language === 'fr' 
-      ? `Salut! Je suis intéressé(e) par ${product.name}. Prix: ${product.price}F`
-      : `Hi! I'm interested in ${product.name}. Price: ${product.price}F`;
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
+    // Create the WhatsApp message dynamically based on product data and language
+    let message = t('products.whatsapp.message');
+    
+    // Replace placeholders with actual product data
+    message = message.replace('{name}', product.name || '');
+    
+    // Add description if it exists, otherwise just use the name
+    if (product.description && product.description.trim()) {
+      message = message.replace('{description}', product.description);
+    } else {
+      // Remove the description part if no description
+      message = message.replace(' {description}', '');
+    }
+    
+    // Add price
+    message = message.replace('{price}', `${product.price}F`);
+    
+    // WhatsApp phone number (update this with your actual number)
+    const phoneNumber = '22383561498';
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -55,7 +71,7 @@ const ProductCard = ({ product, showDescription = false }) => {
         <div className="product-overlay">
           <button className="btn btn-primary quick-buy" onClick={handleWhatsAppClick}>
             <MessageCircle size={18} />
-            {language === 'fr' ? 'Achat Rapide' : 'Quick Buy'}
+            {t('products.whatsapp.quickBuy')}
           </button>
         </div>
       </div>
@@ -68,7 +84,7 @@ const ProductCard = ({ product, showDescription = false }) => {
           </div>
           <span className="rating-text">
             <span className="rating-number">{rating.toFixed(1)}</span>
-            <span className="review-count">({reviewCount} {language === 'fr' ? 'avis' : 'reviews'})</span>
+            <span className="review-count">({reviewCount} {t('products.reviews')})</span>
           </span>
         </div>
         
@@ -76,7 +92,7 @@ const ProductCard = ({ product, showDescription = false }) => {
         <div className="product-price">{product.price}F</div>
         <button className="btn btn-primary whatsapp-btn" onClick={handleWhatsAppClick}>
           <MessageCircle size={18} />
-          {language === 'fr' ? 'Acheter sur WhatsApp' : 'Buy on WhatsApp'}
+          {t('products.whatsapp.buyOnWhatsapp')}
         </button>
       </div>
     </div>

@@ -167,7 +167,13 @@
     "loading": "Loading products...",
     "noProducts": "No products available at the moment",
     "checkBack": "Check back soon for our latest collection!",
-    "featured": "Featured"
+    "featured": "Featured",
+    "reviews": "reviews",
+    "whatsapp": {
+      "message": "I want to buy {name} {description} that has price of {price}",
+      "quickBuy": "Quick Buy",
+      "buyOnWhatsapp": "Buy on WhatsApp"
+    }
   },
   "common": {
     "loading": "Loading...",

@@ -167,7 +167,13 @@
     "loading": "Chargement des produits...",
     "noProducts": "Aucun produit disponible pour le moment",
     "checkBack": "Revenez bientôt pour notre dernière collection !",
-    "featured": "Vedette"
+    "featured": "Vedette",
+    "reviews": "avis",
+    "whatsapp": {
+      "message": "Je veux acheter {name} {description} qui a un prix de {price}",
+      "quickBuy": "Achat Rapide",
+      "buyOnWhatsapp": "Acheter sur WhatsApp"
+    }
   },
   "common": {
     "loading": "Chargement...",
