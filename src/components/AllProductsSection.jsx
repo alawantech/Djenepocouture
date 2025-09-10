@@ -256,11 +256,13 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                       </div>
                     </div>
                     
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className="product-image"
-                    />
+                    <div className="product-image-container">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="product-image"
+                      />
+                    </div>
                     
                     <div className="product-content">
                       <h3 className="product-title">{product.name}</h3>
