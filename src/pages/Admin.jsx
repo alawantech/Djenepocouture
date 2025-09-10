@@ -88,6 +88,14 @@ const Admin = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
+      {/* Overlay for mobile when sidebar is open */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar - Retained for functionality but can be restyled further */}
       <div
         className={`fixed lg:static top-0 left-0 h-full bg-gray-900 text-white w-64 transform ${
@@ -99,22 +107,24 @@ const Admin = () => {
         </div>
         <nav className="flex flex-col gap-4 p-6">
           <button
-            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-left font-medium"
+            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-left font-medium flex items-center gap-2"
             onClick={() => {
               setShowProducts(false);
               setSidebarOpen(false);
             }}
           >
-            ➕ Add Product
+            <PlusIcon className="h-5 w-5" />
+            Add Product
           </button>
           <button
-            className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg text-left font-medium"
+            className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg text-left font-medium flex items-center gap-2"
             onClick={() => {
               setShowProducts(true);
               setSidebarOpen(false);
             }}
           >
-            📦 All Products
+            <CubeIcon className="h-5 w-5" />
+            All Products
           </button>
         </nav>
       </div>
@@ -123,21 +133,21 @@ const Admin = () => {
       <div className="flex-1 p-6 lg:p-10">
         {/* Hamburger for mobile */}
         <button
-          className="lg:hidden mb-6 bg-gray-900 text-white p-2 rounded-lg"
+          className="lg:hidden mb-12 bg-red-500 hover:bg-red-600 text-white p-3 rounded-lg shadow-lg transition-all font-bold text-xl"
           onClick={() => setSidebarOpen(!sidebarOpen)}
         >
-          <Bars3Icon className="h-6 w-6" />
+          ☰
         </button>
 
         {showProducts ? (
-          <div>
+          <div className="mt-8">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">
               All Products
             </h2>
             <AllProductsSection onlyProductsView={true} />
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto">
+          <div className="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto mt-8">
             <h2 className="text-xl font-bold text-gray-800 mb-6">
               Add New Product
             </h2>
@@ -161,6 +171,7 @@ const Admin = () => {
                     value={product.name}
                     onChange={handleChange}
                   />
+                  <TagIcon className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 </div>
               </div>
               {/* Price Field */}
@@ -208,14 +219,6 @@ const Admin = () => {
                     <PhotoIcon className="h-5 w-5 text-gray-700" />
                   </div>
                 </div>
-
-                {preview && (
-                  <img
-                    src={preview}
-                    alt="Preview"
-                    className="rounded-lg mt-4 w-full max-h-56 object-cover border border-gray-200 shadow-sm"
-                  />
-                )}
               </div>
 
               {/* Description Field */}
