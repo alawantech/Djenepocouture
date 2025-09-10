@@ -189,6 +189,7 @@
   },
   "admin": {
     "dashboard": "Admin Dashboard",
+    "logout": "Logout",
     "navigation": {
       "addProduct": "Add Product",
       "viewProducts": "View Products",
@@ -247,6 +248,47 @@
       "display": "🎨 Optimized product display",
       "featured": "🏠 Featured products show on home page",
       "optional": "📝 Description and category fields are optional"
+    },
+    "changePassword": {
+      "title": "Change Password",
+      "currentPassword": "Current Password",
+      "currentPasswordPlaceholder": "Enter your current password",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "Enter your new password",
+      "confirmPassword": "Confirm New Password",
+      "confirmPasswordPlaceholder": "Confirm your new password",
+      "update": "Update Password",
+      "updating": "Updating...",
+      "success": {
+        "title": "Password Updated!",
+        "message": "Your password has been successfully changed."
+      },
+      "errors": {
+        "passwordMismatch": "New passwords do not match",
+        "passwordTooShort": "Password must be at least 6 characters long",
+        "wrongCurrentPassword": "Current password is incorrect",
+        "weakPassword": "Password is too weak. Please choose a stronger password",
+        "requiresRecentLogin": "Please log out and log back in before changing your password",
+        "generic": "Failed to update password. Please try again"
+      }
+    }
+  },
+  "login": {
+    "title": "Admin Login",
+    "subtitle": "Sign in to access the admin dashboard",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signIn": "Sign In",
+    "signingIn": "Signing In...",
+    "secureLogin": "Secure login with Firebase Authentication",
+    "errors": {
+      "userNotFound": "No user found with this email address",
+      "wrongPassword": "Incorrect password. Please try again",
+      "invalidEmail": "Please enter a valid email address",
+      "tooManyRequests": "Too many failed attempts. Please try again later",
+      "generic": "Login failed. Please check your credentials and try again"
     }
   }
 }

@@ -189,6 +189,7 @@
   },
   "admin": {
     "dashboard": "Tableau de Bord Admin",
+    "logout": "Déconnexion",
     "navigation": {
       "addProduct": "Ajouter un Produit",
       "viewProducts": "Voir les Produits",
@@ -247,6 +248,47 @@
       "display": "🎨 Affichage optimisé du produit",
       "featured": "🏠 Les produits vedettes apparaissent sur la page d'accueil",
       "optional": "📝 Les champs description et catégorie sont optionnels"
+    },
+    "changePassword": {
+      "title": "Changer le Mot de Passe",
+      "currentPassword": "Mot de Passe Actuel",
+      "currentPasswordPlaceholder": "Entrez votre mot de passe actuel",
+      "newPassword": "Nouveau Mot de Passe",
+      "newPasswordPlaceholder": "Entrez votre nouveau mot de passe",
+      "confirmPassword": "Confirmer le Nouveau Mot de Passe",
+      "confirmPasswordPlaceholder": "Confirmez votre nouveau mot de passe",
+      "update": "Mettre à Jour le Mot de Passe",
+      "updating": "Mise à jour...",
+      "success": {
+        "title": "Mot de Passe Mis à Jour !",
+        "message": "Votre mot de passe a été changé avec succès."
+      },
+      "errors": {
+        "passwordMismatch": "Les nouveaux mots de passe ne correspondent pas",
+        "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+        "wrongCurrentPassword": "Le mot de passe actuel est incorrect",
+        "weakPassword": "Le mot de passe est trop faible. Veuillez choisir un mot de passe plus fort",
+        "requiresRecentLogin": "Veuillez vous déconnecter et vous reconnecter avant de changer votre mot de passe",
+        "generic": "Échec de la mise à jour du mot de passe. Veuillez réessayer"
+      }
+    }
+  },
+  "login": {
+    "title": "Connexion Admin",
+    "subtitle": "Connectez-vous pour accéder au tableau de bord administrateur",
+    "email": "Adresse Email",
+    "emailPlaceholder": "Entrez votre adresse email",
+    "password": "Mot de Passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "signIn": "Se Connecter",
+    "signingIn": "Connexion...",
+    "secureLogin": "Connexion sécurisée avec Firebase Authentication",
+    "errors": {
+      "userNotFound": "Aucun utilisateur trouvé avec cette adresse email",
+      "wrongPassword": "Mot de passe incorrect. Veuillez réessayer",
+      "invalidEmail": "Veuillez entrer une adresse email valide",
+      "tooManyRequests": "Trop de tentatives échouées. Veuillez réessayer plus tard",
+      "generic": "Connexion échouée. Veuillez vérifier vos identifiants et réessayer"
     }
   }
 }

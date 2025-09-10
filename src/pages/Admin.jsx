@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useTranslation } from "../contexts/TranslationContext";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import AllProductsSection from "../components/AllProductsSection";
 import ImageCropper from "../components/ImageCropper";
+import ChangePasswordModal from "../components/ChangePasswordModal";
 import "./Admin.css";
 
 // Heroicons imports for our new icons
@@ -16,6 +19,8 @@ import {
   CubeIcon,
   DocumentTextIcon,
   RectangleGroupIcon,
+  ArrowRightOnRectangleIcon,
+  LockClosedIcon,
 } from "@heroicons/react/24/outline";
 
 const uploadImageToCloudinary = async (imageFile) => {
@@ -49,6 +54,8 @@ const generateReviewCount = () => {
 
 const Admin = () => {
   const { t, language } = useTranslation();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
   const [product, setProduct] = useState({
     name: "",
     price: "",
@@ -65,8 +72,18 @@ const Admin = () => {
 
   const [currentView, setCurrentView] = useState('products'); // Start with products view
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
   console.log('Menu state:', { menuOpen, currentView }); // Debug log
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   const handleImageClick = () => {
     document.getElementById('image').click();
@@ -211,6 +228,26 @@ const Admin = () => {
                     >
                       <PlusIcon />
                       <span>{t('admin.addProduct.title')}</span>
+                    </button>
+
+                    {/* Logout Button in Menu */}
+                    <div className="hamburger-menu-divider"></div>
+                    <button
+                      onClick={() => {
+                        setShowChangePasswordModal(true);
+                        setMenuOpen(false);
+                      }}
+                      className="hamburger-menu-item change-password-menu-item"
+                    >
+                      <LockClosedIcon />
+                      <span>{t('admin.changePassword.title')}</span>
+                    </button>
+                    <button
+                      onClick={handleLogout}
+                      className="hamburger-menu-item logout-menu-item"
+                    >
+                      <ArrowRightOnRectangleIcon />
+                      <span>{t('admin.logout')}</span>
                     </button>
                   </div>
                 </>
@@ -430,6 +467,12 @@ const Admin = () => {
           onSkipCrop={handleSkipCrop}
         />
       )}
+      
+      {/* Change Password Modal */}
+      <ChangePasswordModal
+        isOpen={showChangePasswordModal}
+        onClose={() => setShowChangePasswordModal(false)}
+      />
     </div>
   );
 };
