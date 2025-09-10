@@ -47,7 +47,7 @@ const Home = () => {
             </div>
             <div className="hero-image">
               <img 
-                src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                src="/src/assets/images/hero1.jpg" 
                 alt="Premium Tailoring" 
               />
             </div>
