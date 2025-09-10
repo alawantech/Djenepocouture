@@ -23,7 +23,7 @@ const ProductCard = ({ product, showDescription = false }) => {
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
         {showDescription && <p className="product-description">{product.description}</p>}
-        <div className="product-price">${product.price}</div>
+        <div className="product-price">{product.price}F</div>
         <button className="btn btn-primary whatsapp-btn" onClick={handleWhatsAppClick}>
           <MessageCircle size={18} />
           Buy on WhatsApp
