@@ -1,10 +1,15 @@
 import React from 'react';
 import { MessageCircle, Star } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
 import './ProductCard.css';
 
 const ProductCard = ({ product, showDescription = false }) => {
+  const { t, language } = useTranslation();
+
   const handleWhatsAppClick = () => {
-    const message = `Hi! I'm interested in ${product.name}. Price: ${product.price}F`;
+    const message = language === 'fr' 
+      ? `Salut! Je suis intéressé(e) par ${product.name}. Prix: ${product.price}F`
+      : `Hi! I'm interested in ${product.name}. Price: ${product.price}F`;
     const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -50,7 +55,7 @@ const ProductCard = ({ product, showDescription = false }) => {
         <div className="product-overlay">
           <button className="btn btn-primary quick-buy" onClick={handleWhatsAppClick}>
             <MessageCircle size={18} />
-            Quick Buy
+            {language === 'fr' ? 'Achat Rapide' : 'Quick Buy'}
           </button>
         </div>
       </div>
@@ -63,7 +68,7 @@ const ProductCard = ({ product, showDescription = false }) => {
           </div>
           <span className="rating-text">
             <span className="rating-number">{rating.toFixed(1)}</span>
-            <span className="review-count">({reviewCount} reviews)</span>
+            <span className="review-count">({reviewCount} {language === 'fr' ? 'avis' : 'reviews'})</span>
           </span>
         </div>
         
@@ -71,7 +76,7 @@ const ProductCard = ({ product, showDescription = false }) => {
         <div className="product-price">{product.price}F</div>
         <button className="btn btn-primary whatsapp-btn" onClick={handleWhatsAppClick}>
           <MessageCircle size={18} />
-          Buy on WhatsApp
+          {language === 'fr' ? 'Acheter sur WhatsApp' : 'Buy on WhatsApp'}
         </button>
       </div>
     </div>

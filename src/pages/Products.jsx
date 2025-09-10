@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from '../contexts/TranslationContext';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../data/products';
 import './Products.css';
@@ -8,18 +9,19 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, language } = useTranslation();
 
-  // Helper function to get category display name
+  // Helper function to get category display name with translation
   const getCategoryDisplayName = (categoryValue) => {
     const categoryMap = {
-      'vestes': 'Vestes',
-      'abacosts': 'Abacosts',
-      'tuniqueSimple': 'Tunique Simple',
-      'tuniqueBroderie': 'Tunique Broderie',
-      'chemises': 'Chemises',
-      'uncategorized': 'Uncategorized'
+      'vestes': language === 'fr' ? 'Vestes' : 'Jackets',
+      'abacosts': language === 'fr' ? 'Abacosts' : 'Abacosts',
+      'tuniqueSimple': language === 'fr' ? 'Tunique Simple' : 'Simple Tunic',
+      'tuniqueBroderie': language === 'fr' ? 'Tunique Broderie' : 'Embroidered Tunic',
+      'chemises': language === 'fr' ? 'Chemises' : 'Shirts',
+      'uncategorized': language === 'fr' ? 'Non catégorisé' : 'Uncategorized'
     };
-    return categoryMap[categoryValue] || 'All Categories';
+    return categoryMap[categoryValue] || (language === 'fr' ? 'Toutes les Catégories' : 'All Categories');
   };
 
   useEffect(() => {
@@ -51,10 +53,9 @@ const Products = () => {
     <div className="products-page">
       <div className="container">
         <div className="page-header">
-          <h1 className="page-title">Our Products</h1>
+          <h1 className="page-title">{t('products.title')}</h1>
           <p className="page-subtitle">
-            Explore our complete collection of custom-tailored clothing, 
-            each piece crafted with precision and attention to detail.
+            {t('products.subtitle')}
           </p>
         </div>
 
@@ -62,7 +63,7 @@ const Products = () => {
           <div className="filter-group">
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder={language === 'fr' ? 'Rechercher des produits...' : 'Search products...'}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -75,13 +76,13 @@ const Products = () => {
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="category-filter"
             >
-              <option value="all">All Categories</option>
-              <option value="vestes">Vestes</option>
-              <option value="abacosts">Abacosts</option>
-              <option value="tuniqueSimple">Tunique Simple</option>
-              <option value="tuniqueBroderie">Tunique Broderie</option>
-              <option value="chemises">Chemises</option>
-              <option value="uncategorized">Uncategorized</option>
+              <option value="all">{language === 'fr' ? 'Toutes les Catégories' : 'All Categories'}</option>
+              <option value="vestes">{language === 'fr' ? 'Vestes' : 'Jackets'}</option>
+              <option value="abacosts">{language === 'fr' ? 'Abacosts' : 'Abacosts'}</option>
+              <option value="tuniqueSimple">{language === 'fr' ? 'Tunique Simple' : 'Simple Tunic'}</option>
+              <option value="tuniqueBroderie">{language === 'fr' ? 'Tunique Broderie' : 'Embroidered Tunic'}</option>
+              <option value="chemises">{language === 'fr' ? 'Chemises' : 'Shirts'}</option>
+              <option value="uncategorized">{language === 'fr' ? 'Non catégorisé' : 'Uncategorized'}</option>
             </select>
           </div>
 
@@ -94,7 +95,7 @@ const Products = () => {
                 }}
                 className="clear-filters-btn"
               >
-                Clear Filters
+                {language === 'fr' ? 'Effacer les Filtres' : 'Clear Filters'}
               </button>
             </div>
           )}
@@ -103,12 +104,12 @@ const Products = () => {
         {!loading && (
           <div className="filter-results">
             <p className="results-count">
-              Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} 
+              {language === 'fr' ? 'Affichage de' : 'Showing'} {filteredProducts.length} {language === 'fr' ? 'produit' : 'product'}{filteredProducts.length !== 1 ? (language === 'fr' ? 's' : 's') : ''} 
               {selectedCategory !== 'all' && (
-                <span className="category-info"> in "{getCategoryDisplayName(selectedCategory)}"</span>
+                <span className="category-info"> {language === 'fr' ? 'dans' : 'in'} "{getCategoryDisplayName(selectedCategory)}"</span>
               )}
               {searchTerm && (
-                <span className="search-info"> matching "{searchTerm}"</span>
+                <span className="search-info"> {language === 'fr' ? 'correspondant à' : 'matching'} "{searchTerm}"</span>
               )}
             </p>
           </div>
@@ -116,7 +117,7 @@ const Products = () => {
 
         {loading ? (
           <div className="no-products">
-            <h3>Loading products...</h3>
+            <h3>{t('products.loading')}</h3>
           </div>
         ) : filteredProducts.length > 0 ? (
           <div className="products-grid">
@@ -126,14 +127,18 @@ const Products = () => {
           </div>
         ) : (
           <div className="no-products">
-            <h3>No products found</h3>
+            <h3>{language === 'fr' ? 'Aucun produit trouvé' : 'No products found'}</h3>
             <p>
               {selectedCategory !== 'all' 
-                ? `No products found in the "${getCategoryDisplayName(selectedCategory)}" category${searchTerm ? ` matching "${searchTerm}"` : ''}.`
-                : `No products found${searchTerm ? ` matching "${searchTerm}"` : ''}.`
+                ? (language === 'fr' 
+                    ? `Aucun produit trouvé dans la catégorie "${getCategoryDisplayName(selectedCategory)}"${searchTerm ? ` correspondant à "${searchTerm}"` : ''}.`
+                    : `No products found in the "${getCategoryDisplayName(selectedCategory)}" category${searchTerm ? ` matching "${searchTerm}"` : ''}.`)
+                : (language === 'fr'
+                    ? `Aucun produit trouvé${searchTerm ? ` correspondant à "${searchTerm}"` : ''}.`
+                    : `No products found${searchTerm ? ` matching "${searchTerm}"` : ''}.`)
               }
             </p>
-            <p>Try adjusting your search or filter criteria.</p>
+            <p>{language === 'fr' ? 'Essayez d\'ajuster vos critères de recherche ou de filtre.' : 'Try adjusting your search or filter criteria.'}</p>
           </div>
         )}
       </div>

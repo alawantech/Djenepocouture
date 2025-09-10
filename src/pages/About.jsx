@@ -1,17 +1,20 @@
 import React from 'react';
 import { Award, Users, Clock, Heart } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
 import './About.css';
 
 const About = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="about-page">
       <div className="container">
         {/* Hero Section */}
         <div className="about-hero">
           <div className="about-content">
-            <h1 className="page-title">About Golden Threads</h1>
+            <h1 className="page-title">{t('about.title')}</h1>
             <p className="page-subtitle">
-              Where craftsmanship meets elegance, and every stitch tells a story of dedication and passion.
+              {t('about.subtitle')}
             </p>
           </div>
           <div className="about-image">
@@ -25,22 +28,16 @@ const About = () => {
         {/* Story Section */}
         <div className="story-section">
           <div className="story-content">
-            <h2 className="section-title">Our Story</h2>
+            <h2 className="section-title">{t('about.story.title')}</h2>
             <div className="story-text">
               <p>
-                Founded in 2003, Golden Threads began as a small family business with a simple vision: 
-                to create exceptional clothing that combines traditional craftsmanship with contemporary style. 
-                What started as a passion project has grown into one of the city's most trusted names in bespoke tailoring.
+                {t('about.story.paragraph1')}
               </p>
               <p>
-                Our master tailors bring decades of experience to every piece they create. Using time-honored 
-                techniques passed down through generations, combined with modern innovations, we ensure that 
-                each garment not only fits perfectly but also reflects your unique personality and style.
+                {t('about.story.paragraph2')}
               </p>
               <p>
-                At Golden Threads, we believe that clothing is more than fabric and thread – it's an expression 
-                of who you are. That's why we take the time to understand your needs, preferences, and lifestyle 
-                to create garments that you'll treasure for years to come.
+                {t('about.story.paragraph3')}
               </p>
             </div>
           </div>
@@ -48,57 +45,57 @@ const About = () => {
 
         {/* Values Section */}
         <div className="values-section">
-          <h2 className="section-title">Our Values</h2>
+          <h2 className="section-title">{t('about.values.title')}</h2>
           <div className="values-grid">
             <div className="value-card">
               <Award size={48} />
-              <h3>Excellence</h3>
-              <p>We never compromise on quality. Every stitch, every detail is executed with precision and care.</p>
+              <h3>{t('about.values.excellence.title')}</h3>
+              <p>{t('about.values.excellence.description')}</p>
             </div>
             <div className="value-card">
               <Users size={48} />
-              <h3>Personal Service</h3>
-              <p>Each client receives individual attention and personalized service throughout their journey with us.</p>
+              <h3>{t('about.values.service.title')}</h3>
+              <p>{t('about.values.service.description')}</p>
             </div>
             <div className="value-card">
               <Clock size={48} />
-              <h3>Timeless Craft</h3>
-              <p>We honor traditional tailoring methods while embracing modern techniques and innovations.</p>
+              <h3>{t('about.values.craft.title')}</h3>
+              <p>{t('about.values.craft.description')}</p>
             </div>
             <div className="value-card">
               <Heart size={48} />
-              <h3>Passion</h3>
-              <p>Our love for the craft drives us to create exceptional pieces that exceed expectations.</p>
+              <h3>{t('about.values.passion.title')}</h3>
+              <p>{t('about.values.passion.description')}</p>
             </div>
           </div>
         </div>
 
         {/* Services Section */}
         <div className="services-detail">
-          <h2 className="section-title">Our Services</h2>
+          <h2 className="section-title">{t('about.services.title')}</h2>
           <div className="services-list">
             <div className="service-item">
-              <h3>Bespoke Suits</h3>
-              <p>Custom-made suits tailored specifically to your measurements and preferences. From business attire to wedding suits, each piece is crafted with meticulous attention to detail.</p>
+              <h3>{t('about.services.bespoke.title')}</h3>
+              <p>{t('about.services.bespoke.description')}</p>
             </div>
             <div className="service-item">
-              <h3>Formal Wear</h3>
-              <p>Elegant evening gowns, cocktail dresses, and formal wear for special occasions. We create stunning pieces that make you feel confident and beautiful.</p>
+              <h3>{t('about.services.formal.title')}</h3>
+              <p>{t('about.services.formal.description')}</p>
             </div>
             <div className="service-item">
-              <h3>Alterations & Repairs</h3>
-              <p>Professional alterations and repairs to ensure your existing garments fit perfectly and maintain their quality and appearance.</p>
+              <h3>{t('about.services.alterations.title')}</h3>
+              <p>{t('about.services.alterations.description')}</p>
             </div>
             <div className="service-item">
-              <h3>Consultation</h3>
-              <p>Personal styling consultations to help you choose the perfect fabrics, cuts, and designs that complement your body type and lifestyle.</p>
+              <h3>{t('about.services.consultation.title')}</h3>
+              <p>{t('about.services.consultation.description')}</p>
             </div>
           </div>
         </div>
 
         {/* Team Section */}
         <div className="team-section">
-          <h2 className="section-title">Meet Our Team</h2>
+          <h2 className="section-title">{t('about.team.title')}</h2>
           <div className="team-grid">
             <div className="team-member">
               <img 
@@ -106,8 +103,8 @@ const About = () => {
                 alt="Master Tailor" 
               />
               <h3>Michael Thompson</h3>
-              <p>Master Tailor & Founder</p>
-              <span>25+ years experience</span>
+              <p>{t('about.team.founder')}</p>
+              <span>25+ {t('about.team.experience')}</span>
             </div>
             <div className="team-member">
               <img 
@@ -115,8 +112,8 @@ const About = () => {
                 alt="Senior Designer" 
               />
               <h3>Sarah Chen</h3>
-              <p>Senior Designer</p>
-              <span>15+ years experience</span>
+              <p>{t('about.team.designer')}</p>
+              <span>15+ {t('about.team.experience')}</span>
             </div>
             <div className="team-member">
               <img 
@@ -124,8 +121,8 @@ const About = () => {
                 alt="Alterations Specialist" 
               />
               <h3>David Rodriguez</h3>
-              <p>Alterations Specialist</p>
-              <span>12+ years experience</span>
+              <p>{t('about.team.specialist')}</p>
+              <span>12+ {t('about.team.experience')}</span>
             </div>
           </div>
         </div>

@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
+import LanguageToggle from './LanguageToggle';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/products', label: 'Products' },
-    { path: '/about', label: 'About' },
-    { path: '/contact', label: 'Contact' }
+    { path: '/', label: t('nav.home') },
+    { path: '/products', label: t('nav.products') },
+    { path: '/about', label: t('nav.about') },
+    { path: '/contact', label: t('nav.contact') }
   ];
 
   const toggleMenu = () => {
@@ -37,11 +40,19 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
+            <div className="nav-language-mobile">
+              <LanguageToggle />
+            </div>
           </div>
 
-          <button className="menu-toggle" onClick={toggleMenu}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="nav-right">
+            <div className="nav-language-desktop">
+              <LanguageToggle />
+            </div>
+            <button className="menu-toggle" onClick={toggleMenu}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
     </nav>

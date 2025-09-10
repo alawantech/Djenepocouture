@@ -1,9 +1,11 @@
 import React from 'react';
 import { MessageCircle, Phone, MapPin } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
 import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/1234567890', '_blank');
@@ -14,25 +16,24 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3 className="footer-logo">Golden Threads</h3>
+            <h3 className="footer-logo">{t('home.hero.title')}</h3>
             <p className="footer-description">
-              Premium custom tailoring services with over 20 years of experience. 
-              We create exceptional clothing that fits your style perfectly.
+              {t('footer.description')}
             </p>
           </div>
           
           <div className="footer-section">
-            <h4>Quick Links</h4>
+            <h4>{t('footer.quickLinks')}</h4>
             <ul className="footer-links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/products">Products</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href="/">{t('nav.home')}</a></li>
+              <li><a href="/products">{t('nav.products')}</a></li>
+              <li><a href="/about">{t('nav.about')}</a></li>
+              <li><a href="/contact">{t('nav.contact')}</a></li>
             </ul>
           </div>
           
           <div className="footer-section">
-            <h4>Contact Info</h4>
+            <h4>{t('footer.contactInfo')}</h4>
             <div className="contact-info">
               <div className="contact-item">
                 <Phone size={18} />
@@ -44,14 +45,14 @@ const Footer = () => {
               </div>
               <button className="btn btn-primary footer-whatsapp" onClick={handleWhatsAppClick}>
                 <MessageCircle size={18} />
-                WhatsApp Us
+                {t('footer.whatsapp')}
               </button>
             </div>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; {currentYear} Golden Threads. All rights reserved.</p>
+          <p>&copy; {currentYear} {t('home.hero.title')}. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>

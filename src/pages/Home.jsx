@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Award, Users, Clock } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../data/products';
 import './Home.css';
@@ -8,6 +9,7 @@ import './Home.css';
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,20 +30,19 @@ const Home = () => {
           <div className="hero-content">
             <div className="hero-text">
               <h1 className="hero-title">
-                <span className="golden-text">Golden Threads</span>
+                <span className="golden-text">{t('home.hero.title')}</span>
                 <br />
-                Premium Custom Tailoring
+                {t('home.hero.subtitle')}
               </h1>
               <p className="hero-subtitle">
-                Experience the art of bespoke tailoring with over 20 years of expertise. 
-                We create extraordinary clothing that reflects your unique style and personality.
+                {t('home.hero.description')}
               </p>
               <div className="hero-buttons">
                 <Link to="/products" className="btn btn-primary">
-                  View Our Collection
+                  {t('home.hero.viewCollection')}
                 </Link>
                 <Link to="/contact" className="btn btn-secondary">
-                  Book Consultation
+                  {t('home.hero.bookConsultation')}
                 </Link>
               </div>
             </div>
@@ -59,15 +60,15 @@ const Home = () => {
       {/* Featured Products */}
       <section className="featured-products">
         <div className="container">
-          <h2 className="section-title">Featured Collection</h2>
+          <h2 className="section-title">{t('home.featured.title')}</h2>
           <p className="section-subtitle">
-            Discover our most popular custom-tailored pieces, crafted with precision and attention to detail
+            {t('home.featured.subtitle')}
             {!loading && featuredProducts.length > 0 && (
-              <span className="featured-count"> • {featuredProducts.length} featured {featuredProducts.length === 1 ? 'product' : 'products'}</span>
+              <span className="featured-count"> • {featuredProducts.length} {t('home.featured.featured')} {featuredProducts.length === 1 ? t('home.featured.product') : t('home.featured.products')}</span>
             )}
           </p>
           {loading ? (
-            <div className="no-products"><h3>Loading products...</h3></div>
+            <div className="no-products"><h3>{t('home.featured.loading')}</h3></div>
           ) : featuredProducts.length > 0 ? (
             <div className="products-grid">
               {featuredProducts.map(product => (
@@ -76,13 +77,13 @@ const Home = () => {
             </div>
           ) : (
             <div className="no-products">
-              <h3>No featured products available at the moment</h3>
-              <p>Check back soon for our latest featured collection!</p>
+              <h3>{t('home.featured.noProducts')}</h3>
+              <p>{t('home.featured.checkBack')}</p>
             </div>
           )}
           <div className="featured-cta">
             <Link to="/products" className="btn btn-primary">
-              View All Products
+              {t('home.featured.viewAll')}
             </Link>
           </div>
         </div>
@@ -95,22 +96,22 @@ const Home = () => {
             <div className="stat-item">
               <Clock size={32} />
               <h3>20+</h3>
-              <p>Years Experience</p>
+              <p>{t('home.stats.experience')}</p>
             </div>
             <div className="stat-item">
               <Users size={32} />
               <h3>5000+</h3>
-              <p>Happy Clients</p>
+              <p>{t('home.stats.clients')}</p>
             </div>
             <div className="stat-item">
               <Award size={32} />
               <h3>100%</h3>
-              <p>Custom Made</p>
+              <p>{t('home.stats.custom')}</p>
             </div>
             <div className="stat-item">
               <Star size={32} />
               <h3>4.9</h3>
-              <p>Rating</p>
+              <p>{t('home.stats.rating')}</p>
             </div>
           </div>
         </div>
@@ -119,22 +120,22 @@ const Home = () => {
       {/* Services Section */}
       <section className="services">
         <div className="container">
-          <h2 className="section-title">Our Services</h2>
+          <h2 className="section-title">{t('home.services.title')}</h2>
           <div className="services-grid">
             <div className="service-card">
               <div className="service-icon">👔</div>
-              <h3>Custom Suits</h3>
-              <p>Bespoke suits tailored to perfection for business, weddings, and special occasions.</p>
+              <h3>{t('home.services.suits.title')}</h3>
+              <p>{t('home.services.suits.description')}</p>
             </div>
             <div className="service-card">
               <div className="service-icon">👗</div>
-              <h3>Evening Wear</h3>
-              <p>Elegant dresses and gowns for formal events, galas, and memorable occasions.</p>
+              <h3>{t('home.services.evening.title')}</h3>
+              <p>{t('home.services.evening.description')}</p>
             </div>
             <div className="service-card">
               <div className="service-icon">👖</div>
-              <h3>Casual Wear</h3>
-              <p>Comfortable yet stylish casual clothing tailored to your lifestyle and preferences.</p>
+              <h3>{t('home.services.casual.title')}</h3>
+              <p>{t('home.services.casual.description')}</p>
             </div>
           </div>
         </div>

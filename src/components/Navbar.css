@@ -13,7 +13,6 @@
   padding: 1rem 0;
 }
 
-
 .nav-logo-img {
   height: 70px;
   width: auto;
@@ -25,6 +24,7 @@
   display: flex;
   gap: 2rem;
   list-style: none;
+  align-items: center;
 }
 
 .nav-link {
@@ -40,6 +40,20 @@
 .nav-link.active {
   color: var(--primary-gold);
   background-color: var(--secondary-gold);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-language-mobile {
+  display: none;
+}
+
+.nav-language-desktop {
+  display: block;
 }
 
 .menu-toggle {
@@ -75,6 +89,17 @@
   .nav-link {
     padding: 1rem 2rem;
     border-radius: 0;
+  }
+
+  .nav-language-mobile {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+  }
+
+  .nav-language-desktop {
+    display: none;
   }
 
   .menu-toggle {

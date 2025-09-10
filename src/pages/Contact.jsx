@@ -1,8 +1,11 @@
 import React from 'react';
 import { MessageCircle, Phone, MapPin, Clock, Mail } from 'lucide-react';
+import { useTranslation } from '../contexts/TranslationContext';
 import './Contact.css';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   const handleWhatsAppClick = () => {
     const message = "Hello! I'd like to inquire about your tailoring services.";
     const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
@@ -17,10 +20,9 @@ const Contact = () => {
     <div className="contact-page">
       <div className="container">
         <div className="page-header">
-          <h1 className="page-title">Contact Us</h1>
+          <h1 className="page-title">{t('contact.title')}</h1>
           <p className="page-subtitle">
-            Ready to create your perfect custom garment? Get in touch with us today 
-            to schedule a consultation or ask any questions you may have.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -31,11 +33,11 @@ const Contact = () => {
               <div className="contact-icon">
                 <MessageCircle size={32} />
               </div>
-              <h3>WhatsApp</h3>
-              <p>Get instant responses to your questions</p>
+              <h3>{t('contact.methods.whatsapp.title')}</h3>
+              <p>{t('contact.methods.whatsapp.description')}</p>
               <button className="btn btn-primary" onClick={handleWhatsAppClick}>
                 <MessageCircle size={18} />
-                Chat on WhatsApp
+                {t('contact.methods.whatsapp.button')}
               </button>
             </div>
 
@@ -43,11 +45,11 @@ const Contact = () => {
               <div className="contact-icon">
                 <Phone size={32} />
               </div>
-              <h3>Phone</h3>
+              <h3>{t('contact.methods.phone.title')}</h3>
               <p>+1 (234) 567-8900</p>
               <button className="btn btn-secondary" onClick={handleCallClick}>
                 <Phone size={18} />
-                Call Now
+                {t('contact.methods.phone.button')}
               </button>
             </div>
 
@@ -55,11 +57,11 @@ const Contact = () => {
               <div className="contact-icon">
                 <Mail size={32} />
               </div>
-              <h3>Email</h3>
+              <h3>{t('contact.methods.email.title')}</h3>
               <p>info@goldenthreads.com</p>
               <a href="mailto:info@goldenthreads.com" className="btn btn-secondary">
                 <Mail size={18} />
-                Send Email
+                {t('contact.methods.email.button')}
               </a>
             </div>
           </div>
@@ -67,23 +69,23 @@ const Contact = () => {
           {/* Location & Hours */}
           <div className="location-hours">
             <div className="location-section">
-              <h2>Visit Our Showroom</h2>
+              <h2>{t('contact.location.title')}</h2>
               <div className="location-info">
                 <div className="location-item">
                   <MapPin size={24} />
                   <div>
-                    <h4>Address</h4>
+                    <h4>{t('contact.location.address')}</h4>
                     <p>123 Fashion Street<br />New York, NY 10001</p>
                   </div>
                 </div>
                 <div className="location-item">
                   <Clock size={24} />
                   <div>
-                    <h4>Business Hours</h4>
+                    <h4>{t('contact.location.hours')}</h4>
                     <div className="hours-list">
-                      <p><strong>Monday - Friday:</strong> 9:00 AM - 7:00 PM</p>
-                      <p><strong>Saturday:</strong> 10:00 AM - 6:00 PM</p>
-                      <p><strong>Sunday:</strong> 12:00 PM - 5:00 PM</p>
+                      <p><strong>{t('contact.location.monday_friday')}</strong> 9:00 AM - 7:00 PM</p>
+                      <p><strong>{t('contact.location.saturday')}</strong> 10:00 AM - 6:00 PM</p>
+                      <p><strong>{t('contact.location.sunday')}</strong> 12:00 PM - 5:00 PM</p>
                     </div>
                   </div>
                 </div>
@@ -102,7 +104,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="btn btn-secondary"
                 >
-                  View on Google Maps
+                  {t('contact.location.viewMaps')}
                 </a>
               </div>
             </div>
@@ -110,39 +112,39 @@ const Contact = () => {
 
           {/* Services Info */}
           <div className="services-info">
-            <h2>Our Services</h2>
+            <h2>{t('contact.services.title')}</h2>
             <div className="services-grid">
               <div className="service-info-card">
-                <h4>Custom Measurements</h4>
-                <p>Professional fitting sessions to ensure perfect measurements for your custom garments.</p>
+                <h4>{t('contact.services.measurements.title')}</h4>
+                <p>{t('contact.services.measurements.description')}</p>
               </div>
               <div className="service-info-card">
-                <h4>Design Consultation</h4>
-                <p>Work with our designers to create the perfect style that matches your vision and needs.</p>
+                <h4>{t('contact.services.design.title')}</h4>
+                <p>{t('contact.services.design.description')}</p>
               </div>
               <div className="service-info-card">
-                <h4>Fabric Selection</h4>
-                <p>Choose from our extensive collection of premium fabrics from renowned mills worldwide.</p>
+                <h4>{t('contact.services.fabric.title')}</h4>
+                <p>{t('contact.services.fabric.description')}</p>
               </div>
               <div className="service-info-card">
-                <h4>Fitting Sessions</h4>
-                <p>Multiple fitting appointments to ensure your garment fits perfectly and meets your expectations.</p>
+                <h4>{t('contact.services.fitting.title')}</h4>
+                <p>{t('contact.services.fitting.description')}</p>
               </div>
             </div>
           </div>
 
           {/* CTA Section */}
           <div className="contact-cta">
-            <h2>Ready to Get Started?</h2>
-            <p>Book your consultation today and begin your journey to exceptional custom clothing.</p>
+            <h2>{t('contact.cta.title')}</h2>
+            <p>{t('contact.cta.description')}</p>
             <div className="cta-buttons">
               <button className="btn btn-primary" onClick={handleWhatsAppClick}>
                 <MessageCircle size={18} />
-                Book via WhatsApp
+                {t('contact.cta.bookWhatsapp')}
               </button>
               <button className="btn btn-secondary" onClick={handleCallClick}>
                 <Phone size={18} />
-                Call to Schedule
+                {t('contact.cta.callSchedule')}
               </button>
             </div>
           </div>

@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "products": "Produits",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Fils Dorés",
+      "subtitle": "Couture Premium sur Mesure",
+      "description": "Découvrez l'art de la couture sur mesure avec plus de 20 ans d'expertise. Nous créons des vêtements extraordinaires qui reflètent votre style unique et votre personnalité.",
+      "viewCollection": "Voir Notre Collection",
+      "bookConsultation": "Réserver une Consultation"
+    },
+    "featured": {
+      "title": "Collection Vedette",
+      "subtitle": "Découvrez nos pièces sur mesure les plus populaires, confectionnées avec précision et attention aux détails",
+      "noProducts": "Aucun produit vedette disponible pour le moment",
+      "checkBack": "Revenez bientôt pour notre dernière collection vedette !",
+      "viewAll": "Voir Tous les Produits",
+      "featured": "vedette",
+      "products": "produits",
+      "product": "produit",
+      "loading": "Chargement des produits..."
+    },
+    "stats": {
+      "experience": "Années d'Expérience",
+      "clients": "Clients Satisfaits",
+      "custom": "Sur Mesure",
+      "rating": "Note"
+    },
+    "services": {
+      "title": "Nos Services",
+      "suits": {
+        "title": "Costumes Sur Mesure",
+        "description": "Costumes sur mesure taillés à la perfection pour les affaires, mariages et occasions spéciales."
+      },
+      "evening": {
+        "title": "Tenues de Soirée",
+        "description": "Robes et tenues élégantes pour événements formels, galas et occasions mémorables."
+      },
+      "casual": {
+        "title": "Vêtements Décontractés",
+        "description": "Vêtements décontractés confortables mais élégants, adaptés à votre style de vie et préférences."
+      }
+    }
+  },
+  "about": {
+    "title": "À Propos de Fils Dorés",
+    "subtitle": "Où l'artisanat rencontre l'élégance, et chaque point raconte une histoire de dévouement et de passion.",
+    "story": {
+      "title": "Notre Histoire",
+      "paragraph1": "Fondée en 2003, Fils Dorés a commencé comme une petite entreprise familiale avec une vision simple : créer des vêtements exceptionnels qui combinent l'artisanat traditionnel avec le style contemporain. Ce qui a commencé comme un projet de passion est devenu l'une des maisons de couture sur mesure les plus fiables de la ville.",
+      "paragraph2": "Nos maîtres tailleurs apportent des décennies d'expérience à chaque pièce qu'ils créent. En utilisant des techniques séculaires transmises de génération en génération, combinées avec des innovations modernes, nous nous assurons que chaque vêtement non seulement s'ajuste parfaitement mais reflète aussi votre personnalité et style uniques.",
+      "paragraph3": "Chez Fils Dorés, nous croyons que les vêtements sont plus que du tissu et du fil – c'est une expression de qui vous êtes. C'est pourquoi nous prenons le temps de comprendre vos besoins, préférences et style de vie pour créer des vêtements que vous chérirez pendant des années."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "excellence": {
+        "title": "Excellence",
+        "description": "Nous ne faisons jamais de compromis sur la qualité. Chaque point, chaque détail est exécuté avec précision et soin."
+      },
+      "service": {
+        "title": "Service Personnel",
+        "description": "Chaque client reçoit une attention individuelle et un service personnalisé tout au long de son parcours avec nous."
+      },
+      "craft": {
+        "title": "Artisanat Intemporel",
+        "description": "Nous honorons les méthodes de couture traditionnelles tout en embrassant les techniques et innovations modernes."
+      },
+      "passion": {
+        "title": "Passion",
+        "description": "Notre amour pour l'artisanat nous pousse à créer des pièces exceptionnelles qui dépassent les attentes."
+      }
+    },
+    "services": {
+      "title": "Nos Services",
+      "bespoke": {
+        "title": "Costumes Sur Mesure",
+        "description": "Costumes faits sur mesure spécifiquement selon vos mesures et préférences. Des tenues d'affaires aux costumes de mariage, chaque pièce est confectionnée avec une attention méticuleuse aux détails."
+      },
+      "formal": {
+        "title": "Tenues Formelles",
+        "description": "Robes de soirée élégantes, robes de cocktail et tenues formelles pour occasions spéciales. Nous créons des pièces époustouflantes qui vous font sentir confiant et beau."
+      },
+      "alterations": {
+        "title": "Retouches & Réparations",
+        "description": "Retouches et réparations professionnelles pour s'assurer que vos vêtements existants s'ajustent parfaitement et maintiennent leur qualité et apparence."
+      },
+      "consultation": {
+        "title": "Consultation",
+        "description": "Consultations de style personnel pour vous aider à choisir les tissus, coupes et designs parfaits qui complètent votre type de corps et style de vie."
+      }
+    },
+    "team": {
+      "title": "Rencontrez Notre Équipe",
+      "founder": "Maître Tailleur & Fondateur",
+      "designer": "Designer Principal",
+      "specialist": "Spécialiste en Retouches",
+      "experience": "années d'expérience"
+    }
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Prêt à créer votre vêtement sur mesure parfait ? Contactez-nous aujourd'hui pour planifier une consultation ou poser toutes questions que vous pourriez avoir.",
+    "methods": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Obtenez des réponses instantanées à vos questions",
+        "button": "Discuter sur WhatsApp"
+      },
+      "phone": {
+        "title": "Téléphone",
+        "button": "Appeler Maintenant"
+      },
+      "email": {
+        "title": "Email",
+        "button": "Envoyer Email"
+      }
+    },
+    "location": {
+      "title": "Visitez Notre Showroom",
+      "address": "Adresse",
+      "hours": "Heures d'Ouverture",
+      "monday_friday": "Lundi - Vendredi :",
+      "saturday": "Samedi :",
+      "sunday": "Dimanche :",
+      "viewMaps": "Voir sur Google Maps"
+    },
+    "services": {
+      "title": "Nos Services",
+      "measurements": {
+        "title": "Mesures Sur Mesure",
+        "description": "Séances d'essayage professionnelles pour assurer des mesures parfaites pour vos vêtements sur mesure."
+      },
+      "design": {
+        "title": "Consultation Design",
+        "description": "Travaillez avec nos designers pour créer le style parfait qui correspond à votre vision et besoins."
+      },
+      "fabric": {
+        "title": "Sélection de Tissus",
+        "description": "Choisissez parmi notre vaste collection de tissus premium provenant de moulins renommés dans le monde entier."
+      },
+      "fitting": {
+        "title": "Séances d'Essayage",
+        "description": "Plusieurs rendez-vous d'essayage pour s'assurer que votre vêtement s'ajuste parfaitement et répond à vos attentes."
+      }
+    },
+    "cta": {
+      "title": "Prêt à Commencer ?",
+      "description": "Réservez votre consultation aujourd'hui et commencez votre voyage vers des vêtements sur mesure exceptionnels.",
+      "bookWhatsapp": "Réserver via WhatsApp",
+      "callSchedule": "Appeler pour Planifier"
+    }
+  },
+  "footer": {
+    "description": "Services de couture sur mesure premium avec plus de 20 ans d'expérience. Nous créons des vêtements exceptionnels qui s'adaptent parfaitement à votre style.",
+    "quickLinks": "Liens Rapides",
+    "contactInfo": "Informations de Contact",
+    "whatsapp": "Nous contacter sur WhatsApp",
+    "rights": "Tous droits réservés."
+  },
+  "products": {
+    "title": "Nos Produits",
+    "subtitle": "Explorez notre collection de vêtements sur mesure, chacun créé avec précision et attention aux détails.",
+    "loading": "Chargement des produits...",
+    "noProducts": "Aucun produit disponible pour le moment",
+    "checkBack": "Revenez bientôt pour notre dernière collection !",
+    "featured": "Vedette"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "add": "Ajouter",
+    "view": "Voir",
+    "close": "Fermer"
+  }
+}

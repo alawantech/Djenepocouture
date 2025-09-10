@@ -1,0 +1,184 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Golden Threads",
+      "subtitle": "Premium Custom Tailoring",
+      "description": "Experience the art of bespoke tailoring with over 20 years of expertise. We create extraordinary clothing that reflects your unique style and personality.",
+      "viewCollection": "View Our Collection",
+      "bookConsultation": "Book Consultation"
+    },
+    "featured": {
+      "title": "Featured Collection",
+      "subtitle": "Discover our most popular custom-tailored pieces, crafted with precision and attention to detail",
+      "noProducts": "No featured products available at the moment",
+      "checkBack": "Check back soon for our latest featured collection!",
+      "viewAll": "View All Products",
+      "featured": "featured",
+      "products": "products",
+      "product": "product",
+      "loading": "Loading products..."
+    },
+    "stats": {
+      "experience": "Years Experience",
+      "clients": "Happy Clients",
+      "custom": "Custom Made",
+      "rating": "Rating"
+    },
+    "services": {
+      "title": "Our Services",
+      "suits": {
+        "title": "Custom Suits",
+        "description": "Bespoke suits tailored to perfection for business, weddings, and special occasions."
+      },
+      "evening": {
+        "title": "Evening Wear",
+        "description": "Elegant dresses and gowns for formal events, galas, and memorable occasions."
+      },
+      "casual": {
+        "title": "Casual Wear",
+        "description": "Comfortable yet stylish casual clothing tailored to your lifestyle and preferences."
+      }
+    }
+  },
+  "about": {
+    "title": "About Golden Threads",
+    "subtitle": "Where craftsmanship meets elegance, and every stitch tells a story of dedication and passion.",
+    "story": {
+      "title": "Our Story",
+      "paragraph1": "Founded in 2003, Golden Threads began as a small family business with a simple vision: to create exceptional clothing that combines traditional craftsmanship with contemporary style. What started as a passion project has grown into one of the city's most trusted names in bespoke tailoring.",
+      "paragraph2": "Our master tailors bring decades of experience to every piece they create. Using time-honored techniques passed down through generations, combined with modern innovations, we ensure that each garment not only fits perfectly but also reflects your unique personality and style.",
+      "paragraph3": "At Golden Threads, we believe that clothing is more than fabric and thread – it's an expression of who you are. That's why we take the time to understand your needs, preferences, and lifestyle to create garments that you'll treasure for years to come."
+    },
+    "values": {
+      "title": "Our Values",
+      "excellence": {
+        "title": "Excellence",
+        "description": "We never compromise on quality. Every stitch, every detail is executed with precision and care."
+      },
+      "service": {
+        "title": "Personal Service",
+        "description": "Each client receives individual attention and personalized service throughout their journey with us."
+      },
+      "craft": {
+        "title": "Timeless Craft",
+        "description": "We honor traditional tailoring methods while embracing modern techniques and innovations."
+      },
+      "passion": {
+        "title": "Passion",
+        "description": "Our love for the craft drives us to create exceptional pieces that exceed expectations."
+      }
+    },
+    "services": {
+      "title": "Our Services",
+      "bespoke": {
+        "title": "Bespoke Suits",
+        "description": "Custom-made suits tailored specifically to your measurements and preferences. From business attire to wedding suits, each piece is crafted with meticulous attention to detail."
+      },
+      "formal": {
+        "title": "Formal Wear",
+        "description": "Elegant evening gowns, cocktail dresses, and formal wear for special occasions. We create stunning pieces that make you feel confident and beautiful."
+      },
+      "alterations": {
+        "title": "Alterations & Repairs",
+        "description": "Professional alterations and repairs to ensure your existing garments fit perfectly and maintain their quality and appearance."
+      },
+      "consultation": {
+        "title": "Consultation",
+        "description": "Personal styling consultations to help you choose the perfect fabrics, cuts, and designs that complement your body type and lifestyle."
+      }
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "founder": "Master Tailor & Founder",
+      "designer": "Senior Designer",
+      "specialist": "Alterations Specialist",
+      "experience": "years experience"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ready to create your perfect custom garment? Get in touch with us today to schedule a consultation or ask any questions you may have.",
+    "methods": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Get instant responses to your questions",
+        "button": "Chat on WhatsApp"
+      },
+      "phone": {
+        "title": "Phone",
+        "button": "Call Now"
+      },
+      "email": {
+        "title": "Email",
+        "button": "Send Email"
+      }
+    },
+    "location": {
+      "title": "Visit Our Showroom",
+      "address": "Address",
+      "hours": "Business Hours",
+      "monday_friday": "Monday - Friday:",
+      "saturday": "Saturday:",
+      "sunday": "Sunday:",
+      "viewMaps": "View on Google Maps"
+    },
+    "services": {
+      "title": "Our Services",
+      "measurements": {
+        "title": "Custom Measurements",
+        "description": "Professional fitting sessions to ensure perfect measurements for your custom garments."
+      },
+      "design": {
+        "title": "Design Consultation",
+        "description": "Work with our designers to create the perfect style that matches your vision and needs."
+      },
+      "fabric": {
+        "title": "Fabric Selection",
+        "description": "Choose from our extensive collection of premium fabrics from renowned mills worldwide."
+      },
+      "fitting": {
+        "title": "Fitting Sessions",
+        "description": "Multiple fitting appointments to ensure your garment fits perfectly and meets your expectations."
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Book your consultation today and begin your journey to exceptional custom clothing.",
+      "bookWhatsapp": "Book via WhatsApp",
+      "callSchedule": "Call to Schedule"
+    }
+  },
+  "footer": {
+    "description": "Premium custom tailoring services with over 20 years of experience. We create exceptional clothing that fits your style perfectly.",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "whatsapp": "WhatsApp Us",
+    "rights": "All rights reserved."
+  },
+  "products": {
+    "title": "Our Products",
+    "subtitle": "Explore our collection of custom-tailored clothing, each piece crafted with precision and attention to detail.",
+    "loading": "Loading products...",
+    "noProducts": "No products available at the moment",
+    "checkBack": "Check back soon for our latest collection!",
+    "featured": "Featured"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "view": "View",
+    "close": "Close"
+  }
+}
