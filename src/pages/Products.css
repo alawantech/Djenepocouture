@@ -1,6 +1,17 @@
 .products-page {
   padding: 2rem 0 4rem;
   min-height: 70vh;
+  color: #333;
+}
+
+/* Reset any inherited styles that might affect selects */
+.products-page select {
+  color: #333 !important;
+  background-color: white !important;
+}
+
+.products-page * {
+  box-sizing: border-box;
 }
 
 .page-header {
@@ -11,13 +22,13 @@
 .page-title {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: #333;
   margin-bottom: 1rem;
 }
 
 .page-subtitle {
   font-size: 1.1rem;
-  color: var(--text-gray);
+  color: #666;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -26,9 +37,37 @@
 .products-filters {
   display: flex;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
+}
+
+.filter-results {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.results-count {
+  font-size: 1rem;
+  color: #4a5568;
+  font-weight: 600;
+  margin: 0;
+}
+
+.category-info {
+  color: #d4af37;
+  font-weight: 700;
+}
+
+.search-info {
+  color: #3182ce;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .filter-group {
@@ -38,26 +77,104 @@
 }
 
 .search-input,
-.price-filter {
+.category-filter {
   padding: 12px 16px;
   border: 2px solid #e1e5e9;
   border-radius: 8px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  color: #333;
+  background-color: white;
 }
 
 .search-input:focus,
-.price-filter:focus {
+.category-filter:focus {
   outline: none;
-  border-color: var(--primary-gold);
+  border-color: #d4af37;
+  color: #333;
 }
 
 .search-input {
   width: 300px;
 }
 
-.price-filter {
+.category-filter {
   width: 200px;
+  cursor: pointer;
+  background-color: white !important;
+  color: #333 !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Force text visibility in the select */
+.category-filter,
+.category-filter:focus,
+.category-filter:hover,
+.category-filter:active {
+  color: #333 !important;
+  background-color: white !important;
+  text-shadow: none !important;
+}
+
+/* Ensure dropdown arrow is visible */
+.category-filter:focus {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.category-filter:hover {
+  border-color: #d4af37;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.category-filter option {
+  padding: 8px 12px;
+  background-color: white !important;
+  color: #333 !important;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.category-filter option:hover,
+.category-filter option:checked {
+  background-color: #f0f9ff !important;
+  color: #1e40af !important;
+}
+
+.category-filter option[value=""] {
+  color: #666 !important;
+  font-style: italic;
+}
+
+.clear-filters-btn {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+}
+
+.clear-filters-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.clear-filters-btn:active {
+  transform: translateY(0);
 }
 
 .products-grid {
@@ -70,13 +187,13 @@
 .no-products {
   text-align: center;
   padding: 4rem 0;
-  color: var(--text-gray);
+  color: #666;
 }
 
 .no-products h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--text-dark);
+  color: #333;
 }
 
 @media (max-width: 768px) {
@@ -90,7 +207,8 @@
   }
 
   .search-input,
-  .price-filter {
+  .category-filter,
+  .clear-filters-btn {
     width: 100%;
   }
 

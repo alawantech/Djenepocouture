@@ -14,6 +14,7 @@ import {
   PlusIcon,
   CubeIcon,
   DocumentTextIcon,
+  RectangleGroupIcon,
 } from "@heroicons/react/24/outline";
 
 const uploadImageToCloudinary = async (imageFile) => {
@@ -52,6 +53,7 @@ const Admin = () => {
     image: null,
     description: "",
     isfeatured: false,
+    productCategory: "",
   });
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -143,6 +145,7 @@ const Admin = () => {
       image: imageUrl,
       description: product.description,
       isfeatured: product.isfeatured,
+      productCategory: product.productCategory,
       rating: generateProductRating(),
       reviewCount: generateReviewCount(),
       createdAt: new Date(),
@@ -150,7 +153,7 @@ const Admin = () => {
 
     setLoading(false);
     setSuccess(true);
-    setProduct({ name: "", price: "", image: null, description: "", isfeatured: false });
+    setProduct({ name: "", price: "", image: null, description: "", isfeatured: false, productCategory: "" });
     setPreview(null);
     setTimeout(() => setSuccess(false), 3000);
   };
@@ -271,6 +274,31 @@ const Admin = () => {
                       placeholder="Enter price in Francs"
                     />
                     <CurrencyDollarIcon className="form-icon" />
+                  </div>
+                </div>
+
+                {/* Category Field */}
+                <div className="form-group">
+                  <label htmlFor="productCategory" className="form-label">
+                    Product Category
+                  </label>
+                  <div className="form-input-container">
+                    <select
+                      name="productCategory"
+                      id="productCategory"
+                      value={product.productCategory}
+                      onChange={handleChange}
+                      required
+                      className="form-input"
+                    >
+                      <option value="">Select a category</option>
+                      <option value="vestes">Vestes</option>
+                      <option value="abacosts">Abacosts</option>
+                      <option value="tuniqueSimple">Tunique Simple</option>
+                      <option value="tuniqueBroderie">Tunique Broderie</option>
+                      <option value="chemises">Chemises</option>
+                    </select>
+                    <RectangleGroupIcon className="form-icon" />
                   </div>
                 </div>
 

@@ -30,6 +30,28 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
   const [editData, setEditData] = useState({});
   const [uploading, setUploading] = useState(false);
 
+  // Helper function to get category display name
+  const getCategoryDisplayName = (categoryValue) => {
+    const categoryMap = {
+      'vestes': 'Vestes',
+      'abacosts': 'Abacosts',
+      'tuniqueSimple': 'Tunique Simple',
+      'tuniqueBroderie': 'Tunique Broderie',
+      'chemises': 'Chemises'
+    };
+    return categoryMap[categoryValue] || categoryValue || 'Uncategorized';
+  };
+
+  // Helper function to get category statistics
+  const getCategoryStats = () => {
+    const stats = {};
+    products.forEach(product => {
+      const category = product.productCategory || 'uncategorized';
+      stats[category] = (stats[category] || 0) + 1;
+    });
+    return stats;
+  };
+
   // Rating helper function
   const renderStars = (rating) => {
     const stars = [];
@@ -107,6 +129,7 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
       description: product.description,
       image: product.image,
       isfeatured: product.isfeatured,
+      productCategory: product.productCategory || "",
       rating: product.rating || getProductRating(product.id),
       reviewCount: product.reviewCount || getReviewCount(product.id)
     });
@@ -150,6 +173,7 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
         description: editData.description,
         image: editData.image,
         isfeatured: editData.isfeatured,
+        productCategory: editData.productCategory,
         rating: editData.rating,
         reviewCount: editData.reviewCount,
         updatedAt: new Date()
@@ -210,6 +234,19 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                 <div className="summary-item">
                   <span className="summary-label">Regular Products:</span>
                   <span className="summary-value">{products.filter(p => !p.isfeatured).length}</span>
+                </div>
+              </div>
+
+              {/* Category Statistics */}
+              <div className="category-stats">
+                <h4 className="stats-title">Products by Category</h4>
+                <div className="category-grid">
+                  {Object.entries(getCategoryStats()).map(([category, count]) => (
+                    <div key={category} className="category-stat">
+                      <span className="category-name">{getCategoryDisplayName(category)}</span>
+                      <span className="category-count">{count}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
               
@@ -296,6 +333,23 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                           className="edit-textarea"
                           rows="3"
                         />
+                      </div>
+
+                      {/* Editable Category */}
+                      <div className="edit-field">
+                        <label>Category:</label>
+                        <select
+                          value={editData.productCategory}
+                          onChange={(e) => handleInputChange('productCategory', e.target.value)}
+                          className="edit-input"
+                        >
+                          <option value="">Select a category</option>
+                          <option value="vestes">Vestes</option>
+                          <option value="abacosts">Abacosts</option>
+                          <option value="tuniqueSimple">Tunique Simple</option>
+                          <option value="tuniqueBroderie">Tunique Broderie</option>
+                          <option value="chemises">Chemises</option>
+                        </select>
                       </div>
 
                       {/* Featured Toggle */}
@@ -391,6 +445,11 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                         
                         <div className="product-details">
                           <p className="product-description">{product.description}</p>
+                          {product.productCategory && (
+                            <p className="product-category">
+                              <strong>Category:</strong> {getCategoryDisplayName(product.productCategory)}
+                            </p>
+                          )}
                           {product.isfeatured && (
                             <p className="featured-badge">⭐ Featured Product - Shows on Home Page</p>
                           )}
