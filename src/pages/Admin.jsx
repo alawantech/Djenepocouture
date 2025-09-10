@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import AllProductsSection from "../components/AllProductsSection";
+import ImageCropper from "../components/ImageCropper";
+import "./Admin.css";
 
 // Heroicons imports for our new icons
 import {
@@ -31,27 +33,92 @@ const uploadImageToCloudinary = async (imageFile) => {
   return data.secure_url;
 };
 
+// Helper functions for generating rating and review data
+const generateProductRating = () => {
+  const ratings = [4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9];
+  return ratings[Math.floor(Math.random() * ratings.length)];
+};
+
+const generateReviewCount = () => {
+  const minReviews = 25;
+  const maxReviews = 200;
+  return Math.floor(Math.random() * (maxReviews - minReviews + 1)) + minReviews;
+};
+
 const Admin = () => {
   const [product, setProduct] = useState({
     name: "",
     price: "",
     image: null,
     description: "",
+    isfeatured: false,
   });
   const [preview, setPreview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showCropper, setShowCropper] = useState(false);
+  const [originalImage, setOriginalImage] = useState(null);
 
-  const [showProducts, setShowProducts] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('products'); // Start with products view
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  console.log('Menu state:', { menuOpen, currentView }); // Debug log
+
+  const handleImageClick = () => {
+    document.getElementById('image').click();
+  };
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value, files, type, checked } = e.target;
+    console.log('Form input changed:', { name, value, type, checked }); // Debug log
     if (name === "image") {
-      setProduct({ ...product, image: files[0] });
-      setPreview(URL.createObjectURL(files[0]));
+      const file = files[0];
+      if (file) {
+        // Create a URL for the original image to show in cropper
+        const imageUrl = URL.createObjectURL(file);
+        setOriginalImage(imageUrl);
+        setShowCropper(true);
+      }
+    } else if (type === "checkbox") {
+      setProduct({ ...product, [name]: checked });
     } else {
       setProduct({ ...product, [name]: value });
+    }
+  };
+
+  const handleCropComplete = (croppedFile) => {
+    setProduct({ ...product, image: croppedFile });
+    setPreview(URL.createObjectURL(croppedFile));
+    setShowCropper(false);
+    setOriginalImage(null);
+  };
+
+  const handleCropCancel = () => {
+    setShowCropper(false);
+    setOriginalImage(null);
+    // Reset the file input
+    const fileInput = document.getElementById('image');
+    if (fileInput) {
+      fileInput.value = '';
+    }
+  };
+
+  const handleSkipCrop = () => {
+    // Convert the original image URL back to a file and use it directly
+    if (originalImage) {
+      fetch(originalImage)
+        .then(res => res.blob())
+        .then(blob => {
+          const file = new File([blob], 'original-image.jpg', { type: 'image/jpeg' });
+          setProduct({ ...product, image: file });
+          setPreview(originalImage);
+          setShowCropper(false);
+          setOriginalImage(null);
+        })
+        .catch(error => {
+          console.error('Error processing original image:', error);
+          handleCropCancel(); // Fallback to cancel
+        });
     }
   };
 
@@ -75,191 +142,265 @@ const Admin = () => {
       price: Number(product.price),
       image: imageUrl,
       description: product.description,
-      isfeatured: false,
+      isfeatured: product.isfeatured,
+      rating: generateProductRating(),
+      reviewCount: generateReviewCount(),
       createdAt: new Date(),
     });
 
     setLoading(false);
     setSuccess(true);
-    setProduct({ name: "", price: "", image: null, description: "" });
+    setProduct({ name: "", price: "", image: null, description: "", isfeatured: false });
     setPreview(null);
     setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Overlay for mobile when sidebar is open */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
-      {/* Sidebar - Retained for functionality but can be restyled further */}
-      <div
-        className={`fixed lg:static top-0 left-0 h-full bg-gray-900 text-white w-64 transform ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 transition-transform duration-300 z-50`}
-      >
-        <div className="p-6 text-2xl font-bold border-b border-gray-700">
-          Admin Panel
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Header with Hamburger Menu */}
+      <header className="admin-header bg-white shadow-lg border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+            
+            {/* Hamburger Menu */}
+            <div className="hamburger-container">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="hamburger-menu-btn"
+                aria-label="Open menu"
+              >
+                <div className={`hamburger-line ${menuOpen ? 'line1-open' : ''}`}></div>
+                <div className={`hamburger-line ${menuOpen ? 'line2-open' : ''}`}></div>
+                <div className={`hamburger-line ${menuOpen ? 'line3-open' : ''}`}></div>
+              </button>
+              
+              {/* Dropdown Menu */}
+              {menuOpen && (
+                <>
+                  {/* Overlay */}
+                  <div 
+                    className="hamburger-overlay"
+                    onClick={() => setMenuOpen(false)}
+                  ></div>
+                  
+                  {/* Menu */}
+                  <div className="hamburger-dropdown">
+                    <button
+                      onClick={() => {
+                        setCurrentView('products');
+                        setMenuOpen(false);
+                      }}
+                      className={`hamburger-menu-item ${currentView === 'products' ? 'active' : ''}`}
+                    >
+                      <CubeIcon />
+                      <span>All Products</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        setCurrentView('add');
+                        setMenuOpen(false);
+                      }}
+                      className={`hamburger-menu-item ${currentView === 'add' ? 'active' : ''}`}
+                    >
+                      <PlusIcon />
+                      <span>Add Product</span>
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-        <nav className="flex flex-col gap-4 p-6">
-          <button
-            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-left font-medium flex items-center gap-2"
-            onClick={() => {
-              setShowProducts(false);
-              setSidebarOpen(false);
-            }}
-          >
-            <PlusIcon className="h-5 w-5" />
-            Add Product
-          </button>
-          <button
-            className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg text-left font-medium flex items-center gap-2"
-            onClick={() => {
-              setShowProducts(true);
-              setSidebarOpen(false);
-            }}
-          >
-            <CubeIcon className="h-5 w-5" />
-            All Products
-          </button>
-        </nav>
-      </div>
+      </header>
 
-      {/* Main Content Area */}
-      <div className="flex-1 p-6 lg:p-10">
-        {/* Hamburger for mobile */}
-        <button
-          className="lg:hidden mb-12 bg-red-500 hover:bg-red-600 text-white p-3 rounded-lg shadow-lg transition-all font-bold text-xl"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          ☰
-        </button>
-
-        {showProducts ? (
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">
-              All Products
-            </h2>
+      {/* Main Content */}
+      <main className="admin-main-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {currentView === 'products' ? (
+          <div>
+            <div className="mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">All Products</h2>
+              <p className="text-gray-600">Manage your product inventory</p>
+            </div>
             <AllProductsSection onlyProductsView={true} />
           </div>
         ) : (
-          <div className="bg-white rounded-2xl shadow-md p-6 max-w-lg mx-auto mt-8">
-            <h2 className="text-xl font-bold text-gray-800 mb-6">
-              Add New Product
-            </h2>
-            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-              {/* Product Name Field */}
-              <div className="relative">
-                <label
-                  htmlFor="name"
-                  className="block font-semibold mb-2 text-gray-700"
-                >
-                  Product Name
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                    required
-                    placeholder="Enter product name"
-                    value={product.name}
-                    onChange={handleChange}
-                  />
-                  <TagIcon className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                </div>
-              </div>
-              {/* Price Field */}
-              <div className="relative">
-                <label htmlFor="price" className="block font-semibold mb-2 text-gray-700">
-                  Price (₦)
-                </label>
-                <div className="relative">
-                  <input
-                    type="number"
-                    name="price"
-                    id="price"
-                    value={product.price}
-                    onChange={handleChange}
-                    required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                    placeholder="Enter price"
-                  />
-                  <CurrencyDollarIcon className="h-5 w-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
-                </div>
-              </div>
-
-              {/* Product Image Field */}
-              <div className="relative">
-                <label
-                  htmlFor="image"
-                  className="block font-semibold mb-2 text-gray-700"
-                >
-                  Product Image
-                </label>
-                <div className="relative flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    accept="image/*"
-                    onChange={handleChange}
-                    required
-                    className="absolute inset-0 opacity-0 cursor-pointer"
-                  />
-                  <div className="flex-1 px-4 py-2 text-gray-500 truncate">
-                    {product.image ? product.image.name : "Choose file"}
-                  </div>
-                  <div className="bg-gray-200 px-4 py-2 border-l border-gray-300">
-                    <PhotoIcon className="h-5 w-5 text-gray-700" />
+          <div className="max-w-2xl mx-auto">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Add New Product</h2>
+              <p className="text-gray-600">Create a new product for your store</p>
+            </div>
+            
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {/* Product Name Field */}
+                <div className="form-group">
+                  <label htmlFor="name" className="form-label">
+                    Product Name
+                  </label>
+                  <div className="form-input-container">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="form-input"
+                      required
+                      placeholder="Enter product name"
+                      value={product.name}
+                      onChange={handleChange}
+                    />
+                    <TagIcon className="form-icon" />
                   </div>
                 </div>
-              </div>
 
-              {/* Description Field */}
-              <div className="relative">
-                <label
-                  htmlFor="description"
-                  className="block font-semibold mb-2 text-gray-700"
+                {/* Price Field */}
+                <div className="form-group">
+                  <label htmlFor="price" className="form-label">
+                    Price (F)
+                  </label>
+                  <div className="form-input-container">
+                    <input
+                      type="number"
+                      name="price"
+                      id="price"
+                      value={product.price}
+                      onChange={handleChange}
+                      required
+                      className="form-input"
+                      placeholder="Enter price in Francs"
+                    />
+                    <CurrencyDollarIcon className="form-icon" />
+                  </div>
+                </div>
+
+                {/* Product Image Field */}
+                <div className="form-group">
+                  <label htmlFor="image" className="form-label">
+                    Product Image
+                  </label>
+                  <div className="image-upload-container" onClick={handleImageClick}>
+                    <input
+                      type="file"
+                      name="image"
+                      id="image"
+                      accept="image/*"
+                      onChange={handleChange}
+                      required
+                      className="image-input"
+                      style={{ display: 'none' }}
+                    />
+                    <div className="image-upload-display">
+                      {preview ? (
+                        <img src={preview} alt="Preview" className="image-preview" />
+                      ) : (
+                        <div className="image-placeholder">
+                          <PhotoIcon className="h-12 w-12 text-gray-400" />
+                          <p className="text-gray-500 mt-2">Click to upload image</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Description Field */}
+                <div className="form-group">
+                  <label htmlFor="description" className="form-label">
+                    Description
+                  </label>
+                  <div className="form-input-container">
+                    <textarea
+                      name="description"
+                      id="description"
+                      value={product.description}
+                      onChange={handleChange}
+                      required
+                      className="form-textarea"
+                      placeholder="Enter product description"
+                      rows="4"
+                    />
+                    <DocumentTextIcon className="form-icon-textarea" />
+                  </div>
+                </div>
+
+                {/* Featured Product Toggle */}
+                <div className="featured-toggle">
+                  <div className="featured-toggle-content">
+                    <input
+                      type="checkbox"
+                      name="isfeatured"
+                      id="isfeatured"
+                      checked={product.isfeatured}
+                      onChange={handleChange}
+                      className="featured-checkbox"
+                    />
+                    <label htmlFor="isfeatured" className="featured-label">
+                      <span className="featured-title">⭐ Featured Product</span>
+                      <p className="featured-subtitle">
+                        Featured products will be displayed on the home page
+                      </p>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`submit-button ${success ? 'success-state' : ''}`}
                 >
-                  Description
-                </label>
-                <div className="relative">
-                  <textarea
-                    name="description"
-                    id="description"
-                    value={product.description}
-                    onChange={handleChange}
-                    required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 pl-10 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 resize-none min-h-[90px]"
-                    placeholder="Enter product description"
-                  />
-                  <DocumentTextIcon className="h-5 w-5 text-gray-400 absolute left-3 top-3" />
+                  {loading ? (
+                    <>
+                      <div className="loading-spinner"></div>
+                      Adding Product...
+                    </>
+                  ) : success ? (
+                    <>
+                      <div className="success-icon">✓</div>
+                      Product Added Successfully!
+                    </>
+                  ) : (
+                    <>
+                      <PlusIcon className="h-5 w-5" />
+                      Add Product
+                    </>
+                  )}
+                </button>
+                
+                {/* Auto-generation note */}
+                <div className="info-box">
+                  <div className="info-header">
+                    <span className="info-icon">ℹ️</span>
+                    <span className="info-title">Auto-Generated Features:</span>
+                  </div>
+                  <ul className="info-list">
+                    <li>⭐ Product rating (4.2 - 4.9 stars)</li>
+                    <li>👥 Review count (25 - 200 reviews)</li>
+                    <li>🎨 Optimized product display</li>
+                    <li>🏠 Featured products show on home page</li>
+                  </ul>
                 </div>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-orange-500 text-white rounded-lg px-4 py-2 font-semibold hover:bg-orange-600 transition disabled:opacity-50"
-              >
-                {loading ? "Adding..." : "Add Product"}
-              </button>
-              {success && (
-                <div className="mt-2 text-green-600 font-semibold text-center">
-                  ✅ Product added successfully!
-                </div>
-              )}
-            </form>
+                
+                {success && (
+                  <div className="success-message">
+                    ✅ Product added successfully!
+                  </div>
+                )}
+              </form>
+            </div>
           </div>
         )}
-      </div>
+      </main>
+      
+      {/* Image Cropper Modal */}
+      {showCropper && originalImage && (
+        <ImageCropper
+          imageSrc={originalImage}
+          onCropComplete={handleCropComplete}
+          onCancel={handleCropCancel}
+          onSkipCrop={handleSkipCrop}
+        />
+      )}
     </div>
   );
 };

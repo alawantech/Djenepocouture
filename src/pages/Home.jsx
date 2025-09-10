@@ -12,7 +12,9 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       const products = await getProducts();
-      setFeaturedProducts(products.slice(0, 6));
+      // Filter only products that are marked as featured
+      const featuredOnly = products.filter(product => product.isfeatured === true);
+      setFeaturedProducts(featuredOnly);
       setLoading(false);
     };
     fetchProducts();
@@ -60,14 +62,22 @@ const Home = () => {
           <h2 className="section-title">Featured Collection</h2>
           <p className="section-subtitle">
             Discover our most popular custom-tailored pieces, crafted with precision and attention to detail
+            {!loading && featuredProducts.length > 0 && (
+              <span className="featured-count"> • {featuredProducts.length} featured {featuredProducts.length === 1 ? 'product' : 'products'}</span>
+            )}
           </p>
           {loading ? (
             <div className="no-products"><h3>Loading products...</h3></div>
-          ) : (
+          ) : featuredProducts.length > 0 ? (
             <div className="products-grid">
               {featuredProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
+            </div>
+          ) : (
+            <div className="no-products">
+              <h3>No featured products available at the moment</h3>
+              <p>Check back soon for our latest featured collection!</p>
             </div>
           )}
           <div className="featured-cta">
