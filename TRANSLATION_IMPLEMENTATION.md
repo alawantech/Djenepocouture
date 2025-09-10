@@ -30,11 +30,15 @@ I have successfully implemented a comprehensive translation system for your Djen
 ### 3. Language Toggle Button
 - **Location**: `src/components/LanguageToggle.jsx`
 - **Features**:
+  - Clear translation text: "Translate to English" / "Traduire en français"
+  - Translation icon from Lucide React (Languages icon)
   - Flag icons (🇫🇷 for French, 🇬🇧 for English)
-  - Language codes (FR/EN)
-  - Smooth hover animations
-  - Responsive design for mobile and desktop
-  - Golden theme matching the website design
+  - Matches primary button styling with golden background and white text
+  - Same hover effects as main "View Collection" button
+  - Responsive design that adapts text length for different screen sizes
+  - Consistent with website's design theme
+  - Prominent and easily recognizable as a translation button
+  - On very small screens, shows abbreviated form (EN/FR) to save space
 
 ### 4. Updated Components
 All major components have been updated to use the translation system:
@@ -130,10 +134,10 @@ src/
 
 ### For Users
 1. The website loads in French by default
-2. Look for the language toggle button (🇬🇧 EN) in the navigation bar
-3. Click the button to switch to English
-4. Click again (🇫🇷 FR) to switch back to French
-5. All content will be translated instantly
+2. Look for the prominent translation button showing "Translate to English" (with 🇬🇧 flag and translation icon) in the navigation bar
+3. Click the button to switch to English - it will then show "Traduire en français" (with 🇫🇷 flag)
+4. All content will be translated instantly without page reload
+5. The button clearly indicates what language it will translate TO
 
 ### For Developers
 1. Use the `useTranslation()` hook in any component

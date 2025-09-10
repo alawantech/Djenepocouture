@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useTranslation } from "../contexts/TranslationContext";
 import AllProductsSection from "../components/AllProductsSection";
 import ImageCropper from "../components/ImageCropper";
 import "./Admin.css";
@@ -47,6 +48,7 @@ const generateReviewCount = () => {
 };
 
 const Admin = () => {
+  const { t, language } = useTranslation();
   const [product, setProduct] = useState({
     name: "",
     price: "",
@@ -164,7 +166,7 @@ const Admin = () => {
       <header className="admin-header bg-white shadow-lg border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{t('admin.dashboard')}</h1>
             
             {/* Hamburger Menu */}
             <div className="hamburger-container">
@@ -197,7 +199,7 @@ const Admin = () => {
                       className={`hamburger-menu-item ${currentView === 'products' ? 'active' : ''}`}
                     >
                       <CubeIcon />
-                      <span>All Products</span>
+                      <span>{t('admin.allProducts.title')}</span>
                     </button>
                     
                     <button
@@ -208,7 +210,7 @@ const Admin = () => {
                       className={`hamburger-menu-item ${currentView === 'add' ? 'active' : ''}`}
                     >
                       <PlusIcon />
-                      <span>Add Product</span>
+                      <span>{t('admin.addProduct.title')}</span>
                     </button>
                   </div>
                 </>
@@ -223,16 +225,16 @@ const Admin = () => {
         {currentView === 'products' ? (
           <div>
             <div className="mb-6">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">All Products</h2>
-              <p className="text-gray-600">Manage your product inventory</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('admin.allProducts.title')}</h2>
+              <p className="text-gray-600">{t('admin.allProducts.subtitle')}</p>
             </div>
             <AllProductsSection onlyProductsView={true} />
           </div>
         ) : (
           <div className="max-w-2xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Add New Product</h2>
-              <p className="text-gray-600">Create a new product for your store</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('admin.addProduct.title')}</h2>
+              <p className="text-gray-600">{t('admin.addProduct.subtitle')}</p>
             </div>
             
             <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
@@ -240,7 +242,7 @@ const Admin = () => {
                 {/* Product Name Field */}
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">
-                    Product Name
+                    {t('admin.form.productName')}
                   </label>
                   <div className="form-input-container">
                     <input
@@ -249,7 +251,7 @@ const Admin = () => {
                       id="name"
                       className="form-input"
                       required
-                      placeholder="Enter product name"
+                      placeholder={t('admin.form.productNamePlaceholder')}
                       value={product.name}
                       onChange={handleChange}
                     />
@@ -260,7 +262,7 @@ const Admin = () => {
                 {/* Price Field */}
                 <div className="form-group">
                   <label htmlFor="price" className="form-label">
-                    Price (F)
+                    {t('admin.form.price')}
                   </label>
                   <div className="form-input-container">
                     <input
@@ -271,7 +273,7 @@ const Admin = () => {
                       onChange={handleChange}
                       required
                       className="form-input"
-                      placeholder="Enter price in Francs"
+                      placeholder={t('admin.form.pricePlaceholder')}
                     />
                     <CurrencyDollarIcon className="form-icon" />
                   </div>
@@ -280,7 +282,7 @@ const Admin = () => {
                 {/* Category Field */}
                 <div className="form-group">
                   <label htmlFor="productCategory" className="form-label">
-                    Product Category <span style={{color: '#6b7280', fontWeight: 'normal', fontSize: '0.9rem'}}>(Optional)</span>
+                    {t('admin.form.category')} <span style={{color: '#6b7280', fontWeight: 'normal', fontSize: '0.9rem'}}>{t('admin.form.categoryOptional')}</span>
                   </label>
                   <div className="form-input-container">
                     <select
@@ -290,12 +292,12 @@ const Admin = () => {
                       onChange={handleChange}
                       className="form-input"
                     >
-                      <option value="">Select a category (optional)</option>
-                      <option value="vestes">Vestes</option>
-                      <option value="abacosts">Abacosts</option>
-                      <option value="tuniqueSimple">Tunique Simple</option>
-                      <option value="tuniqueBroderie">Tunique Broderie</option>
-                      <option value="chemises">Chemises</option>
+                      <option value="">{t('admin.form.categoryPlaceholder')}</option>
+                      <option value="vestes">{t('admin.categories.vestes')}</option>
+                      <option value="abacosts">{t('admin.categories.abacosts')}</option>
+                      <option value="tuniqueSimple">{t('admin.categories.tuniqueSimple')}</option>
+                      <option value="tuniqueBroderie">{t('admin.categories.tuniqueBroderie')}</option>
+                      <option value="chemises">{t('admin.categories.chemises')}</option>
                     </select>
                     <RectangleGroupIcon className="form-icon" />
                   </div>
@@ -304,7 +306,7 @@ const Admin = () => {
                 {/* Product Image Field */}
                 <div className="form-group">
                   <label htmlFor="image" className="form-label">
-                    Product Image
+                    {t('admin.form.image')}
                   </label>
                   <div className="image-upload-container" onClick={handleImageClick}>
                     <input
@@ -323,7 +325,7 @@ const Admin = () => {
                       ) : (
                         <div className="image-placeholder">
                           <PhotoIcon className="h-12 w-12 text-gray-400" />
-                          <p className="text-gray-500 mt-2">Click to upload image</p>
+                          <p className="text-gray-500 mt-2">{t('admin.form.imageUpload')}</p>
                         </div>
                       )}
                     </div>
@@ -333,7 +335,7 @@ const Admin = () => {
                 {/* Description Field */}
                 <div className="form-group">
                   <label htmlFor="description" className="form-label">
-                    Description <span style={{color: '#6b7280', fontWeight: 'normal', fontSize: '0.9rem'}}>(Optional)</span>
+                    {t('admin.form.description')} <span style={{color: '#6b7280', fontWeight: 'normal', fontSize: '0.9rem'}}>{t('admin.form.descriptionOptional')}</span>
                   </label>
                   <div className="form-input-container">
                     <textarea
@@ -342,7 +344,7 @@ const Admin = () => {
                       value={product.description}
                       onChange={handleChange}
                       className="form-textarea"
-                      placeholder="Enter product description (optional)"
+                      placeholder={t('admin.form.descriptionPlaceholder')}
                       rows="4"
                     />
                     <DocumentTextIcon className="form-icon-textarea" />
@@ -361,9 +363,9 @@ const Admin = () => {
                       className="featured-checkbox"
                     />
                     <label htmlFor="isfeatured" className="featured-label">
-                      <span className="featured-title">⭐ Featured Product</span>
+                      <span className="featured-title">{t('admin.form.featured')}</span>
                       <p className="featured-subtitle">
-                        Featured products will be displayed on the home page
+                        {t('admin.form.featuredSubtitle')}
                       </p>
                     </label>
                   </div>
@@ -378,17 +380,17 @@ const Admin = () => {
                   {loading ? (
                     <>
                       <div className="loading-spinner"></div>
-                      Adding Product...
+                      {t('admin.form.uploading')}
                     </>
                   ) : success ? (
                     <>
                       <div className="success-icon">✓</div>
-                      Product Added Successfully!
+                      {t('admin.form.success')}
                     </>
                   ) : (
                     <>
                       <PlusIcon className="h-5 w-5" />
-                      Add Product
+                      {t('admin.form.addProduct')}
                     </>
                   )}
                 </button>
@@ -397,20 +399,20 @@ const Admin = () => {
                 <div className="info-box">
                   <div className="info-header">
                     <span className="info-icon">ℹ️</span>
-                    <span className="info-title">Auto-Generated Features:</span>
+                    <span className="info-title">{t('admin.info.autoGeneratedTitle')}</span>
                   </div>
                   <ul className="info-list">
-                    <li>⭐ Product rating (4.2 - 4.9 stars)</li>
-                    <li>👥 Review count (25 - 200 reviews)</li>
-                    <li>🎨 Optimized product display</li>
-                    <li>🏠 Featured products show on home page</li>
-                    <li>📝 Description and category fields are optional</li>
+                    <li>⭐ {t('admin.info.autoGenerated.rating')}</li>
+                    <li>👥 {t('admin.info.autoGenerated.reviews')}</li>
+                    <li>🎨 {t('admin.info.autoGenerated.display')}</li>
+                    <li>🏠 {t('admin.info.autoGenerated.featured')}</li>
+                    <li>📝 {t('admin.info.autoGenerated.optional')}</li>
                   </ul>
                 </div>
                 
                 {success && (
                   <div className="success-message">
-                    ✅ Product added successfully!
+                    ✅ {t('admin.form.success')}
                   </div>
                 )}
               </form>
