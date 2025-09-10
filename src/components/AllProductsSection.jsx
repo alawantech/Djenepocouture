@@ -29,6 +29,10 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
   const [editingProduct, setEditingProduct] = useState(null);
   const [editData, setEditData] = useState({});
   const [uploading, setUploading] = useState(false);
+  
+  // New state for search and filtering
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Helper function to get category display name
   const getCategoryDisplayName = (categoryValue) => {
@@ -208,6 +212,29 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
     }
   };
 
+  // Filter products based on search term and category
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    let matchesCategory = true;
+    if (selectedCategory !== 'all') {
+      if (selectedCategory === 'uncategorized') {
+        matchesCategory = !product.productCategory || product.productCategory === '';
+      } else {
+        matchesCategory = product.productCategory === selectedCategory;
+      }
+    }
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  // Clear filters function
+  const clearFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('all');
+  };
+
   return (
     <section className="all-products-section">
       {!onlyProductsView && (
@@ -235,6 +262,10 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                   <span className="summary-label">Regular Products:</span>
                   <span className="summary-value">{products.filter(p => !p.isfeatured).length}</span>
                 </div>
+                <div className="summary-item">
+                  <span className="summary-label">Filtered Results:</span>
+                  <span className="summary-value filtered">{filteredProducts.length}</span>
+                </div>
               </div>
 
               {/* Category Statistics */}
@@ -249,9 +280,69 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                   ))}
                 </div>
               </div>
+
+              {/* Search and Filter Controls */}
+              <div className="admin-products-filters">
+                <div className="filter-row">
+                  <div className="filter-group">
+                    <label className="filter-label">Search Products:</label>
+                    <input
+                      type="text"
+                      placeholder="Search by name or description..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="admin-search-input"
+                    />
+                  </div>
+                  
+                  <div className="filter-group">
+                    <label className="filter-label">Filter by Category:</label>
+                    <select
+                      value={selectedCategory}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
+                      className="admin-category-filter"
+                    >
+                      <option value="all">All Categories</option>
+                      <option value="vestes">Vestes</option>
+                      <option value="abacosts">Abacosts</option>
+                      <option value="tuniqueSimple">Tunique Simple</option>
+                      <option value="tuniqueBroderie">Tunique Broderie</option>
+                      <option value="chemises">Chemises</option>
+                      <option value="uncategorized">Uncategorized</option>
+                    </select>
+                  </div>
+
+                  {(searchTerm || selectedCategory !== 'all') && (
+                    <div className="filter-group">
+                      <button
+                        onClick={clearFilters}
+                        className="clear-filters-btn"
+                        title="Clear all filters"
+                      >
+                        <X size={16} />
+                        Clear Filters
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Filter Results Summary */}
+                <div className="filter-results-summary">
+                  <p className="results-count">
+                    Showing {filteredProducts.length} of {products.length} products
+                    {selectedCategory !== 'all' && (
+                      <span className="category-info"> in "{getCategoryDisplayName(selectedCategory)}"</span>
+                    )}
+                    {searchTerm && (
+                      <span className="search-info"> matching "{searchTerm}"</span>
+                    )}
+                  </p>
+                </div>
+              </div>
               
               {/* Products Grid */}
-              {products.map(product => (
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map(product => (
                 <div className="product-doc" key={product.id}>
                   {editingProduct === product.id ? (
                     // Edit Mode
@@ -466,7 +557,24 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                     </div>
                   )}
                 </div>
-              ))}
+                ))
+              ) : (
+                <div className="no-products">
+                  <h3>No products found</h3>
+                  <p>
+                    {selectedCategory !== 'all' 
+                      ? `No products found in the "${getCategoryDisplayName(selectedCategory)}" category${searchTerm ? ` matching "${searchTerm}"` : ''}.`
+                      : `No products found${searchTerm ? ` matching "${searchTerm}"` : ''}.`
+                    }
+                  </p>
+                  <p>Try adjusting your search or filter criteria.</p>
+                  {(searchTerm || selectedCategory !== 'all') && (
+                    <button onClick={clearFilters} className="clear-filters-btn">
+                      Clear Filters
+                    </button>
+                  )}
+                </div>
+              )}
             </>
           ) : (
             <div className="no-products">No products found.</div>
