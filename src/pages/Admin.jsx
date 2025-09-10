@@ -280,7 +280,7 @@ const Admin = () => {
                 {/* Category Field */}
                 <div className="form-group">
                   <label htmlFor="productCategory" className="form-label">
-                    Product Category
+                    Product Category <span style={{color: '#6b7280', fontWeight: 'normal', fontSize: '0.9rem'}}>(Optional)</span>
                   </label>
                   <div className="form-input-container">
                     <select
@@ -288,10 +288,9 @@ const Admin = () => {
                       id="productCategory"
                       value={product.productCategory}
                       onChange={handleChange}
-                      required
                       className="form-input"
                     >
-                      <option value="">Select a category</option>
+                      <option value="">Select a category (optional)</option>
                       <option value="vestes">Vestes</option>
                       <option value="abacosts">Abacosts</option>
                       <option value="tuniqueSimple">Tunique Simple</option>
@@ -334,7 +333,7 @@ const Admin = () => {
                 {/* Description Field */}
                 <div className="form-group">
                   <label htmlFor="description" className="form-label">
-                    Description
+                    Description <span style={{color: '#6b7280', fontWeight: 'normal', fontSize: '0.9rem'}}>(Optional)</span>
                   </label>
                   <div className="form-input-container">
                     <textarea
@@ -342,9 +341,8 @@ const Admin = () => {
                       id="description"
                       value={product.description}
                       onChange={handleChange}
-                      required
                       className="form-textarea"
-                      placeholder="Enter product description"
+                      placeholder="Enter product description (optional)"
                       rows="4"
                     />
                     <DocumentTextIcon className="form-icon-textarea" />
@@ -406,6 +404,7 @@ const Admin = () => {
                     <li>👥 Review count (25 - 200 reviews)</li>
                     <li>🎨 Optimized product display</li>
                     <li>🏠 Featured products show on home page</li>
+                    <li>📝 Description and category fields are optional</li>
                   </ul>
                 </div>
                 

@@ -16,7 +16,8 @@ const Products = () => {
       'abacosts': 'Abacosts',
       'tuniqueSimple': 'Tunique Simple',
       'tuniqueBroderie': 'Tunique Broderie',
-      'chemises': 'Chemises'
+      'chemises': 'Chemises',
+      'uncategorized': 'Uncategorized'
     };
     return categoryMap[categoryValue] || 'All Categories';
   };
@@ -32,11 +33,15 @@ const Products = () => {
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
+                         (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase()));
     
     let matchesCategory = true;
     if (selectedCategory !== 'all') {
-      matchesCategory = product.productCategory === selectedCategory;
+      if (selectedCategory === 'uncategorized') {
+        matchesCategory = !product.productCategory || product.productCategory === '';
+      } else {
+        matchesCategory = product.productCategory === selectedCategory;
+      }
     }
     
     return matchesSearch && matchesCategory;
@@ -76,6 +81,7 @@ const Products = () => {
               <option value="tuniqueSimple">Tunique Simple</option>
               <option value="tuniqueBroderie">Tunique Broderie</option>
               <option value="chemises">Chemises</option>
+              <option value="uncategorized">Uncategorized</option>
             </select>
           </div>
 
