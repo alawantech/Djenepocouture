@@ -6,26 +6,46 @@ import ProductCard from '../components/ProductCard';
 import { getProducts } from '../data/products';
 import './Home.css';
 
+// Import service images
+import service1 from '../assets/images/service1.png';
+import service2 from '../assets/images/service2.png';
+import service3 from '../assets/images/service3.png';
+import service4 from '../assets/images/service4.png';
+import service5 from '../assets/images/service5.png';
+
+// Import hero images
+import hero1 from '../assets/images/hero1.jpg';
+import hero2 from '../assets/images/hero2.jpg';
+import hero3 from '../assets/images/hero3.jpg';
+
 // Hero images array
 const heroImages = [
-  { src: '/src/assets/images/hero1.jpg', alt: 'Premium African Fashion' },
-  { src: '/src/assets/images/hero2.jpg', alt: 'Traditional Elegance' },
-  { src: '/src/assets/images/hero3.jpg', alt: 'Modern African Style' }
+  { src: hero1, alt: 'Premium African Fashion' },
+  { src: hero2, alt: 'Traditional Elegance' },
+  { src: hero3, alt: 'Modern African Style' }
 ];
 
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const products = await getProducts();
-      // Filter only products that are marked as featured
-      const featuredOnly = products.filter(product => product.isfeatured === true);
-      setFeaturedProducts(featuredOnly);
-      setLoading(false);
+      try {
+        setError(null);
+        const products = await getProducts();
+        // Filter only products that are marked as featured
+        const featuredOnly = products.filter(product => product.isfeatured === true);
+        setFeaturedProducts(featuredOnly);
+      } catch (err) {
+        console.error('Error fetching featured products:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, []);
@@ -155,6 +175,11 @@ const Home = () => {
           </p>
           {loading ? (
             <div className="no-products"><h3>{t('home.featured.loading')}</h3></div>
+          ) : error ? (
+            <div className="no-products">
+              <h3>Error Loading Featured Products</h3>
+              <p>Database connection error: {error}</p>
+            </div>
           ) : featuredProducts.length > 0 ? (
             <div className="products-grid">
               {featuredProducts.map(product => (
@@ -212,7 +237,7 @@ const Home = () => {
             <div className="service-card featured">
               <div className="service-icon vestes">
                 <div className="icon-wrapper">
-                  <img src="/src/assets/images/service1.png" alt="Vestes Élégantes" className="service-image" />
+                  <img src={service1} alt="Vestes Élégantes" className="service-image" />
                 </div>
               </div>
               <h3>{t('home.services.vestes.title')}</h3>
@@ -222,7 +247,7 @@ const Home = () => {
             <div className="service-card premium">
               <div className="service-icon abacosts">
                 <div className="icon-wrapper">
-                  <img src="/src/assets/images/service2.png" alt="Abacosts Authentiques" className="service-image" />
+                  <img src={service2} alt="Abacosts Authentiques" className="service-image" />
                 </div>
               </div>
               <h3>{t('home.services.abacosts.title')}</h3>
@@ -232,7 +257,7 @@ const Home = () => {
             <div className="service-card elegant">
               <div className="service-icon tunique">
                 <div className="icon-wrapper">
-                  <img src="/src/assets/images/service3.png" alt="Tuniques Élégantes" className="service-image" />
+                  <img src={service3} alt="Tuniques Élégantes" className="service-image" />
                 </div>
               </div>
               <h3>{t('home.services.tunique.title')}</h3>
@@ -242,7 +267,7 @@ const Home = () => {
             <div className="service-card artistic">
               <div className="service-icon broderie">
                 <div className="icon-wrapper">
-                  <img src="/src/assets/images/service4.png" alt="Broderie Artisanale" className="service-image" />
+                  <img src={service4} alt="Broderie Artisanale" className="service-image" />
                 </div>
               </div>
               <h3>{t('home.services.broderie.title')}</h3>
@@ -252,7 +277,7 @@ const Home = () => {
             <div className="service-card professional">
               <div className="service-icon chemises">
                 <div className="icon-wrapper">
-                  <img src="/src/assets/images/service5.png" alt="Chemises Designer" className="service-image" />
+                  <img src={service5} alt="Chemises Designer" className="service-image" />
                 </div>
               </div>
               <h3>{t('home.services.chemises.title')}</h3>

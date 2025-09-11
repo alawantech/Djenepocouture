@@ -9,6 +9,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { t, language } = useTranslation();
 
   // Helper function to get category display name with translation
@@ -26,9 +27,17 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await getProducts();
-      setProducts(data);
-      setLoading(false);
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getProducts();
+        setProducts(data);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProducts();
   }, []);
@@ -118,6 +127,13 @@ const Products = () => {
         {loading ? (
           <div className="no-products">
             <h3>{t('products.loading')}</h3>
+            <p>Loading products from database...</p>
+          </div>
+        ) : error ? (
+          <div className="no-products">
+            <h3>Error Loading Products</h3>
+            <p>There was an error connecting to the database: {error}</p>
+            <p>Please check your internet connection and Firebase configuration.</p>
           </div>
         ) : filteredProducts.length > 0 ? (
           <div className="products-grid">
