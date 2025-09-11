@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import enTranslations from '../translations/en.json';
+import frTranslations from '../translations/fr.json';
 
 const TranslationContext = createContext();
 
@@ -11,27 +13,18 @@ export const useTranslation = () => {
 };
 
 export const TranslationProvider = ({ children }) => {
-  const [language, setLanguage] = useState('fr'); // Default to French
-  const [translations, setTranslations] = useState({});
+  const [language, setLanguage] = useState(() => {
+    // Get saved language from localStorage or default to French
+    return localStorage.getItem('preferred-language') || 'fr';
+  });
+  
+  // Use direct imports instead of dynamic imports for faster loading
+  const translations = {
+    fr: frTranslations,
+    en: enTranslations
+  };
 
-  // Load translations
-  useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const frTranslations = await import('../translations/fr.json');
-        const enTranslations = await import('../translations/en.json');
-        setTranslations({
-          fr: frTranslations.default,
-          en: enTranslations.default
-        });
-      } catch (error) {
-        console.error('Error loading translations:', error);
-      }
-    };
-    loadTranslations();
-  }, []);
-
-  const t = (key) => {
+  const t = (key, defaultValue = '') => {
     const keys = key.split('.');
     let value = translations[language];
     
@@ -39,24 +32,34 @@ export const TranslationProvider = ({ children }) => {
       if (value && typeof value === 'object') {
         value = value[k];
       } else {
-        return key; // Return key if translation not found
+        // Return default value or key if translation not found
+        return defaultValue || key;
       }
     }
     
-    return value || key;
+    return value || defaultValue || key;
   };
 
   const toggleLanguage = () => {
-    setLanguage(prevLang => prevLang === 'fr' ? 'en' : 'fr');
+    const newLanguage = language === 'fr' ? 'en' : 'fr';
+    setLanguage(newLanguage);
+    localStorage.setItem('preferred-language', newLanguage);
+  };
+
+  const changeLanguage = (newLanguage) => {
+    setLanguage(newLanguage);
+    localStorage.setItem('preferred-language', newLanguage);
   };
 
   const value = {
     language,
     setLanguage,
+    changeLanguage,
     t,
     toggleLanguage,
     isEnglish: language === 'en',
-    isFrench: language === 'fr'
+    isFrench: language === 'fr',
+    isLoaded: true // Always loaded since we use direct imports
   };
 
   return (

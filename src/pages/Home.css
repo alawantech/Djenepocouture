@@ -1,4 +1,21 @@
-﻿.hero {
+﻿/* Prevent layout shift and white spaces */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.home {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.hero {
   background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--white) 100%);
   padding: 4rem 0;
   min-height: 70vh;
@@ -194,6 +211,7 @@
   height: 500px;
   overflow: hidden;
   border-radius: 20px;
+  background: #f8f9fa; /* Prevent white flash during loading */
 }
 
 .hero-slide {
@@ -216,6 +234,37 @@
   object-fit: cover;
 }
 
+/* Hero Image Loading State */
+.hero-image-loading {
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-placeholder {
+  text-align: center;
+  color: var(--text-gray);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .hero-indicators {
   position: absolute;
   bottom: 20px;
@@ -226,18 +275,52 @@
   z-index: 10;
 }
 
-.hero-indicator {
+.hero-indicators .indicator {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
+  border: none;
 }
 
-.hero-indicator.active {
+.hero-indicators .indicator.active {
   background: var(--primary-gold);
   transform: scale(1.2);
+}
+
+/* Slider Navigation Arrows */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-nav:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-nav.prev {
+  left: 20px;
+}
+
+.slider-nav.next {
+  right: 20px;
 }
 
 /* Button Styles */
@@ -739,17 +822,16 @@
     align-items: center;
   }
 
-  .hero-image img {
+  .hero-image,
+  .hero-slider,
+  .hero-image-loading {
     height: 300px;
+    min-height: 300px;
   }
 
   .hero-content {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .hero-slider {
-    height: 300px;
   }
 
   .services {

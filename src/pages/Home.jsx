@@ -30,7 +30,32 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { t } = useTranslation();
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const { t, isLoaded } = useTranslation();
+
+  // Preload hero images
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises = heroImages.map(image => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = image.src;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+        setImagesLoaded(true);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setImagesLoaded(true); // Still show the component even if preload fails
+      }
+    };
+
+    preloadImages();
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -97,65 +122,78 @@ const Home = () => {
           <div className="hero-content">
             <div className="hero-text">
               <h1 className="hero-title">
-                <span className="golden-text">{t('home.hero.title')}</span>
+                <span className="golden-text">
+                  {isLoaded ? t('home.hero.title') : 'Djenepo Couture'}
+                </span>
               </h1>
               <h2 className="hero-subtitle-animated">
-                {t('home.hero.subtitle')}
+                {isLoaded ? t('home.hero.subtitle') : 'Premium Custom Tailoring'}
               </h2>
               <p className="hero-subtitle">
-                {t('home.hero.description')}
+                {isLoaded ? t('home.hero.description') : 'Experience the art of bespoke tailoring with over 7 years of expertise.'}
               </p>
               <div className="hero-buttons">
                 <Link to="/products" className="btn btn-primary">
-                  {t('home.hero.viewCollection')}
+                  {isLoaded ? t('home.hero.viewCollection') : 'View Our Collection'}
                 </Link>
                 <Link to="/contact" className="btn btn-secondary">
-                  {t('home.hero.bookConsultation')}
+                  {isLoaded ? t('home.hero.bookConsultation') : 'Book Consultation'}
                 </Link>
               </div>
             </div>
             <div className="hero-image">
               <div className="hero-slider">
-                {heroImages.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
-                  >
-                    <img 
-                      src={image.src} 
-                      alt={image.alt}
-                      className="slider-image"
-                    />
-                  </div>
-                ))}
-                
-                {/* Slider Indicators */}
-                <div className="slider-indicators">
-                  {heroImages.map((_, index) => (
+                {imagesLoaded ? (
+                  <>
+                    {heroImages.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
+                      >
+                        <img 
+                          src={image.src} 
+                          alt={image.alt}
+                          className="slider-image"
+                        />
+                      </div>
+                    ))}
+                    
+                    {/* Slider Indicators */}
+                    <div className="slider-indicators">
+                      {heroImages.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
+                          onClick={() => goToSlide(index)}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                    
+                    {/* Slider Navigation */}
                     <button
-                      key={index}
-                      className={`indicator ${index === currentImageIndex ? 'active' : ''}`}
-                      onClick={() => goToSlide(index)}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-                
-                {/* Slider Navigation */}
-                <button
-                  className="slider-nav prev"
-                  onClick={goToPrevSlide}
-                  aria-label="Previous image"
-                >
-                  ‹
-                </button>
-                <button
-                  className="slider-nav next"
-                  onClick={goToNextSlide}
-                  aria-label="Next image"
-                >
-                  ›
-                </button>
+                      className="slider-nav prev"
+                      onClick={goToPrevSlide}
+                      aria-label="Previous image"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      className="slider-nav next"
+                      onClick={goToNextSlide}
+                      aria-label="Next image"
+                    >
+                      ›
+                    </button>
+                  </>
+                ) : (
+                  <div className="hero-image-loading">
+                    <div className="loading-placeholder">
+                      <div className="loading-spinner"></div>
+                      <p>Loading images...</p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
