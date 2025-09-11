@@ -62,6 +62,104 @@
   margin-bottom: 2.5rem;
 }
 
+.hero-subtitle-animated {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(
+    45deg,
+    #ff6b6b,    /* Coral */
+    #4ecdc4,    /* Turquoise */
+    #45b7d1,    /* Sky Blue */
+    #96ceb4,    /* Mint */
+    #ffeaa7,    /* Light Yellow */
+    #dda0dd,    /* Plum */
+    #98d8c8,    /* Aquamarine */
+    #f7dc6f,    /* Golden Yellow */
+    #bb8fce,    /* Lavender */
+    #85c1e9,    /* Light Blue */
+    #f8b4b4,    /* Pink */
+    #7fb3d3,    /* Steel Blue */
+    #c39bd3,    /* Light Purple */
+    #82e0aa,    /* Light Green */
+    #f9e79f     /* Cream Yellow */
+  );
+  background-size: 1500% 1500%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: colorShift 4s ease-in-out infinite;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.hero-subtitle-animated::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 107, 107, 0.2),
+    rgba(78, 205, 196, 0.2),
+    rgba(69, 183, 209, 0.2),
+    rgba(150, 206, 180, 0.2)
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: colorShiftShadow 4.5s ease-in-out infinite reverse;
+  filter: blur(2px);
+}
+
+@keyframes colorShift {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  20% {
+    background-position: 100% 20%;
+    transform: scale(1.02);
+  }
+  40% {
+    background-position: 80% 100%;
+    transform: scale(1);
+  }
+  60% {
+    background-position: 20% 80%;
+    transform: scale(1.01);
+  }
+  80% {
+    background-position: 100% 30%;
+    transform: scale(1);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+}
+
+@keyframes colorShiftShadow {
+  0% {
+    background-position: 100% 50%;
+  }
+  25% {
+    background-position: 0% 80%;
+  }
+  50% {
+    background-position: 100% 20%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
@@ -632,6 +730,10 @@
     font-size: 2.5rem;
   }
 
+  .hero-subtitle-animated {
+    font-size: 2rem;
+  }
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
@@ -684,6 +786,10 @@
 @media (max-width: 480px) {
   .hero-title {
     font-size: 2rem;
+  }
+
+  .hero-subtitle-animated {
+    font-size: 1.8rem;
   }
 
   .hero-subtitle {

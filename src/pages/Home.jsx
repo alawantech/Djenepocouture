@@ -78,9 +78,10 @@ const Home = () => {
             <div className="hero-text">
               <h1 className="hero-title">
                 <span className="golden-text">{t('home.hero.title')}</span>
-                <br />
-                {t('home.hero.subtitle')}
               </h1>
+              <h2 className="hero-subtitle-animated">
+                {t('home.hero.subtitle')}
+              </h2>
               <p className="hero-subtitle">
                 {t('home.hero.description')}
               </p>
