@@ -31,19 +31,29 @@
       "rating": "Note"
     },
     "services": {
-      "title": "Nos Services",
-      "suits": {
-        "title": "Costumes Sur Mesure",
-        "description": "Costumes sur mesure taillés à la perfection pour les affaires, mariages et occasions spéciales."
+      "title": "Nos Collections Signature",
+      "subtitle": "Découvrez notre gamme exquise de mode africaine traditionnelle et contemporaine, chaque pièce confectionnée avec un art exceptionnel et une authenticité culturelle",
+      "vestes": {
+        "title": "Vestes Premium",
+        "description": "Vestes sophistiquées d'inspiration africaine qui commandent respect et admiration. Parfaites pour les dirigeants d'entreprise, les cérémonies culturelles et les occasions distinguées où l'élégance rencontre la tradition."
       },
-      "evening": {
-        "title": "Tenues de Soirée",
-        "description": "Robes et tenues élégantes pour événements formels, galas et occasions mémorables."
+      "abacosts": {
+        "title": "Abacosts Authentiques",
+        "description": "Tenues formelles africaines traditionnelles qui incarnent la dignité et l'héritage culturel. Confectionnées à la main avec une attention méticuleuse aux détails authentiques et au confort moderne pour l'homme exigeant."
       },
-      "casual": {
-        "title": "Vêtements Décontractés",
-        "description": "Vêtements décontractés confortables mais élégants, adaptés à votre style de vie et préférences."
-      }
+      "tunique": {
+        "title": "Tuniques Élégantes",
+        "description": "Tuniques gracieuses qui célèbrent le style de la femme africaine moderne. Conçues pour la polyvalence et le confort, parfaites pour les cadres professionnels et les rassemblements sociaux."
+      },
+      "broderie": {
+        "title": "Broderie Artisanale",
+        "description": "Tuniques magistralement brodées avec des motifs et patterns africains complexes. Chaque pièce raconte une histoire culturelle unique à travers un travail d'aiguille exquis et une expression artistique."
+      },
+      "chemises": {
+        "title": "Chemises Designer",
+        "description": "Chemises raffinées qui mélangent la mode contemporaine avec des influences africaines subtiles. Confectionnées pour le professionnel moderne qui valorise à la fois le style et la connexion culturelle."
+      },
+      "explore": "Explorer la Collection"
     }
   },
   "about": {

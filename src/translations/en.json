@@ -31,19 +31,29 @@
       "rating": "Rating"
     },
     "services": {
-      "title": "Our Services",
-      "suits": {
-        "title": "Custom Suits",
-        "description": "Bespoke suits tailored to perfection for business, weddings, and special occasions."
+      "title": "Our Signature Collections",
+      "subtitle": "Discover our exquisite range of traditional and contemporary African fashion, each piece crafted with exceptional artistry and cultural authenticity",
+      "vestes": {
+        "title": "Premium Vestes",
+        "description": "Sophisticated African-inspired jackets that command respect and admiration. Perfect for business leaders, cultural ceremonies, and distinguished occasions where elegance meets tradition."
       },
-      "evening": {
-        "title": "Evening Wear",
-        "description": "Elegant dresses and gowns for formal events, galas, and memorable occasions."
+      "abacosts": {
+        "title": "Authentic Abacosts",
+        "description": "Traditional African formal wear that embodies dignity and cultural heritage. Handcrafted with meticulous attention to authentic details and modern comfort for the discerning gentleman."
       },
-      "casual": {
-        "title": "Casual Wear",
-        "description": "Comfortable yet stylish casual clothing tailored to your lifestyle and preferences."
-      }
+      "tunique": {
+        "title": "Elegant Tuniques",
+        "description": "Graceful tunics that celebrate the modern African woman's style. Designed for versatility and comfort, perfect for both professional settings and social gatherings."
+      },
+      "broderie": {
+        "title": "Artisanal Broderie",
+        "description": "Masterfully embroidered tunics featuring intricate African motifs and patterns. Each piece tells a unique cultural story through exquisite needlework and artistic expression."
+      },
+      "chemises": {
+        "title": "Designer Chemises",
+        "description": "Refined shirts that blend contemporary fashion with subtle African influences. Crafted for the modern professional who values both style and cultural connection."
+      },
+      "explore": "Explore Collection"
     }
   },
   "about": {
