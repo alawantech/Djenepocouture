@@ -107,13 +107,13 @@ const Navbar = () => {
                 </Link>
               )
             ))}
-            <div className="nav-language-mobile">
-              <LanguageToggle />
-            </div>
           </div>
 
           <div className="nav-right">
             <div className="nav-language-desktop">
+              <LanguageToggle />
+            </div>
+            <div className="nav-language-mobile">
               <LanguageToggle />
             </div>
             <button className="menu-toggle" onClick={toggleMenu}>

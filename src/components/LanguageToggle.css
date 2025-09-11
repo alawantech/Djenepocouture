@@ -49,23 +49,29 @@
   letter-spacing: 0.3px;
 }
 
-/* Tablet styles */
+/* Tablet styles - when next to hamburger */
 @media (max-width: 1024px) {
   .language-toggle {
-    padding: 8px 14px;
-    max-width: 180px;
+    padding: 8px 12px;
+    max-width: 140px;
+    border-radius: 6px;
   }
   
   .translate-text {
-    font-size: 12px;
+    font-size: 11px;
+  }
+  
+  .flag {
+    font-size: 14px;
   }
 }
 
-/* Mobile styles */
+/* Mobile styles - compact version next to hamburger */
 @media (max-width: 768px) {
   .language-toggle {
-    padding: 8px 12px;
-    max-width: 160px;
+    padding: 6px 10px;
+    max-width: 100px;
+    border-radius: 6px;
   }
   
   .translate-icon {
@@ -78,26 +84,34 @@
   }
   
   .translate-text {
-    font-size: 11px;
-  }
-}
-
-/* Very small screens - show shorter text */
-@media (max-width: 480px) {
-  .language-toggle {
-    padding: 6px 10px;
-    max-width: 80px;
+    font-size: 10px;
+    display: none; /* Hide full text on mobile */
   }
   
-  .translate-text {
-    display: none;
-  }
-  
+  /* Show only flag and short text */
   .language-toggle-content::after {
     content: attr(data-short-text);
     font-size: 11px;
     font-weight: 600;
     color: var(--white);
     letter-spacing: 0.3px;
+    margin-left: 2px;
+  }
+}
+
+/* Very small screens - minimal version */
+@media (max-width: 480px) {
+  .language-toggle {
+    padding: 5px 8px;
+    max-width: 60px;
+    min-width: 60px;
+  }
+  
+  .translate-icon {
+    display: none; /* Hide icon on very small screens */
+  }
+  
+  .language-toggle-content::after {
+    font-size: 10px;
   }
 }
