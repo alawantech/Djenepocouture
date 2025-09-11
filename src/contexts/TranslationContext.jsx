@@ -53,6 +53,7 @@ export const TranslationProvider = ({ children }) => {
 
   const value = {
     language,
+    currentLanguage: language, // Add currentLanguage alias for compatibility
     setLanguage,
     changeLanguage,
     t,
