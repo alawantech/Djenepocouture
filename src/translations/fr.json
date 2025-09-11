@@ -2,14 +2,15 @@
   "nav": {
     "home": "Accueil",
     "products": "Produits",
+    "services": "Services",
     "about": "À Propos",
     "contact": "Contact"
   },
   "home": {
     "hero": {
-      "title": "Fils Dorés",
+      "title": "Djenepo Couture",
       "subtitle": "Couture Premium sur Mesure",
-      "description": "Découvrez l'art de la couture sur mesure avec plus de 20 ans d'expertise. Nous créons des vêtements extraordinaires qui reflètent votre style unique et votre personnalité.",
+      "description": "Découvrez l'art de la couture sur mesure avec plus de 7 ans d'expertise. Nous créons des vêtements extraordinaires qui reflètent votre style unique et votre personnalité.",
       "viewCollection": "Voir Notre Collection",
       "bookConsultation": "Réserver une Consultation"
     },
@@ -57,13 +58,23 @@
     }
   },
   "about": {
-    "title": "À Propos de Fils Dorés",
+    "title": "À Propos de Djenepo Couture",
     "subtitle": "Où l'artisanat rencontre l'élégance, et chaque point raconte une histoire de dévouement et de passion.",
+    "hero": {
+      "title": "À Propos de Djenepo Couture",
+      "subtitle": "Où l'artisanat rencontre l'élégance, et chaque point raconte une histoire de dévouement et de passion.",
+      "overlay": "Créant l'Excellence Depuis 2018"
+    },
+    "stats": {
+      "years": "Années d'Expérience",
+      "clients": "Clients Satisfaits",
+      "projects": "Projets Réalisés"
+    },
     "story": {
       "title": "Notre Histoire",
-      "paragraph1": "Fondée en 2003, Fils Dorés a commencé comme une petite entreprise familiale avec une vision simple : créer des vêtements exceptionnels qui combinent l'artisanat traditionnel avec le style contemporain. Ce qui a commencé comme un projet de passion est devenu l'une des maisons de couture sur mesure les plus fiables de la ville.",
-      "paragraph2": "Nos maîtres tailleurs apportent des décennies d'expérience à chaque pièce qu'ils créent. En utilisant des techniques séculaires transmises de génération en génération, combinées avec des innovations modernes, nous nous assurons que chaque vêtement non seulement s'ajuste parfaitement mais reflète aussi votre personnalité et style uniques.",
-      "paragraph3": "Chez Fils Dorés, nous croyons que les vêtements sont plus que du tissu et du fil – c'est une expression de qui vous êtes. C'est pourquoi nous prenons le temps de comprendre vos besoins, préférences et style de vie pour créer des vêtements que vous chérirez pendant des années."
+      "paragraph1": "Fondée en 2018, Djenepo Couture a commencé comme une petite entreprise familiale avec une vision simple : créer des vêtements exceptionnels qui combinent l'artisanat traditionnel avec le style contemporain. Ce qui a commencé comme un projet de passion est devenu l'une des maisons de couture sur mesure les plus fiables de la ville.",
+      "paragraph2": "Nos maîtres tailleurs apportent des années d'expérience à chaque pièce qu'ils créent. En utilisant des techniques séculaires transmises de génération en génération, combinées avec des innovations modernes, nous nous assurons que chaque vêtement non seulement s'ajuste parfaitement mais reflète aussi votre personnalité et style uniques.",
+      "paragraph3": "Chez Djenepo Couture, nous croyons que les vêtements sont plus que du tissu et du fil – c'est une expression de qui vous êtes. C'est pourquoi nous prenons le temps de comprendre vos besoins, préférences et style de vie pour créer des vêtements que vous chérirez pendant des années."
     },
     "values": {
       "title": "Nos Valeurs",
@@ -165,7 +176,7 @@
     }
   },
   "footer": {
-    "description": "Services de couture sur mesure premium avec plus de 20 ans d'expérience. Nous créons des vêtements exceptionnels qui s'adaptent parfaitement à votre style.",
+    "description": "Services de couture sur mesure premium avec plus de 7 ans d'expérience. Nous créons des vêtements exceptionnels qui s'adaptent parfaitement à votre style.",
     "quickLinks": "Liens Rapides",
     "contactInfo": "Informations de Contact",
     "whatsapp": "Nous contacter sur WhatsApp",

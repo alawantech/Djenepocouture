@@ -10,22 +10,34 @@ const About = () => {
     <div className="about-page">
       <div className="container">
         {/* Hero Section */}
-        <div className="about-hero">
-          <div className="about-content">
-            <h1 className="page-title">{t('about.title')}</h1>
-            <p className="page-subtitle">
-              {t('about.subtitle')}
-            </p>
-          </div>
-          <div className="about-image">
-            <img 
-              src="https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=600" 
-              alt="Master Tailor at Work" 
-            />
+      <div className="about-hero">
+        <div className="about-content">
+          <h1>{t('about.hero.title')}</h1>
+          <p className="page-subtitle">{t('about.hero.subtitle')}</p>
+          <div className="hero-stats">
+            <div className="stat-item">
+              <span className="stat-number">7+</span>
+              <span className="stat-label">{t('about.stats.years')}</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">500+</span>
+              <span className="stat-label">{t('about.stats.clients')}</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">1000+</span>
+              <span className="stat-label">{t('about.stats.projects')}</span>
+            </div>
           </div>
         </div>
-
-        {/* Story Section */}
+        <div className="about-image">
+          <img src="/src/assets/images/hero1.jpg" alt="Djenepo Couture - Professional Fashion Design" />
+          <div className="image-overlay">
+            <div className="overlay-content">
+              <span className="overlay-text">{t('about.hero.overlay')}</span>
+            </div>
+          </div>
+        </div>
+      </div>        {/* Story Section */}
         <div className="story-section">
           <div className="story-content">
             <h2 className="section-title">{t('about.story.title')}</h2>
@@ -72,57 +84,52 @@ const About = () => {
 
         {/* Services Section */}
         <div className="services-detail">
-          <h2 className="section-title">{t('about.services.title')}</h2>
+          <h2 className="section-title">{t('home.services.title')}</h2>
           <div className="services-list">
             <div className="service-item">
-              <h3>{t('about.services.bespoke.title')}</h3>
-              <p>{t('about.services.bespoke.description')}</p>
+              <div className="service-icon-small">
+                <img src="/src/assets/images/service1.png" alt="Premium Vestes" className="service-image-small" />
+              </div>
+              <div className="service-content">
+                <h3>{t('home.services.vestes.title')}</h3>
+                <p>{t('home.services.vestes.description')}</p>
+              </div>
             </div>
             <div className="service-item">
-              <h3>{t('about.services.formal.title')}</h3>
-              <p>{t('about.services.formal.description')}</p>
+              <div className="service-icon-small">
+                <img src="/src/assets/images/service2.png" alt="Authentic Abacosts" className="service-image-small" />
+              </div>
+              <div className="service-content">
+                <h3>{t('home.services.abacosts.title')}</h3>
+                <p>{t('home.services.abacosts.description')}</p>
+              </div>
             </div>
             <div className="service-item">
-              <h3>{t('about.services.alterations.title')}</h3>
-              <p>{t('about.services.alterations.description')}</p>
+              <div className="service-icon-small">
+                <img src="/src/assets/images/service3.png" alt="Elegant Tuniques" className="service-image-small" />
+              </div>
+              <div className="service-content">
+                <h3>{t('home.services.tunique.title')}</h3>
+                <p>{t('home.services.tunique.description')}</p>
+              </div>
             </div>
             <div className="service-item">
-              <h3>{t('about.services.consultation.title')}</h3>
-              <p>{t('about.services.consultation.description')}</p>
+              <div className="service-icon-small">
+                <img src="/src/assets/images/service4.png" alt="Artisanal Broderie" className="service-image-small" />
+              </div>
+              <div className="service-content">
+                <h3>{t('home.services.broderie.title')}</h3>
+                <p>{t('home.services.broderie.description')}</p>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Team Section */}
-        <div className="team-section">
-          <h2 className="section-title">{t('about.team.title')}</h2>
-          <div className="team-grid">
-            <div className="team-member">
-              <img 
-                src="https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                alt="Master Tailor" 
-              />
-              <h3>Michael Thompson</h3>
-              <p>{t('about.team.founder')}</p>
-              <span>25+ {t('about.team.experience')}</span>
-            </div>
-            <div className="team-member">
-              <img 
-                src="https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                alt="Senior Designer" 
-              />
-              <h3>Sarah Chen</h3>
-              <p>{t('about.team.designer')}</p>
-              <span>15+ {t('about.team.experience')}</span>
-            </div>
-            <div className="team-member">
-              <img 
-                src="https://images.pexels.com/photos/1040424/pexels-photo-1040424.jpeg?auto=compress&cs=tinysrgb&w=400" 
-                alt="Alterations Specialist" 
-              />
-              <h3>David Rodriguez</h3>
-              <p>{t('about.team.specialist')}</p>
-              <span>12+ {t('about.team.experience')}</span>
+            <div className="service-item">
+              <div className="service-icon-small">
+                <img src="/src/assets/images/service5.png" alt="Designer Chemises" className="service-image-small" />
+              </div>
+              <div className="service-content">
+                <h3>{t('home.services.chemises.title')}</h3>
+                <p>{t('home.services.chemises.description')}</p>
+              </div>
             </div>
           </div>
         </div>

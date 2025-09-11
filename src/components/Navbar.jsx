@@ -13,12 +13,34 @@ const Navbar = () => {
   const navItems = [
     { path: '/', label: t('nav.home') },
     { path: '/products', label: t('nav.products') },
+    { path: '/#services', label: t('nav.services'), isSection: true },
     { path: '/about', label: t('nav.about') },
     { path: '/contact', label: t('nav.contact') }
   ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleNavClick = (item) => {
+    setIsMenuOpen(false);
+    
+    if (item.isSection) {
+      // If we're not on the home page, navigate to home first
+      if (location.pathname !== '/') {
+        window.location.href = '/#services';
+        return;
+      }
+      
+      // If we're on the home page, scroll to services section
+      const servicesSection = document.querySelector('.services');
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
   };
 
   return (
@@ -31,14 +53,24 @@ const Navbar = () => {
           
           <div className={`nav-links ${isMenuOpen ? 'nav-links-mobile' : ''}`}>
             {navItems.map(item => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
+              item.isSection ? (
+                <button
+                  key={item.path}
+                  className={`nav-link ${location.pathname === '/' && location.hash === '#services' ? 'active' : ''}`}
+                  onClick={() => handleNavClick(item)}
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                  onClick={() => handleNavClick(item)}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
             <div className="nav-language-mobile">
               <LanguageToggle />

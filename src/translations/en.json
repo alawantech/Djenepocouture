@@ -2,14 +2,15 @@
   "nav": {
     "home": "Home",
     "products": "Products",
+    "services": "Services",
     "about": "About",
     "contact": "Contact"
   },
   "home": {
     "hero": {
-      "title": "Golden Threads",
+      "title": "Djenepo Couture",
       "subtitle": "Premium Custom Tailoring",
-      "description": "Experience the art of bespoke tailoring with over 20 years of expertise. We create extraordinary clothing that reflects your unique style and personality.",
+      "description": "Experience the art of bespoke tailoring with over 7 years of expertise. We create extraordinary clothing that reflects your unique style and personality.",
       "viewCollection": "View Our Collection",
       "bookConsultation": "Book Consultation"
     },
@@ -57,13 +58,23 @@
     }
   },
   "about": {
-    "title": "About Golden Threads",
+    "title": "About Djenepo Couture",
     "subtitle": "Where craftsmanship meets elegance, and every stitch tells a story of dedication and passion.",
+    "hero": {
+      "title": "About Djenepo Couture",
+      "subtitle": "Where craftsmanship meets elegance, and every stitch tells a story of dedication and passion.",
+      "overlay": "Crafting Excellence Since 2018"
+    },
+    "stats": {
+      "years": "Years Experience",
+      "clients": "Happy Clients",
+      "projects": "Projects Completed"
+    },
     "story": {
       "title": "Our Story",
-      "paragraph1": "Founded in 2003, Golden Threads began as a small family business with a simple vision: to create exceptional clothing that combines traditional craftsmanship with contemporary style. What started as a passion project has grown into one of the city's most trusted names in bespoke tailoring.",
-      "paragraph2": "Our master tailors bring decades of experience to every piece they create. Using time-honored techniques passed down through generations, combined with modern innovations, we ensure that each garment not only fits perfectly but also reflects your unique personality and style.",
-      "paragraph3": "At Golden Threads, we believe that clothing is more than fabric and thread – it's an expression of who you are. That's why we take the time to understand your needs, preferences, and lifestyle to create garments that you'll treasure for years to come."
+      "paragraph1": "Founded in 2018, Djenepo Couture began as a small family business with a simple vision: to create exceptional clothing that combines traditional craftsmanship with contemporary style. What started as a passion project has grown into one of the city's most trusted names in bespoke tailoring.",
+      "paragraph2": "Our master tailors bring years of experience to every piece they create. Using time-honored techniques passed down through generations, combined with modern innovations, we ensure that each garment not only fits perfectly but also reflects your unique personality and style.",
+      "paragraph3": "At Djenepo Couture, we believe that clothing is more than fabric and thread – it's an expression of who you are. That's why we take the time to understand your needs, preferences, and lifestyle to create garments that you'll treasure for years to come."
     },
     "values": {
       "title": "Our Values",
@@ -165,7 +176,7 @@
     }
   },
   "footer": {
-    "description": "Premium custom tailoring services with over 20 years of experience. We create exceptional clothing that fits your style perfectly.",
+    "description": "Premium custom tailoring services with over 7 years of experience. We create exceptional clothing that fits your style perfectly.",
     "quickLinks": "Quick Links",
     "contactInfo": "Contact Info",
     "whatsapp": "WhatsApp Us",

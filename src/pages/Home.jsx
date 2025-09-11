@@ -41,6 +41,21 @@ const Home = () => {
     return () => clearInterval(slideInterval);
   }, []);
 
+  // Handle scrolling to services section if hash is present
+  useEffect(() => {
+    if (window.location.hash === '#services') {
+      setTimeout(() => {
+        const servicesSection = document.querySelector('.services');
+        if (servicesSection) {
+          servicesSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100); // Small delay to ensure page is fully loaded
+    }
+  }, []);
+
   // Handle manual slide navigation
   const goToSlide = (index) => {
     setCurrentImageIndex(index);
@@ -165,7 +180,7 @@ const Home = () => {
           <div className="stats-grid">
             <div className="stat-item">
               <Clock size={32} />
-              <h3>20+</h3>
+              <h3>7+</h3>
               <p>{t('home.stats.experience')}</p>
             </div>
             <div className="stat-item">

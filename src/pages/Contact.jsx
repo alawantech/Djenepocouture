@@ -96,7 +96,7 @@ const Contact = () => {
             <div className="map-section">
               <div className="map-placeholder">
                 <MapPin size={48} />
-                <h3>Golden Threads Showroom</h3>
+                <h3>Djenepo Couture Showroom</h3>
                 <p>123 Fashion Street, New York</p>
                 <a 
                   href="https://maps.google.com/?q=123+Fashion+Street+New+York+NY+10001" 

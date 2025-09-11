@@ -11,6 +11,12 @@ const Footer = () => {
     window.open('https://wa.me/1234567890', '_blank');
   };
 
+  const handleServicesClick = (e) => {
+    e.preventDefault();
+    // Navigate to home page with services hash
+    window.location.href = '/#services';
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -27,6 +33,7 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="/">{t('nav.home')}</a></li>
               <li><a href="/products">{t('nav.products')}</a></li>
+              <li><a href="/#services" onClick={handleServicesClick}>{t('nav.services')}</a></li>
               <li><a href="/about">{t('nav.about')}</a></li>
               <li><a href="/contact">{t('nav.contact')}</a></li>
             </ul>
