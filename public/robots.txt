@@ -1,0 +1,40 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://djenepocouture.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /login/
+Disallow: /*.json$
+Disallow: /src/
+
+# Allow important pages
+Allow: /products
+Allow: /about
+Allow: /contact
+Allow: /services
+Allow: /#services
+
+# Crawl delay for better server performance
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
