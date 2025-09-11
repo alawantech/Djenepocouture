@@ -50,6 +50,16 @@
 .stat-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(212, 168, 83, 0.4);
+  background: linear-gradient(135deg, var(--primary-gold) 0%, #d4a853 100%);
+  color: white;
+}
+
+.stat-item:hover .stat-number {
+  color: white;
+}
+
+.stat-item:hover .stat-label {
+  color: white;
 }
 
 .stat-number {
