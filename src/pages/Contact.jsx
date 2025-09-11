@@ -2,6 +2,11 @@ import React from 'react';
 import { MessageCircle, Phone, MapPin, Mail, Shirt } from 'lucide-react';
 import { useTranslation } from '../contexts/TranslationContext';
 import './Contact.css';
+import service1 from '../assets/images/service1.png';
+import service2 from '../assets/images/service2.png';
+import service3 from '../assets/images/service3.png';
+import service4 from '../assets/images/service4.png';
+import service5 from '../assets/images/service5.png';
 
 const Contact = () => {
   const { t, currentLanguage } = useTranslation();
@@ -122,7 +127,7 @@ const Contact = () => {
             <div className="services-grid">
               <div className="service-info-card">
                 <div className="service-icon-contact">
-                  <img src="/src/assets/images/service1.png" alt="Premium Vestes" className="service-image-contact" />
+                  <img src={service1} alt="Premium Vestes" className="service-image-contact" />
                 </div>
                 <h4>{t('home.services.vestes.title')}</h4>
                 <p>{t('home.services.vestes.description')}</p>
@@ -136,7 +141,7 @@ const Contact = () => {
               </div>
               <div className="service-info-card">
                 <div className="service-icon-contact">
-                  <img src="/src/assets/images/service2.png" alt="Authentic Abacosts" className="service-image-contact" />
+                  <img src={service2} alt="Authentic Abacosts" className="service-image-contact" />
                 </div>
                 <h4>{t('home.services.abacosts.title')}</h4>
                 <p>{t('home.services.abacosts.description')}</p>
@@ -150,7 +155,7 @@ const Contact = () => {
               </div>
               <div className="service-info-card">
                 <div className="service-icon-contact">
-                  <img src="/src/assets/images/service3.png" alt="Elegant Tuniques" className="service-image-contact" />
+                  <img src={service3} alt="Elegant Tuniques" className="service-image-contact" />
                 </div>
                 <h4>{t('home.services.tunique.title')}</h4>
                 <p>{t('home.services.tunique.description')}</p>
@@ -164,7 +169,7 @@ const Contact = () => {
               </div>
               <div className="service-info-card">
                 <div className="service-icon-contact">
-                  <img src="/src/assets/images/service4.png" alt="Artisanal Broderie" className="service-image-contact" />
+                  <img src={service4} alt="Artisanal Broderie" className="service-image-contact" />
                 </div>
                 <h4>{t('home.services.broderie.title')}</h4>
                 <p>{t('home.services.broderie.description')}</p>
@@ -178,7 +183,7 @@ const Contact = () => {
               </div>
               <div className="service-info-card">
                 <div className="service-icon-contact">
-                  <img src="/src/assets/images/service5.png" alt="Designer Chemises" className="service-image-contact" />
+                  <img src={service5} alt="Designer Chemises" className="service-image-contact" />
                 </div>
                 <h4>{t('home.services.chemises.title')}</h4>
                 <p>{t('home.services.chemises.description')}</p>
