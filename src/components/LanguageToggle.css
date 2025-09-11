@@ -53,65 +53,74 @@
 @media (max-width: 1024px) {
   .language-toggle {
     padding: 8px 12px;
-    max-width: 140px;
+    max-width: 160px;
     border-radius: 6px;
   }
   
   .translate-text {
-    font-size: 11px;
+    font-size: 10px;
+    display: block; /* Show text on tablet */
   }
   
   .flag {
     font-size: 14px;
-  }
-}
-
-/* Mobile styles - compact version next to hamburger */
-@media (max-width: 768px) {
-  .language-toggle {
-    padding: 6px 10px;
-    max-width: 100px;
-    border-radius: 6px;
   }
   
   .translate-icon {
     width: 14px;
     height: 14px;
   }
-  
-  .flag {
-    font-size: 14px;
-  }
-  
-  .translate-text {
-    font-size: 10px;
-    display: none; /* Hide full text on mobile */
-  }
-  
-  /* Show only flag and short text */
-  .language-toggle-content::after {
-    content: attr(data-short-text);
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: 0.3px;
-    margin-left: 2px;
-  }
 }
 
-/* Very small screens - minimal version */
-@media (max-width: 480px) {
+/* Mobile styles - show translation text */
+@media (max-width: 768px) {
   .language-toggle {
-    padding: 5px 8px;
-    max-width: 60px;
-    min-width: 60px;
+    padding: 6px 10px;
+    max-width: 140px;
+    border-radius: 6px;
   }
   
   .translate-icon {
-    display: none; /* Hide icon on very small screens */
+    width: 12px;
+    height: 12px;
   }
   
+  .flag {
+    font-size: 12px;
+  }
+  
+  .translate-text {
+    font-size: 9px;
+    display: block; /* Show full translation text */
+    line-height: 1.2;
+  }
+  
+  /* Remove the ::after pseudo-element that was hiding the text */
   .language-toggle-content::after {
-    font-size: 10px;
+    display: none;
+  }
+}
+
+/* Very small screens - show shorter but readable text */
+@media (max-width: 480px) {
+  .language-toggle {
+    padding: 5px 8px;
+    max-width: 120px;
+    min-width: 120px;
+  }
+  
+  .translate-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .flag {
+    font-size: 11px;
+  }
+  
+  .translate-text {
+    font-size: 8px;
+    display: block; /* Keep showing text even on small screens */
+    line-height: 1.1;
   }
 }

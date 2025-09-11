@@ -50,7 +50,7 @@
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* Reduced gap for tighter spacing */
+  gap: 0.5rem; /* Slightly reduced gap for mobile */
 }
 
 .nav-language-mobile {
