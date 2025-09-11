@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from '../contexts/TranslationContext';
 import LanguageToggle from './LanguageToggle';
@@ -8,6 +8,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const navItems = [
@@ -18,8 +19,33 @@ const Navbar = () => {
     { path: '/contact', label: t('nav.contact') }
   ];
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    
+    if (location.pathname === '/') {
+      // If already on home page, just scroll to top
+      scrollToTop();
+    } else {
+      // Navigate to home page and scroll to top
+      navigate('/');
+      // Small delay to ensure navigation completes before scrolling
+      setTimeout(() => {
+        scrollToTop();
+      }, 100);
+    }
   };
 
   const handleNavClick = (item) => {
@@ -40,6 +66,11 @@ const Navbar = () => {
           block: 'start'
         });
       }
+    } else {
+      // For regular navigation links, scroll to top after navigation
+      setTimeout(() => {
+        scrollToTop();
+      }, 100);
     }
   };
 
@@ -47,9 +78,13 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <div className="nav-content">
-          <Link to="/" className="nav-logo">
+          <a 
+            href="/" 
+            className="nav-logo"
+            onClick={handleLogoClick}
+          >
               <img src="/images/log1.png" alt="Logo" className="nav-logo-img" />
-          </Link>
+          </a>
           
           <div className={`nav-links ${isMenuOpen ? 'nav-links-mobile' : ''}`}>
             {navItems.map(item => (

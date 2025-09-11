@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { TranslationProvider } from './contexts/TranslationContext';
 import { AuthProvider } from './contexts/AuthContext';
 import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import About from './pages/About';
@@ -19,6 +20,7 @@ function App() {
       <TranslationProvider>
         <Router>
           <div className="App">
+            <ScrollToTop />
             <Navbar />
             <main>
               <Routes>
