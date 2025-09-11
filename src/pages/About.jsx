@@ -2,6 +2,12 @@ import React from 'react';
 import { Award, Users, Clock, Heart } from 'lucide-react';
 import { useTranslation } from '../contexts/TranslationContext';
 import './About.css';
+import hero1 from '../assets/images/hero1.jpg';
+import service1 from '../assets/images/service1.png';
+import service2 from '../assets/images/service2.png';
+import service3 from '../assets/images/service3.png';
+import service4 from '../assets/images/service4.png';
+import service5 from '../assets/images/service5.png';
 
 const About = () => {
   const { t } = useTranslation();
@@ -30,7 +36,7 @@ const About = () => {
           </div>
         </div>
         <div className="about-image">
-          <img src="/src/assets/images/hero1.jpg" alt="Djenepo Couture - Professional Fashion Design" />
+          <img src={hero1} alt="Djenepo Couture - Professional Fashion Design" />
           <div className="image-overlay">
             <div className="overlay-content">
               <span className="overlay-text">{t('about.hero.overlay')}</span>
@@ -88,7 +94,7 @@ const About = () => {
           <div className="services-list">
             <div className="service-item">
               <div className="service-icon-small">
-                <img src="/src/assets/images/service1.png" alt="Premium Vestes" className="service-image-small" />
+                <img src={service1} alt="Premium Vestes" className="service-image-small" />
               </div>
               <div className="service-content">
                 <h3>{t('home.services.vestes.title')}</h3>
@@ -97,7 +103,7 @@ const About = () => {
             </div>
             <div className="service-item">
               <div className="service-icon-small">
-                <img src="/src/assets/images/service2.png" alt="Authentic Abacosts" className="service-image-small" />
+                <img src={service2} alt="Authentic Abacosts" className="service-image-small" />
               </div>
               <div className="service-content">
                 <h3>{t('home.services.abacosts.title')}</h3>
@@ -106,7 +112,7 @@ const About = () => {
             </div>
             <div className="service-item">
               <div className="service-icon-small">
-                <img src="/src/assets/images/service3.png" alt="Elegant Tuniques" className="service-image-small" />
+                <img src={service3} alt="Elegant Tuniques" className="service-image-small" />
               </div>
               <div className="service-content">
                 <h3>{t('home.services.tunique.title')}</h3>
@@ -115,7 +121,7 @@ const About = () => {
             </div>
             <div className="service-item">
               <div className="service-icon-small">
-                <img src="/src/assets/images/service4.png" alt="Artisanal Broderie" className="service-image-small" />
+                <img src={service4} alt="Artisanal Broderie" className="service-image-small" />
               </div>
               <div className="service-content">
                 <h3>{t('home.services.broderie.title')}</h3>
@@ -124,7 +130,7 @@ const About = () => {
             </div>
             <div className="service-item">
               <div className="service-icon-small">
-                <img src="/src/assets/images/service5.png" alt="Designer Chemises" className="service-image-small" />
+                <img src={service5} alt="Designer Chemises" className="service-image-small" />
               </div>
               <div className="service-content">
                 <h3>{t('home.services.chemises.title')}</h3>
