@@ -8,7 +8,7 @@
    - Go to [Google Search Console](https://search.google.com/search-console)
    - Sign in with your Google account
    - Click "Add Property"
-   - Choose "URL prefix" and enter: `https://djenepocouture.vercel.app`
+   - Choose "URL prefix" and enter: `https://djenepocouture.com`
 
 #### 2. **Verify Website Ownership**
    **Option A: HTML Meta Tag (Recommended)**
@@ -36,10 +36,10 @@
 #### 4. **Request Indexing for Key Pages**
    - In Google Search Console, use "URL Inspection" tool
    - Enter each URL one by one:
-     - `https://djenepocouture.vercel.app/`
-     - `https://djenepocouture.vercel.app/products`
-     - `https://djenepocouture.vercel.app/about`
-     - `https://djenepocouture.vercel.app/contact`
+     - `https://djenepocouture.com/`
+     - `https://djenepocouture.com/products`
+     - `https://djenepocouture.com/about`
+     - `https://djenepocouture.com/contact`
    - Click "Request Indexing" for each page
 
 ### 📋 **Phase 4: Natural Link Building**
@@ -72,7 +72,7 @@
 
 #### 7. **Page Speed Optimization**
    - Use [PageSpeed Insights](https://pagespeed.web.dev/)
-   - Test your website: `https://djenepocouture.vercel.app`
+   - Test your website: `https://djenepocouture.com`
    - Implement suggested improvements
 
 ---

@@ -32,5 +32,29 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "djenepocouture.vercel.app"
+        }
+      ],
+      "destination": "https://djenepocouture.com/",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host", 
+          "value": "djenepocouture.vercel.app"
+        }
+      ],
+      "destination": "https://djenepocouture.com/$1",
+      "permanent": true
+    }
   ]
 }

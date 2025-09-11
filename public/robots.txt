@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://djenepocouture.vercel.app/sitemap.xml
+Sitemap: https://djenepocouture.com/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin/
