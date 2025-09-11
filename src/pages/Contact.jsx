@@ -25,7 +25,7 @@ const Contact = () => {
 
   const handleWhatsAppClick = (messageType = 'general') => {
     const message = getWhatsAppMessage(messageType);
-    const whatsappUrl = `https://wa.me/22399857217?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/22383561498?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
