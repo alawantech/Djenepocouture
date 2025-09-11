@@ -100,10 +100,6 @@
   line-height: 1.5;
 }
 
-.hours-list p {
-  margin-bottom: 0.5rem;
-}
-
 .map-section {
   display: flex;
   align-items: center;
@@ -154,19 +150,53 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .service-info-card {
-  background: var(--light-gray);
-  padding: 2rem 1.5rem;
-  border-radius: 12px;
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
   text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.service-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-gold);
+}
+
+.service-icon-contact {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+  transition: transform 0.3s ease;
+  border: 3px solid var(--primary-gold);
+}
+
+.service-info-card:hover .service-icon-contact {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(212, 168, 83, 0.4);
+}
+
+.service-image-contact {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
 }
 
 .service-info-card h4 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 1rem;
@@ -174,8 +204,32 @@
 
 .service-info-card p {
   color: var(--text-gray);
-  line-height: 1.5;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-gold);
+  color: var(--primary-gold);
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
   font-size: 0.9rem;
+}
+
+.btn-outline:hover {
+  background: var(--primary-gold);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 168, 83, 0.3);
 }
 
 .contact-cta {

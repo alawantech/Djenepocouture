@@ -5,10 +5,24 @@ import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { t } = useTranslation();
+  const { t, currentLanguage } = useTranslation();
+
+  const getWhatsAppMessage = () => {
+    const messages = {
+      en: "Hello! I'm interested in Djenepo Couture's services. I would like to know more about your custom tailoring and African fashion collections.",
+      fr: "Bonjour! Je suis intéressé(e) par les services de Djenepo Couture. J'aimerais en savoir plus sur votre couture sur mesure et vos collections de mode africaine."
+    };
+    return messages[currentLanguage] || messages.en;
+  };
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/1234567890', '_blank');
+    const message = getWhatsAppMessage();
+    const whatsappUrl = `https://wa.me/22399857217?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleCallClick = () => {
+    window.open('tel:+22399857217', '_self');
   };
 
   const handleServicesClick = (e) => {
@@ -44,16 +58,22 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <Phone size={18} />
-                <span>+1 (234) 567-8900</span>
+                <span>+223 99 85 72 17</span>
               </div>
               <div className="contact-item">
                 <MapPin size={18} />
-                <span>123 Fashion Street, NY 10001</span>
+                <span>Bamako, Missabougou</span>
               </div>
-              <button className="btn btn-primary footer-whatsapp" onClick={handleWhatsAppClick}>
-                <MessageCircle size={18} />
-                {t('footer.whatsapp')}
-              </button>
+              <div className="footer-buttons">
+                <button className="btn btn-primary footer-whatsapp" onClick={handleWhatsAppClick}>
+                  <MessageCircle size={16} />
+                  {t('footer.whatsapp')}
+                </button>
+                <button className="btn btn-secondary footer-call" onClick={handleCallClick}>
+                  <Phone size={16} />
+                  {t('contact.methods.phone.button')}
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -147,26 +147,12 @@
       "monday_friday": "Lundi - Vendredi :",
       "saturday": "Samedi :",
       "sunday": "Dimanche :",
+      "closed": "Fermé",
       "viewMaps": "Voir sur Google Maps"
     },
     "services": {
       "title": "Nos Services",
-      "measurements": {
-        "title": "Mesures Sur Mesure",
-        "description": "Séances d'essayage professionnelles pour assurer des mesures parfaites pour vos vêtements sur mesure."
-      },
-      "design": {
-        "title": "Consultation Design",
-        "description": "Travaillez avec nos designers pour créer le style parfait qui correspond à votre vision et besoins."
-      },
-      "fabric": {
-        "title": "Sélection de Tissus",
-        "description": "Choisissez parmi notre vaste collection de tissus premium provenant de moulins renommés dans le monde entier."
-      },
-      "fitting": {
-        "title": "Séances d'Essayage",
-        "description": "Plusieurs rendez-vous d'essayage pour s'assurer que votre vêtement s'ajuste parfaitement et répond à vos attentes."
-      }
+      "inquire": "Se Renseigner"
     },
     "cta": {
       "title": "Prêt à Commencer ?",

@@ -59,9 +59,29 @@
   color: #ccc;
 }
 
-.footer-whatsapp {
+.footer-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.footer-whatsapp,
+.footer-call {
   align-self: flex-start;
-  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+.footer-call {
+  background: transparent;
+  border: 2px solid var(--primary-gold);
+  color: var(--primary-gold);
+}
+
+.footer-call:hover {
+  background: var(--primary-gold);
+  color: var(--text-dark);
 }
 
 .footer-bottom {
@@ -78,7 +98,12 @@
     text-align: center;
   }
 
-  .footer-whatsapp {
+  .footer-buttons {
+    align-items: center;
+  }
+
+  .footer-whatsapp,
+  .footer-call {
     align-self: center;
   }
 }

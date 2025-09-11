@@ -147,26 +147,12 @@
       "monday_friday": "Monday - Friday:",
       "saturday": "Saturday:",
       "sunday": "Sunday:",
+      "closed": "Closed",
       "viewMaps": "View on Google Maps"
     },
     "services": {
       "title": "Our Services",
-      "measurements": {
-        "title": "Custom Measurements",
-        "description": "Professional fitting sessions to ensure perfect measurements for your custom garments."
-      },
-      "design": {
-        "title": "Design Consultation",
-        "description": "Work with our designers to create the perfect style that matches your vision and needs."
-      },
-      "fabric": {
-        "title": "Fabric Selection",
-        "description": "Choose from our extensive collection of premium fabrics from renowned mills worldwide."
-      },
-      "fitting": {
-        "title": "Fitting Sessions",
-        "description": "Multiple fitting appointments to ensure your garment fits perfectly and meets your expectations."
-      }
+      "inquire": "Inquire Now"
     },
     "cta": {
       "title": "Ready to Get Started?",
