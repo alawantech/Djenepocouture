@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { useTranslation } from "../contexts/TranslationContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -75,12 +75,27 @@ const Admin = () => {
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
   // New state for custom categories
-  const [customCategories, setCustomCategories] = useState(() => {
-    const saved = localStorage.getItem('djenepo-custom-categories');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [customCategories, setCustomCategories] = useState([]);
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState('');
+
+  // Load custom categories from Firebase on component mount
+  React.useEffect(() => {
+    const loadCustomCategories = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "categories"));
+        const categories = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setCustomCategories(categories);
+      } catch (error) {
+        console.error("Error loading custom categories:", error);
+      }
+    };
+    
+    loadCustomCategories();
+  }, []);
 
   console.log('Menu state:', { menuOpen, currentView }); // Debug log
 
@@ -93,36 +108,61 @@ const Admin = () => {
     }
   };
 
-  const handleAddCustomCategory = () => {
+  const handleAddCustomCategory = async () => {
     if (newCategoryName.trim()) {
-      const categoryId = newCategoryName.toLowerCase().replace(/\s+/g, '');
-      const newCategory = {
-        id: categoryId,
-        name: newCategoryName.trim(),
-        createdAt: new Date().toISOString()
-      };
-      
-      const updatedCategories = [...customCategories, newCategory];
-      setCustomCategories(updatedCategories);
-      localStorage.setItem('djenepo-custom-categories', JSON.stringify(updatedCategories));
-      
-      // Set the new category as selected
-      setProduct({ ...product, productCategory: categoryId });
-      
-      // Reset and close modal
-      setNewCategoryName('');
-      setShowAddCategoryModal(false);
+      try {
+        const categoryData = {
+          name: newCategoryName.trim(),
+          categoryId: newCategoryName.toLowerCase().replace(/\s+/g, ''),
+          createdAt: new Date(),
+          createdBy: 'admin'
+        };
+        
+        // Add to Firebase
+        const docRef = await addDoc(collection(db, "categories"), categoryData);
+        
+        // Add to local state
+        const newCategory = {
+          id: docRef.id,
+          ...categoryData
+        };
+        
+        const updatedCategories = [...customCategories, newCategory];
+        setCustomCategories(updatedCategories);
+        
+        // Set the new category as selected
+        setProduct({ ...product, productCategory: categoryData.categoryId });
+        
+        // Reset and close modal
+        setNewCategoryName('');
+        setShowAddCategoryModal(false);
+        
+        console.log('Category added successfully:', newCategory);
+      } catch (error) {
+        console.error("Error adding custom category:", error);
+        alert("Failed to add category. Please try again.");
+      }
     }
   };
 
-  const handleDeleteCustomCategory = (categoryId) => {
-    const updatedCategories = customCategories.filter(cat => cat.id !== categoryId);
-    setCustomCategories(updatedCategories);
-    localStorage.setItem('djenepo-custom-categories', JSON.stringify(updatedCategories));
-    
-    // If the deleted category was selected, clear the selection
-    if (product.productCategory === categoryId) {
-      setProduct({ ...product, productCategory: '' });
+  const handleDeleteCustomCategory = async (categoryDocId, categoryId) => {
+    try {
+      // Delete from Firebase
+      await deleteDoc(doc(db, "categories", categoryDocId));
+      
+      // Update local state
+      const updatedCategories = customCategories.filter(cat => cat.id !== categoryDocId);
+      setCustomCategories(updatedCategories);
+      
+      // If the deleted category was selected, clear the selection
+      if (product.productCategory === categoryId) {
+        setProduct({ ...product, productCategory: '' });
+      }
+      
+      console.log('Category deleted successfully');
+    } catch (error) {
+      console.error("Error deleting custom category:", error);
+      alert("Failed to delete category. Please try again.");
     }
   };
 
@@ -377,7 +417,7 @@ const Admin = () => {
                       <option value="tuniqueBroderie">{t('admin.categories.tuniqueBroderie')}</option>
                       <option value="chemises">{t('admin.categories.chemises')}</option>
                       {customCategories.map(category => (
-                        <option key={category.id} value={category.id}>
+                        <option key={category.id} value={category.categoryId}>
                           {category.name} (Custom)
                         </option>
                       ))}
@@ -403,7 +443,7 @@ const Admin = () => {
                             <span className="text-sm text-gray-700">{category.name}</span>
                             <button
                               type="button"
-                              onClick={() => handleDeleteCustomCategory(category.id)}
+                              onClick={() => handleDeleteCustomCategory(category.id, category.categoryId)}
                               className="text-red-500 hover:text-red-700 text-xs px-2 py-1"
                             >
                               Delete

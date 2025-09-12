@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../contexts/TranslationContext';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../data/products';
+import { db } from '../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import './Products.css';
 
 const Products = () => {
@@ -10,6 +12,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [customCategories, setCustomCategories] = useState([]);
   const { t, language } = useTranslation();
 
   // Helper function to get category display name with translation
@@ -22,24 +25,46 @@ const Products = () => {
       'chemises': language === 'fr' ? 'Chemises' : 'Shirts',
       'uncategorized': language === 'fr' ? 'Non catégorisé' : 'Uncategorized'
     };
+    
+    // Check if it's a custom category
+    const customCategory = customCategories.find(cat => cat.categoryId === categoryValue);
+    if (customCategory) {
+      return customCategory.name;
+    }
+    
     return categoryMap[categoryValue] || (language === 'fr' ? 'Toutes les Catégories' : 'All Categories');
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getProducts();
-        setProducts(data);
+        
+        // Fetch products and custom categories in parallel
+        const [productsData, categoriesSnapshot] = await Promise.all([
+          getProducts(),
+          getDocs(collection(db, "categories"))
+        ]);
+        
+        setProducts(productsData);
+        
+        // Process custom categories
+        const categories = categoriesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setCustomCategories(categories);
+        
       } catch (err) {
-        console.error('Error fetching products:', err);
+        console.error('Error fetching data:', err);
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-    fetchProducts();
+    
+    fetchData();
   }, []);
 
   const filteredProducts = products.filter(product => {
@@ -91,6 +116,11 @@ const Products = () => {
               <option value="tuniqueSimple">{language === 'fr' ? 'Tunique Simple' : 'Simple Tunic'}</option>
               <option value="tuniqueBroderie">{language === 'fr' ? 'Tunique Broderie' : 'Embroidered Tunic'}</option>
               <option value="chemises">{language === 'fr' ? 'Chemises' : 'Shirts'}</option>
+              {customCategories.map(category => (
+                <option key={category.id} value={category.categoryId}>
+                  {category.name}
+                </option>
+              ))}
               <option value="uncategorized">{language === 'fr' ? 'Non catégorisé' : 'Uncategorized'}</option>
             </select>
           </div>
