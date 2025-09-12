@@ -264,12 +264,31 @@ const Admin = () => {
       <header className="admin-header bg-white shadow-lg border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-2xl font-bold text-gray-900">{t('admin.dashboard')}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              {t('admin.dashboard')} 
+              <span className="text-xs bg-yellow-200 px-2 py-1 rounded ml-2">
+                Modal: {showAddCategoryModal ? 'OPEN' : 'CLOSED'}
+              </span>
+            </h1>
             
             {/* TEST BUTTON */}
             <button
-              onClick={() => setShowAddCategoryModal(true)}
-              className="bg-red-500 text-white px-3 py-1 rounded text-sm"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('🔴 TEST BUTTON CLICKED!');
+                alert('Test button clicked!');
+                setShowAddCategoryModal(true);
+                console.log('🔴 Modal state set to:', true);
+              }}
+              className="bg-red-500 text-white px-4 py-2 rounded text-sm font-bold"
+              style={{ 
+                zIndex: 9999, 
+                position: 'relative',
+                pointerEvents: 'auto',
+                minWidth: '120px',
+                minHeight: '40px'
+              }}
             >
               TEST MODAL
             </button>
@@ -603,19 +622,24 @@ const Admin = () => {
       />
       
       {/* Add New Category Modal */}
-      {console.log('showAddCategoryModal state:', showAddCategoryModal)}
-      {showAddCategoryModal && (
+      {console.log('🔍 Modal render check - showAddCategoryModal:', showAddCategoryModal)}
+      {(showAddCategoryModal || true) && ( // TEMPORARILY ALWAYS SHOW
         <div 
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center" 
-          style={{ zIndex: 9999 }}
+          className="fixed inset-0 bg-red-500 bg-opacity-90 flex items-center justify-center" 
+          style={{ zIndex: 99999 }}
           onClick={(e) => {
+            console.log('🔴 Modal backdrop clicked');
             if (e.target === e.currentTarget) {
               setShowAddCategoryModal(false);
             }
           }}
         >
-          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 shadow-2xl border-4 border-red-500">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">🆕 Add New Category</h3>
+          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 shadow-2xl border-8 border-blue-500">
+            <h3 className="text-xl font-bold text-red-600 mb-4">
+              🆕 MODAL IS WORKING! 
+              <br />
+              <small>State: {showAddCategoryModal ? 'TRUE' : 'FALSE'}</small>
+            </h3>
             <div className="mb-4">
               <label htmlFor="newCategoryName" className="block text-sm font-medium text-gray-700 mb-2">
                 Category Name
