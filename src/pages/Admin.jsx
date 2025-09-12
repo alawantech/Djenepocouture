@@ -70,7 +70,7 @@ const Admin = () => {
   const [showCropper, setShowCropper] = useState(false);
   const [originalImage, setOriginalImage] = useState(null);
 
-  const [currentView, setCurrentView] = useState('products'); // Start with products view
+  const [currentView, setCurrentView] = useState('add'); // Start with add product view for easier access
   const [menuOpen, setMenuOpen] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
@@ -426,11 +426,7 @@ const Admin = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => {
-                      console.log('Add New Category button clicked');
-                      setShowAddCategoryModal(true);
-                      console.log('showAddCategoryModal set to true');
-                    }}
+                    onClick={() => setShowAddCategoryModal(true)}
                     className="mt-2 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-md hover:bg-blue-100 transition-colors duration-200 flex items-center gap-1"
                   >
                     <PlusIcon className="h-4 w-4" />
