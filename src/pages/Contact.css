@@ -279,6 +279,89 @@
   color: var(--text-dark);
 }
 
+/* Social Media Section */
+.social-media-section {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.social-media-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.social-media-section p {
+  font-size: 1.1rem;
+  color: var(--text-gray);
+  margin-bottom: 2rem;
+}
+
+.social-media-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.social-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.facebook-card {
+  border-left: 4px solid #1877f2;
+}
+
+.facebook-card .social-icon {
+  color: #1877f2;
+}
+
+.tiktok-card {
+  border-left: 4px solid #000000;
+}
+
+.tiktok-card .social-icon {
+  color: #000000;
+}
+
+.social-icon {
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.social-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.social-content p {
+  font-size: 1rem;
+  color: var(--text-gray);
+  margin-bottom: 0.5rem;
+}
+
+.social-link {
+  font-size: 0.9rem;
+  color: var(--primary-gold);
+  font-weight: 500;
+}
+
 @media (max-width: 1024px) {
   .location-hours {
     grid-template-columns: 1fr;
@@ -297,6 +380,20 @@
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .social-media-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .social-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .social-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
 
   .cta-buttons {
