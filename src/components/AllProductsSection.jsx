@@ -24,6 +24,7 @@ const uploadImageToCloudinary = async (imageFile) => {
 
 const AllProductsSection = ({ onlyProductsView = false }) => {
   const [products, setProducts] = useState([]);
+  const [customCategories, setCustomCategories] = useState([]);
   const [open, setOpen] = useState(onlyProductsView);
   const [loading, setLoading] = useState(true);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -43,6 +44,13 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
       'tuniqueBroderie': 'Tunique Broderie',
       'chemises': 'Chemises'
     };
+    
+    // Check if it's a custom category
+    const customCategory = customCategories.find(cat => cat.id === categoryValue);
+    if (customCategory) {
+      return `${customCategory.name} (Custom)`;
+    }
+    
     return categoryMap[categoryValue] || categoryValue || 'Uncategorized';
   };
 
@@ -87,42 +95,54 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const querySnapshot = await getDocs(collection(db, 'products'));
-      const productsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      
-      // Auto-assign ratings and review counts to products that don't have them
-      const updatedProducts = [];
-      for (const product of productsList) {
-        if (!product.rating || !product.reviewCount) {
-          const newRating = getProductRating(product.id);
-          const newReviewCount = getReviewCount(product.id);
-          
-          try {
-            await updateDoc(doc(db, 'products', product.id), {
-              rating: newRating,
-              reviewCount: newReviewCount,
-              updatedAt: new Date()
-            });
+    const fetchData = async () => {
+      try {
+        // Fetch products
+        const productsSnapshot = await getDocs(collection(db, 'products'));
+        const productsList = productsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        
+        // Fetch custom categories
+        const categoriesSnapshot = await getDocs(collection(db, 'categories'));
+        const categoriesList = categoriesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setCustomCategories(categoriesList);
+        
+        // Auto-assign ratings and review counts to products that don't have them
+        const updatedProducts = [];
+        for (const product of productsList) {
+          if (!product.rating || !product.reviewCount) {
+            const newRating = getProductRating(product.id);
+            const newReviewCount = getReviewCount(product.id);
             
-            updatedProducts.push({
-              ...product,
-              rating: newRating,
-              reviewCount: newReviewCount
-            });
-          } catch (error) {
-            console.error('Error updating product ratings:', error);
+            try {
+              await updateDoc(doc(db, 'products', product.id), {
+                rating: newRating,
+                reviewCount: newReviewCount,
+                updatedAt: new Date()
+              });
+              
+              updatedProducts.push({
+                ...product,
+                rating: newRating,
+                reviewCount: newReviewCount
+              });
+            } catch (error) {
+              console.error('Error updating product ratings:', error);
+              updatedProducts.push(product);
+            }
+          } else {
             updatedProducts.push(product);
           }
-        } else {
-          updatedProducts.push(product);
         }
+        
+        setProducts(updatedProducts);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
-      
-      setProducts(updatedProducts);
-      setLoading(false);
     };
-    fetchProducts();
+    
+    fetchData();
   }, []);
 
   const startEditing = (product) => {
@@ -308,6 +328,11 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                       <option value="tuniqueSimple">Tunique Simple</option>
                       <option value="tuniqueBroderie">Tunique Broderie</option>
                       <option value="chemises">Chemises</option>
+                      {customCategories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name} (Custom)
+                        </option>
+                      ))}
                       <option value="uncategorized">Uncategorized</option>
                     </select>
                   </div>
@@ -440,6 +465,11 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                           <option value="tuniqueSimple">Tunique Simple</option>
                           <option value="tuniqueBroderie">Tunique Broderie</option>
                           <option value="chemises">Chemises</option>
+                          {customCategories.map((category) => (
+                            <option key={category.id} value={category.id}>
+                              {category.name} (Custom)
+                            </option>
+                          ))}
                         </select>
                       </div>
 
