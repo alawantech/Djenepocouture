@@ -86,7 +86,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-section">
-            <h4>Follow Us</h4>
+            <h4>{t('footer.followUs')}</h4>
             <div className="footer-social">
               <button className="social-btn facebook-btn" onClick={() => handleSocialClick('facebook')}>
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">

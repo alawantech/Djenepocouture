@@ -159,12 +159,27 @@
       "description": "Book your consultation today and begin your journey to exceptional custom clothing.",
       "bookWhatsapp": "Book via WhatsApp",
       "callSchedule": "Call to Schedule"
+    },
+    "social": {
+      "title": "Follow Us",
+      "subtitle": "Stay connected with us on social media for the latest updates and fashion inspiration!",
+      "facebook": {
+        "title": "Facebook",
+        "description": "Follow our latest designs and customer testimonials",
+        "link": "Visit our Facebook page"
+      },
+      "tiktok": {
+        "title": "TikTok", 
+        "description": "Watch our fashion videos and behind-the-scenes content",
+        "handle": "@djenepocouture"
+      }
     }
   },
   "footer": {
     "description": "Premium custom tailoring services with over 7 years of experience. We create exceptional clothing that fits your style perfectly.",
     "quickLinks": "Quick Links",
     "contactInfo": "Contact Info",
+    "followUs": "Follow Us",
     "whatsapp": "WhatsApp Us",
     "rights": "All rights reserved."
   },

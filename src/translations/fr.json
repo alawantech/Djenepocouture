@@ -159,12 +159,27 @@
       "description": "Réservez votre consultation aujourd'hui et commencez votre voyage vers des vêtements sur mesure exceptionnels.",
       "bookWhatsapp": "Réserver via WhatsApp",
       "callSchedule": "Appeler pour Planifier"
+    },
+    "social": {
+      "title": "Suivez-nous",
+      "subtitle": "Restez connectés avec nous sur les réseaux sociaux pour les dernières actualités et l'inspiration mode !",
+      "facebook": {
+        "title": "Facebook",
+        "description": "Suivez nos derniers designs et témoignages clients",
+        "link": "Visitez notre page Facebook"
+      },
+      "tiktok": {
+        "title": "TikTok",
+        "description": "Regardez nos vidéos mode et contenus en coulisses",
+        "handle": "@djenepocouture"
+      }
     }
   },
   "footer": {
     "description": "Services de couture sur mesure premium avec plus de 7 ans d'expérience. Nous créons des vêtements exceptionnels qui s'adaptent parfaitement à votre style.",
     "quickLinks": "Liens Rapides",
     "contactInfo": "Informations de Contact",
+    "followUs": "Suivez-nous",
     "whatsapp": "Nous contacter sur WhatsApp",
     "rights": "Tous droits réservés."
   },

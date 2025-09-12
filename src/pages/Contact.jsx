@@ -98,8 +98,8 @@ const Contact = () => {
 
           {/* Social Media Section */}
           <div className="social-media-section">
-            <h2>Follow Us</h2>
-            <p>Stay connected with us on social media for the latest updates and fashion inspiration!</p>
+            <h2>{t('contact.social.title')}</h2>
+            <p>{t('contact.social.subtitle')}</p>
             <div className="social-media-cards">
               <div className="social-card facebook-card" onClick={() => handleSocialClick('facebook')}>
                 <div className="social-icon">
@@ -108,9 +108,9 @@ const Contact = () => {
                   </svg>
                 </div>
                 <div className="social-content">
-                  <h3>Facebook</h3>
-                  <p>Follow our latest designs and customer testimonials</p>
-                  <span className="social-link">Visit our Facebook page</span>
+                  <h3>{t('contact.social.facebook.title')}</h3>
+                  <p>{t('contact.social.facebook.description')}</p>
+                  <span className="social-link">{t('contact.social.facebook.link')}</span>
                 </div>
               </div>
               
@@ -121,9 +121,9 @@ const Contact = () => {
                   </svg>
                 </div>
                 <div className="social-content">
-                  <h3>TikTok</h3>
-                  <p>Watch our fashion videos and behind-the-scenes content</p>
-                  <span className="social-link">@djenepocouture</span>
+                  <h3>{t('contact.social.tiktok.title')}</h3>
+                  <p>{t('contact.social.tiktok.description')}</p>
+                  <span className="social-link">{t('contact.social.tiktok.handle')}</span>
                 </div>
               </div>
             </div>
