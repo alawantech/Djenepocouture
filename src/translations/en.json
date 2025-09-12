@@ -278,7 +278,13 @@
         "requiresRecentLogin": "Please log out and log back in before changing your password",
         "generic": "Failed to update password. Please try again"
       }
-    }
+    },
+    "addNewCategory": "Add New Category",
+    "addCategory": "Add Category",
+    "categoryName": "Category Name",
+    "enterCategoryName": "Enter category name",
+    "cancel": "Cancel",
+    "add": "Add"
   },
   "login": {
     "title": "Admin Login",

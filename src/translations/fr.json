@@ -278,7 +278,13 @@
         "requiresRecentLogin": "Veuillez vous déconnecter et vous reconnecter avant de changer votre mot de passe",
         "generic": "Échec de la mise à jour du mot de passe. Veuillez réessayer"
       }
-    }
+    },
+    "addNewCategory": "Ajouter Nouvelle Catégorie",
+    "addCategory": "Ajouter Catégorie",
+    "categoryName": "Nom de la Catégorie",
+    "enterCategoryName": "Entrez le nom de la catégorie",
+    "cancel": "Annuler",
+    "add": "Ajouter"
   },
   "login": {
     "title": "Connexion Admin",
