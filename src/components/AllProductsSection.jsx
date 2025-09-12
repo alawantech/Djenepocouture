@@ -46,9 +46,9 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
     };
     
     // Check if it's a custom category
-    const customCategory = customCategories.find(cat => cat.id === categoryValue);
+    const customCategory = customCategories.find(cat => cat.categoryId === categoryValue);
     if (customCategory) {
-      return `${customCategory.name} (Custom)`;
+      return customCategory.name;
     }
     
     return categoryMap[categoryValue] || categoryValue || 'Uncategorized';
@@ -329,8 +329,8 @@ const AllProductsSection = ({ onlyProductsView = false }) => {
                       <option value="tuniqueBroderie">Tunique Broderie</option>
                       <option value="chemises">Chemises</option>
                       {customCategories.map((category) => (
-                        <option key={category.id} value={category.id}>
-                          {category.name} (Custom)
+                        <option key={category.id} value={category.categoryId}>
+                          {category.name}
                         </option>
                       ))}
                       <option value="uncategorized">Uncategorized</option>
