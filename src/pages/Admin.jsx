@@ -415,19 +415,27 @@ const Admin = () => {
                       className="form-input"
                     >
                       <option value="">{t('admin.form.categoryPlaceholder')}</option>
-                      <option value="vestes">{t('admin.categories.vestes')}</option>
-                      <option value="abacosts">{t('admin.categories.abacosts')}</option>
-                      <option value="tuniqueSimple">{t('admin.categories.tuniqueSimple')}</option>
-                      <option value="tuniqueBroderie">{t('admin.categories.tuniqueBroderie')}</option>
-                      <option value="chemises">{t('admin.categories.chemises')}</option>
-                      {customCategories.map(category => (
-                        <option key={category.id} value={category.categoryId}>
-                          {category.name} (Custom)
-                        </option>
-                      ))}
+                      <optgroup label="Standard Categories">
+                        <option value="vestes">{t('admin.categories.vestes')}</option>
+                        <option value="abacosts">{t('admin.categories.abacosts')}</option>
+                        <option value="tuniqueSimple">{t('admin.categories.tuniqueSimple')}</option>
+                        <option value="tuniqueBroderie">{t('admin.categories.tuniqueBroderie')}</option>
+                        <option value="chemises">{t('admin.categories.chemises')}</option>
+                      </optgroup>
+                      {customCategories.length > 0 && (
+                        <optgroup label="Custom Categories">
+                          {customCategories.map(category => (
+                            <option key={category.id} value={category.categoryId}>
+                              {category.name}
+                            </option>
+                          ))}
+                        </optgroup>
+                      )}
                     </select>
                     <RectangleGroupIcon className="form-icon" />
                   </div>
+                  
+                  {/* Add New Category Button */}
                   <button
                     type="button"
                     onClick={() => {
@@ -441,22 +449,25 @@ const Admin = () => {
                   
                   {/* Custom Categories Management */}
                   {customCategories.length > 0 && (
-                    <div className="mt-3 p-3 bg-gray-50 rounded-md">
-                      <h4 className="text-sm font-medium text-gray-700 mb-2">Custom Categories:</h4>
+                    <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                      <h4 className="text-sm font-semibold text-yellow-800 mb-2">📋 Manage Custom Categories:</h4>
                       <div className="space-y-1">
                         {customCategories.map(category => (
-                          <div key={category.id} className="flex items-center justify-between bg-white px-2 py-1 rounded border">
-                            <span className="text-sm text-gray-700">{category.name}</span>
+                          <div key={category.id} className="flex items-center justify-between bg-white px-3 py-2 rounded border border-yellow-100">
+                            <span className="text-sm font-medium text-gray-800">{category.name}</span>
                             <button
                               type="button"
                               onClick={() => handleDeleteCustomCategory(category.id, category.categoryId)}
-                              className="text-red-500 hover:text-red-700 text-xs px-2 py-1"
+                              className="text-red-600 hover:text-red-800 text-xs px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition-colors duration-150"
                             >
-                              Delete
+                              🗑️ Delete
                             </button>
                           </div>
                         ))}
                       </div>
+                      <p className="text-xs text-yellow-700 mt-2">
+                        💡 These categories are available in the dropdown above and on the Products page.
+                      </p>
                     </div>
                   )}
                 </div>
