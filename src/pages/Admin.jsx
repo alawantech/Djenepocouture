@@ -426,7 +426,11 @@ const Admin = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => setShowAddCategoryModal(true)}
+                    onClick={() => {
+                      console.log('Add New Category button clicked');
+                      setShowAddCategoryModal(true);
+                      console.log('showAddCategoryModal set to true');
+                    }}
                     className="mt-2 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-md hover:bg-blue-100 transition-colors duration-200 flex items-center gap-1"
                   >
                     <PlusIcon className="h-4 w-4" />
