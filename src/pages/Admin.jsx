@@ -97,7 +97,7 @@ const Admin = () => {
     loadCustomCategories();
   }, []);
 
-  console.log('Menu state:', { menuOpen, currentView }); // Debug log
+  // Get current view content
 
   const handleLogout = async () => {
     try {
@@ -172,7 +172,7 @@ const Admin = () => {
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
-    console.log('Form input changed:', { name, value, type, checked }); // Debug log
+    // Handle form input changes
     if (name === "image") {
       const file = files[0];
       if (file) {
@@ -265,33 +265,10 @@ const Admin = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <h1 className="text-2xl font-bold text-gray-900">
-              {t('admin.dashboard')} 
-              <span className="text-xs bg-yellow-200 px-2 py-1 rounded ml-2">
-                Modal: {showAddCategoryModal ? 'OPEN' : 'CLOSED'}
-              </span>
+              {t('admin.dashboard')}
             </h1>
             
-            {/* TEST BUTTON */}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('🔴 TEST BUTTON CLICKED!');
-                alert('Test button clicked!');
-                setShowAddCategoryModal(true);
-                console.log('🔴 Modal state set to:', true);
-              }}
-              className="bg-red-500 text-white px-4 py-2 rounded text-sm font-bold"
-              style={{ 
-                zIndex: 9999, 
-                position: 'relative',
-                pointerEvents: 'auto',
-                minWidth: '120px',
-                minHeight: '40px'
-              }}
-            >
-              TEST MODAL
-            </button>
+            {/* Remove test button - functionality confirmed working */}
             
             {/* Hamburger Menu */}
             <div className="hamburger-container">
@@ -454,15 +431,12 @@ const Admin = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      console.log('Add New Category button clicked!');
                       setShowAddCategoryModal(true);
-                      console.log('Modal state set to true');
                     }}
-                    className="mt-2 text-sm bg-red-100 text-red-700 border border-red-300 px-3 py-1 rounded-md hover:bg-red-200 transition-colors duration-200 flex items-center gap-1"
-                    style={{ minWidth: '150px', padding: '8px 12px' }}
+                    className="mt-2 text-sm bg-blue-50 text-blue-700 border border-blue-300 px-3 py-1 rounded-md hover:bg-blue-100 transition-colors duration-200 flex items-center gap-1"
                   >
                     <PlusIcon className="h-4 w-4" />
-                    Add New Category
+                    {t('admin.addNewCategory')}
                   </button>
                   
                   {/* Custom Categories Management */}
@@ -622,27 +596,41 @@ const Admin = () => {
       />
       
       {/* Add New Category Modal */}
-      {console.log('🔍 Modal render check - showAddCategoryModal:', showAddCategoryModal)}
-      {(showAddCategoryModal || true) && ( // TEMPORARILY ALWAYS SHOW
+      {showAddCategoryModal && (
         <div 
-          className="fixed inset-0 bg-red-500 bg-opacity-90 flex items-center justify-center" 
-          style={{ zIndex: 99999 }}
+          className="fixed inset-0 flex items-center justify-center" 
+          style={{ 
+            zIndex: 99999,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            position: 'fixed'
+          }}
           onClick={(e) => {
-            console.log('🔴 Modal backdrop clicked');
             if (e.target === e.currentTarget) {
               setShowAddCategoryModal(false);
             }
           }}
         >
-          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 shadow-2xl border-8 border-blue-500">
-            <h3 className="text-xl font-bold text-red-600 mb-4">
-              🆕 MODAL IS WORKING! 
-              <br />
-              <small>State: {showAddCategoryModal ? 'TRUE' : 'FALSE'}</small>
+          <div 
+            className="bg-white rounded-lg shadow-2xl"
+            style={{
+              padding: '24px',
+              width: '90%',
+              maxWidth: '500px',
+              position: 'relative',
+              zIndex: 100000
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-xl font-bold text-gray-900 mb-4">
+              {t('admin.addCategory')}
             </h3>
             <div className="mb-4">
               <label htmlFor="newCategoryName" className="block text-sm font-medium text-gray-700 mb-2">
-                Category Name
+                {t('admin.categoryName')}
               </label>
               <input
                 type="text"
@@ -650,7 +638,7 @@ const Admin = () => {
                 value={newCategoryName}
                 onChange={(e) => setNewCategoryName(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter category name"
+                placeholder={t('admin.enterCategoryName')}
                 autoFocus
                 onKeyPress={(e) => e.key === 'Enter' && handleAddCustomCategory()}
               />
@@ -662,7 +650,7 @@ const Admin = () => {
                 disabled={!newCategoryName.trim()}
                 className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
-                Add Category
+                {t('admin.add')}
               </button>
               <button
                 type="button"
@@ -672,7 +660,7 @@ const Admin = () => {
                 }}
                 className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
               >
-                Cancel
+                {t('admin.cancel')}
               </button>
             </div>
           </div>
