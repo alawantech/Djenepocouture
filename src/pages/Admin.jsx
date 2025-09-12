@@ -70,7 +70,7 @@ const Admin = () => {
   const [showCropper, setShowCropper] = useState(false);
   const [originalImage, setOriginalImage] = useState(null);
 
-  const [currentView, setCurrentView] = useState('add'); // Start with add product view for easier access
+  const [currentView, setCurrentView] = useState('products'); // Start with all products view by default
   const [menuOpen, setMenuOpen] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
