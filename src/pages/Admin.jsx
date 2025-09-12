@@ -266,6 +266,14 @@ const Admin = () => {
           <div className="flex justify-between items-center h-16">
             <h1 className="text-2xl font-bold text-gray-900">{t('admin.dashboard')}</h1>
             
+            {/* TEST BUTTON */}
+            <button
+              onClick={() => setShowAddCategoryModal(true)}
+              className="bg-red-500 text-white px-3 py-1 rounded text-sm"
+            >
+              TEST MODAL
+            </button>
+            
             {/* Hamburger Menu */}
             <div className="hamburger-container">
               <button
@@ -426,8 +434,13 @@ const Admin = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => setShowAddCategoryModal(true)}
-                    className="mt-2 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-md hover:bg-blue-100 transition-colors duration-200 flex items-center gap-1"
+                    onClick={() => {
+                      console.log('Add New Category button clicked!');
+                      setShowAddCategoryModal(true);
+                      console.log('Modal state set to true');
+                    }}
+                    className="mt-2 text-sm bg-red-100 text-red-700 border border-red-300 px-3 py-1 rounded-md hover:bg-red-200 transition-colors duration-200 flex items-center gap-1"
+                    style={{ minWidth: '150px', padding: '8px 12px' }}
                   >
                     <PlusIcon className="h-4 w-4" />
                     Add New Category
@@ -590,10 +603,19 @@ const Admin = () => {
       />
       
       {/* Add New Category Modal */}
+      {console.log('showAddCategoryModal state:', showAddCategoryModal)}
       {showAddCategoryModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Add New Category</h3>
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center" 
+          style={{ zIndex: 9999 }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowAddCategoryModal(false);
+            }
+          }}
+        >
+          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 shadow-2xl border-4 border-red-500">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">🆕 Add New Category</h3>
             <div className="mb-4">
               <label htmlFor="newCategoryName" className="block text-sm font-medium text-gray-700 mb-2">
                 Category Name
