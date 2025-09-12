@@ -74,6 +74,14 @@ const Admin = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
 
+  // New state for custom categories
+  const [customCategories, setCustomCategories] = useState(() => {
+    const saved = localStorage.getItem('djenepo-custom-categories');
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState('');
+
   console.log('Menu state:', { menuOpen, currentView }); // Debug log
 
   const handleLogout = async () => {
@@ -82,6 +90,39 @@ const Admin = () => {
       navigate('/');
     } catch (error) {
       console.error('Logout error:', error);
+    }
+  };
+
+  const handleAddCustomCategory = () => {
+    if (newCategoryName.trim()) {
+      const categoryId = newCategoryName.toLowerCase().replace(/\s+/g, '');
+      const newCategory = {
+        id: categoryId,
+        name: newCategoryName.trim(),
+        createdAt: new Date().toISOString()
+      };
+      
+      const updatedCategories = [...customCategories, newCategory];
+      setCustomCategories(updatedCategories);
+      localStorage.setItem('djenepo-custom-categories', JSON.stringify(updatedCategories));
+      
+      // Set the new category as selected
+      setProduct({ ...product, productCategory: categoryId });
+      
+      // Reset and close modal
+      setNewCategoryName('');
+      setShowAddCategoryModal(false);
+    }
+  };
+
+  const handleDeleteCustomCategory = (categoryId) => {
+    const updatedCategories = customCategories.filter(cat => cat.id !== categoryId);
+    setCustomCategories(updatedCategories);
+    localStorage.setItem('djenepo-custom-categories', JSON.stringify(updatedCategories));
+    
+    // If the deleted category was selected, clear the selection
+    if (product.productCategory === categoryId) {
+      setProduct({ ...product, productCategory: '' });
     }
   };
 
@@ -335,9 +376,43 @@ const Admin = () => {
                       <option value="tuniqueSimple">{t('admin.categories.tuniqueSimple')}</option>
                       <option value="tuniqueBroderie">{t('admin.categories.tuniqueBroderie')}</option>
                       <option value="chemises">{t('admin.categories.chemises')}</option>
+                      {customCategories.map(category => (
+                        <option key={category.id} value={category.id}>
+                          {category.name} (Custom)
+                        </option>
+                      ))}
                     </select>
                     <RectangleGroupIcon className="form-icon" />
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowAddCategoryModal(true)}
+                    className="mt-2 text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-md hover:bg-blue-100 transition-colors duration-200 flex items-center gap-1"
+                  >
+                    <PlusIcon className="h-4 w-4" />
+                    Add New Category
+                  </button>
+                  
+                  {/* Custom Categories Management */}
+                  {customCategories.length > 0 && (
+                    <div className="mt-3 p-3 bg-gray-50 rounded-md">
+                      <h4 className="text-sm font-medium text-gray-700 mb-2">Custom Categories:</h4>
+                      <div className="space-y-1">
+                        {customCategories.map(category => (
+                          <div key={category.id} className="flex items-center justify-between bg-white px-2 py-1 rounded border">
+                            <span className="text-sm text-gray-700">{category.name}</span>
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteCustomCategory(category.id)}
+                              className="text-red-500 hover:text-red-700 text-xs px-2 py-1"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Product Image Field */}
@@ -473,6 +548,50 @@ const Admin = () => {
         isOpen={showChangePasswordModal}
         onClose={() => setShowChangePasswordModal(false)}
       />
+      
+      {/* Add New Category Modal */}
+      {showAddCategoryModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Add New Category</h3>
+            <div className="mb-4">
+              <label htmlFor="newCategoryName" className="block text-sm font-medium text-gray-700 mb-2">
+                Category Name
+              </label>
+              <input
+                type="text"
+                id="newCategoryName"
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter category name"
+                autoFocus
+                onKeyPress={(e) => e.key === 'Enter' && handleAddCustomCategory()}
+              />
+            </div>
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={handleAddCustomCategory}
+                disabled={!newCategoryName.trim()}
+                className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+              >
+                Add Category
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowAddCategoryModal(false);
+                  setNewCategoryName('');
+                }}
+                className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
