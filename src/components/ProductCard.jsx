@@ -29,10 +29,6 @@ const ProductCard = ({ product, showDescription = false }) => {
     const productUrl = `${window.location.origin}/product/${product.id}`;
     message += `\n\n${t('products.whatsapp.productLink')}: ${productUrl}`;
     
-    // Log the message for demonstration
-    console.log('WhatsApp message with product link:', message);
-    console.log('Product URL:', productUrl);
-    
     // WhatsApp phone number (update this with your actual number)
     const phoneNumber = '22383561498';
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;

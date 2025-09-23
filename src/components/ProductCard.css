@@ -71,6 +71,7 @@
   opacity: 0;
   transition: all 0.3s ease;
   backdrop-filter: blur(2px);
+  padding: 1rem;
 }
 
 .product-card:hover .product-overlay {
@@ -81,6 +82,13 @@
 .quick-buy {
   transform: translateY(20px);
   transition: transform 0.3s ease;
+  min-width: 120px;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 160px;
 }
 
 .product-card:hover .view-details,
@@ -240,6 +248,7 @@
 .product-actions {
   display: flex;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 .view-btn {
@@ -252,6 +261,12 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.8rem 1rem;
+  min-height: 44px; /* Minimum touch target size */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .view-btn:hover {
@@ -263,6 +278,12 @@
 .whatsapp-btn {
   flex: 2;
   justify-content: center;
+  min-height: 44px; /* Minimum touch target size */
+  font-size: 0.9rem;
+  padding: 0.8rem 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -298,5 +319,93 @@
   
   .review-count {
     font-size: 0.8rem;
+  }
+
+  /* Mobile button improvements */
+  .product-actions {
+    gap: 0.4rem;
+  }
+
+  .view-btn,
+  .whatsapp-btn {
+    font-size: 0.85rem;
+    padding: 0.7rem 0.8rem;
+    min-height: 44px;
+  }
+
+  .view-btn {
+    flex: 1;
+  }
+
+  .whatsapp-btn {
+    flex: 1.5;
+  }
+
+  /* Overlay button improvements for mobile */
+  .view-details,
+  .quick-buy {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+    min-width: 100px;
+  }
+
+  /* Show overlay on mobile touch - alternative approach */
+  .product-card {
+    position: relative;
+  }
+
+  .product-overlay {
+    /* Make overlay slightly more visible on mobile */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.6) 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-actions {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .view-btn,
+  .whatsapp-btn {
+    flex: none;
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .view-details,
+  .quick-buy {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.7rem;
+    min-width: 90px;
+  }
+
+  .product-overlay {
+    gap: 0.6rem;
+    padding: 0.8rem;
+  }
+}
+
+/* Touch device improvements - show overlay on tap for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .product-card:active .product-overlay {
+    opacity: 1;
+  }
+  
+  .product-card:active .view-details,
+  .product-card:active .quick-buy {
+    transform: translateY(0);
+  }
+  
+  /* Alternative: Always show buttons on touch devices */
+  .product-overlay {
+    opacity: 0.9;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  }
+  
+  .view-details,
+  .quick-buy {
+    transform: translateY(0);
   }
 }

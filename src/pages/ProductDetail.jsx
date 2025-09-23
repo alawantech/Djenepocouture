@@ -100,10 +100,6 @@ const ProductDetail = () => {
     const productUrl = window.location.href;
     message += `\n\n${t('products.whatsapp.productLink')}: ${productUrl}`;
     
-    // Log the message for demonstration
-    console.log('WhatsApp message with product link:', message);
-    console.log('Product URL:', productUrl);
-    
     const phoneNumber = '22383561498';
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -122,14 +118,14 @@ const ProductDetail = () => {
       } else {
         // Fallback for browsers that don't support Web Share API
         await navigator.clipboard.writeText(window.location.href);
-        alert('Product link copied to clipboard!');
+        alert(t('common.linkCopied'));
       }
     } catch (err) {
       console.log('Error sharing:', err);
       // Fallback: copy to clipboard
       try {
         await navigator.clipboard.writeText(window.location.href);
-        alert('Product link copied to clipboard!');
+        alert(t('common.linkCopied'));
       } catch (clipboardErr) {
         console.log('Clipboard error:', clipboardErr);
       }
@@ -157,13 +153,13 @@ const ProductDetail = () => {
     return (
       <div className="product-detail-container">
         <div className="error-state">
-          <h2>Product Not Found</h2>
-          <p>The product you're looking for doesn't exist or has been removed.</p>
+          <h2>{t('products.detail.productNotFound')}</h2>
+          <p>{t('products.detail.productNotFoundDesc')}</p>
           <button 
             className="btn btn-primary"
             onClick={() => navigate('/products')}
           >
-            Back to Products
+            {t('products.detail.backToProducts')}
           </button>
         </div>
       </div>
@@ -181,21 +177,21 @@ const ProductDetail = () => {
           onClick={() => navigate('/products')}
         >
           <ArrowLeft size={20} />
-          Back to Products
+          {t('products.detail.backToProducts')}
         </button>
         
         <div className="header-actions">
           <button 
             className={`action-button ${isFavorited ? 'favorited' : ''}`}
             onClick={toggleFavorite}
-            title={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
+            title={isFavorited ? t('products.detail.removeFromFavorites') : t('products.detail.addToFavorites')}
           >
             <Heart size={20} />
           </button>
           <button 
             className="action-button"
             onClick={handleShare}
-            title="Share product"
+            title={t('products.detail.shareProduct')}
           >
             <Share size={20} />
           </button>
@@ -248,32 +244,32 @@ const ProductDetail = () => {
 
             <div className="product-price-detail">
               <span className="price-amount">{product.price}F</span>
-              <span className="price-label">Price</span>
+              <span className="price-label">{t('products.detail.price')}</span>
             </div>
           </div>
 
           {product.description && (
             <div className="product-description-section">
-              <h3>Description</h3>
+              <h3>{t('products.detail.description')}</h3>
               <p className="product-description-text">{product.description}</p>
             </div>
           )}
 
           {product.productCategory && (
             <div className="product-category-section">
-              <h3>Category</h3>
+              <h3>{t('products.detail.category')}</h3>
               <span className="product-category-tag">{product.productCategory}</span>
             </div>
           )}
 
           <div className="product-features">
-            <h3>Product Features</h3>
+            <h3>{t('products.detail.productFeatures')}</h3>
             <ul className="features-list">
-              <li>🧵 Premium quality fabric</li>
-              <li>✂️ Expert craftsmanship</li>
-              <li>📏 Custom tailored fit</li>
-              <li>🎨 Unique design</li>
-              <li>💎 Attention to detail</li>
+              <li>🧵 {t('products.detail.features.premiumFabric')}</li>
+              <li>✂️ {t('products.detail.features.expertCraftsmanship')}</li>
+              <li>📏 {t('products.detail.features.customFit')}</li>
+              <li>🎨 {t('products.detail.features.uniqueDesign')}</li>
+              <li>💎 {t('products.detail.features.attentionToDetail')}</li>
             </ul>
           </div>
 
@@ -288,29 +284,29 @@ const ProductDetail = () => {
             
             <div className="purchase-info">
               <p className="info-text">
-                🚀 Quick ordering via WhatsApp<br />
-                📞 Instant customer support<br />
-                🚚 Fast delivery available
+                🚀 {t('products.detail.purchaseInfo.quickOrdering')}<br />
+                📞 {t('products.detail.purchaseInfo.instantSupport')}<br />
+                🚚 {t('products.detail.purchaseInfo.fastDelivery')}
               </p>
             </div>
           </div>
 
           {product.isfeatured && (
             <div className="featured-badge-detail">
-              ⭐ Featured Product
+              ⭐ {t('products.detail.featuredProduct')}
             </div>
           )}
 
           <div className="product-meta-info">
             <div className="meta-item">
-              <span className="meta-label">Product ID:</span>
+              <span className="meta-label">{t('products.detail.productId')}:</span>
               <span className="meta-value">{product.id}</span>
             </div>
             {product.createdAt && (
               <div className="meta-item">
-                <span className="meta-label">Added:</span>
+                <span className="meta-label">{t('products.detail.added')}:</span>
                 <span className="meta-value">
-                  {product.createdAt.toDate ? product.createdAt.toDate().toLocaleDateString() : 'Recently'}
+                  {product.createdAt.toDate ? product.createdAt.toDate().toLocaleDateString() : t('products.detail.recently')}
                 </span>
               </div>
             )}

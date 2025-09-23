@@ -276,6 +276,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 1rem;
+  min-height: 50px; /* Ensure good touch target */
 }
 
 .purchase-btn:hover {
@@ -415,11 +416,46 @@
   .purchase-btn {
     font-size: 1rem;
     padding: 0.8rem 1.5rem;
+    min-height: 48px;
   }
 
   .product-rating-detail {
     flex-direction: column;
     gap: 0.5rem;
     align-items: start;
+  }
+
+  .back-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .action-button {
+    padding: 0.6rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .product-detail-header {
+    padding-bottom: 0.8rem;
+  }
+
+  .header-actions {
+    gap: 0.4rem;
+  }
+
+  .product-price-detail {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1.2rem;
+  }
+
+  .purchase-section {
+    padding: 1.2rem;
+  }
+
+  .info-text {
+    font-size: 0.85rem;
   }
 }

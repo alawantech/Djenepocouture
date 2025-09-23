@@ -193,6 +193,34 @@
     "reviews": "avis",
     "viewProduct": "Voir le Produit",
     "viewDetails": "Voir les Détails",
+    "detail": {
+      "productNotFound": "Produit Non Trouvé",
+      "productNotFoundDesc": "Le produit que vous recherchez n'existe pas ou a été supprimé.",
+      "backToProducts": "Retour aux Produits",
+      "addToFavorites": "Ajouter aux favoris",
+      "removeFromFavorites": "Retirer des favoris",
+      "shareProduct": "Partager le produit",
+      "price": "Prix",
+      "description": "Description",
+      "category": "Catégorie",
+      "productFeatures": "Caractéristiques du Produit",
+      "featuredProduct": "Produit Vedette",
+      "productId": "ID du Produit",
+      "added": "Ajouté",
+      "recently": "Récemment",
+      "features": {
+        "premiumFabric": "Tissu de qualité premium",
+        "expertCraftsmanship": "Artisanat expert",
+        "customFit": "Coupe sur mesure",
+        "uniqueDesign": "Design unique",
+        "attentionToDetail": "Attention aux détails"
+      },
+      "purchaseInfo": {
+        "quickOrdering": "Commande rapide via WhatsApp",
+        "instantSupport": "Support client instantané",
+        "fastDelivery": "Livraison rapide disponible"
+      }
+    },
     "whatsapp": {
       "message": "Je veux acheter {name} {description} qui a un prix de {price}",
       "quickBuy": "Achat Rapide",
@@ -210,7 +238,8 @@
     "delete": "Supprimer",
     "add": "Ajouter",
     "view": "Voir",
-    "close": "Fermer"
+    "close": "Fermer",
+    "linkCopied": "Lien du produit copié dans le presse-papiers !"
   },
   "admin": {
     "dashboard": "Tableau de Bord Admin",

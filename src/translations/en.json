@@ -193,6 +193,34 @@
     "reviews": "reviews",
     "viewProduct": "View Product",
     "viewDetails": "View Details",
+    "detail": {
+      "productNotFound": "Product Not Found",
+      "productNotFoundDesc": "The product you're looking for doesn't exist or has been removed.",
+      "backToProducts": "Back to Products",
+      "addToFavorites": "Add to favorites",
+      "removeFromFavorites": "Remove from favorites",
+      "shareProduct": "Share product",
+      "price": "Price",
+      "description": "Description",
+      "category": "Category",
+      "productFeatures": "Product Features",
+      "featuredProduct": "Featured Product",
+      "productId": "Product ID",
+      "added": "Added",
+      "recently": "Recently",
+      "features": {
+        "premiumFabric": "Premium quality fabric",
+        "expertCraftsmanship": "Expert craftsmanship",
+        "customFit": "Custom tailored fit",
+        "uniqueDesign": "Unique design",
+        "attentionToDetail": "Attention to detail"
+      },
+      "purchaseInfo": {
+        "quickOrdering": "Quick ordering via WhatsApp",
+        "instantSupport": "Instant customer support",
+        "fastDelivery": "Fast delivery available"
+      }
+    },
     "whatsapp": {
       "message": "I want to buy {name} {description} that has price of {price}",
       "quickBuy": "Quick Buy",
@@ -210,7 +238,8 @@
     "delete": "Delete",
     "add": "Add",
     "view": "View",
-    "close": "Close"
+    "close": "Close",
+    "linkCopied": "Product link copied to clipboard!"
   },
   "admin": {
     "dashboard": "Admin Dashboard",
