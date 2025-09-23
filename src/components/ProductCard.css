@@ -64,8 +64,10 @@
   bottom: 0;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.8rem;
   opacity: 0;
   transition: all 0.3s ease;
   backdrop-filter: blur(2px);
@@ -75,11 +77,13 @@
   opacity: 1;
 }
 
+.view-details,
 .quick-buy {
   transform: translateY(20px);
   transition: transform 0.3s ease;
 }
 
+.product-card:hover .view-details,
 .product-card:hover .quick-buy {
   transform: translateY(0);
 }
@@ -98,6 +102,20 @@
   color: var(--text-dark);
   margin-bottom: 0.8rem;
   line-height: 1.3;
+}
+
+.product-name-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.product-name-link:hover {
+  color: var(--primary-gold);
+}
+
+.product-name-link:hover .product-name {
+  color: var(--primary-gold);
 }
 
 .product-rating {
@@ -216,6 +234,34 @@
 
 .whatsapp-btn {
   width: 100%;
+  justify-content: center;
+}
+
+.product-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-btn {
+  flex: 1;
+  justify-content: center;
+  background: linear-gradient(135deg, #8B4513 0%, #6B3410 100%);
+  color: white;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.view-btn:hover {
+  background: linear-gradient(135deg, #6B3410 0%, #5A2D0E 100%);
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp-btn {
+  flex: 2;
   justify-content: center;
 }
 

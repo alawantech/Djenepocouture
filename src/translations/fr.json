@@ -191,10 +191,13 @@
     "checkBack": "Revenez bientôt pour notre dernière collection !",
     "featured": "Vedette",
     "reviews": "avis",
+    "viewProduct": "Voir le Produit",
+    "viewDetails": "Voir les Détails",
     "whatsapp": {
       "message": "Je veux acheter {name} {description} qui a un prix de {price}",
       "quickBuy": "Achat Rapide",
-      "buyOnWhatsapp": "Acheter sur WhatsApp"
+      "buyOnWhatsapp": "Acheter sur WhatsApp",
+      "productLink": "Voir le Produit"
     }
   },
   "common": {

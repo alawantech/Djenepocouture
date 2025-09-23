@@ -1,5 +1,6 @@
 import React from 'react';
-import { MessageCircle, Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MessageCircle, Star, Eye } from 'lucide-react';
 import { useTranslation } from '../contexts/TranslationContext';
 import './ProductCard.css';
 
@@ -23,6 +24,14 @@ const ProductCard = ({ product, showDescription = false }) => {
     
     // Add price
     message = message.replace('{price}', `${product.price}F`);
+    
+    // Add product link so admin can view the product
+    const productUrl = `${window.location.origin}/product/${product.id}`;
+    message += `\n\n${t('products.whatsapp.productLink')}: ${productUrl}`;
+    
+    // Log the message for demonstration
+    console.log('WhatsApp message with product link:', message);
+    console.log('Product URL:', productUrl);
     
     // WhatsApp phone number (update this with your actual number)
     const phoneNumber = '22383561498';
@@ -69,6 +78,13 @@ const ProductCard = ({ product, showDescription = false }) => {
       <div className="product-image">
         <img src={product.image} alt={product.name} />
         <div className="product-overlay">
+          <Link 
+            to={`/product/${product.id}`}
+            className="btn btn-secondary view-details"
+          >
+            <Eye size={18} />
+            {t('products.viewDetails')}
+          </Link>
           <button className="btn btn-primary quick-buy" onClick={handleWhatsAppClick}>
             <MessageCircle size={18} />
             {t('products.whatsapp.quickBuy')}
@@ -76,7 +92,9 @@ const ProductCard = ({ product, showDescription = false }) => {
         </div>
       </div>
       <div className="product-info">
-        <h3 className="product-name">{product.name}</h3>
+        <Link to={`/product/${product.id}`} className="product-name-link">
+          <h3 className="product-name">{product.name}</h3>
+        </Link>
         
         <div className="product-rating">
           <div className="stars-container">
@@ -90,10 +108,20 @@ const ProductCard = ({ product, showDescription = false }) => {
         
         {showDescription && <p className="product-description">{product.description}</p>}
         <div className="product-price">{product.price}F</div>
-        <button className="btn btn-primary whatsapp-btn" onClick={handleWhatsAppClick}>
-          <MessageCircle size={18} />
-          {t('products.whatsapp.buyOnWhatsapp')}
-        </button>
+        
+        <div className="product-actions">
+          <Link 
+            to={`/product/${product.id}`}
+            className="btn btn-secondary view-btn"
+          >
+            <Eye size={18} />
+            {t('products.viewProduct')}
+          </Link>
+          <button className="btn btn-primary whatsapp-btn" onClick={handleWhatsAppClick}>
+            <MessageCircle size={18} />
+            {t('products.whatsapp.buyOnWhatsapp')}
+          </button>
+        </div>
       </div>
     </div>
   );

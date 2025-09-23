@@ -191,10 +191,13 @@
     "checkBack": "Check back soon for our latest collection!",
     "featured": "Featured",
     "reviews": "reviews",
+    "viewProduct": "View Product",
+    "viewDetails": "View Details",
     "whatsapp": {
       "message": "I want to buy {name} {description} that has price of {price}",
       "quickBuy": "Quick Buy",
-      "buyOnWhatsapp": "Buy on WhatsApp"
+      "buyOnWhatsapp": "Buy on WhatsApp",
+      "productLink": "View Product"
     }
   },
   "common": {
