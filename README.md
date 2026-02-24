@@ -203,23 +203,6 @@ Open [http://localhost:5173](http://localhost:5173) to view the app in your brow
 | `products` | All products — name, price, image URL, category, featured flag, rating, reviewCount |
 | `categories` | Custom admin-created product categories |
 
-### Recommended Firestore Security Rules
-
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /products/{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-    match /categories/{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}
-```
 
 ---
 
